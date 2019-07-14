@@ -4,7 +4,6 @@ public class Subsystem implements Runnable {
 
     private long timing;
 
-
     @Override
     public void run(){
         while(true){
@@ -21,7 +20,7 @@ public class Subsystem implements Runnable {
     }
 
 
-    public long getTiming(){return timing;}
+    public long getTiming(){ return timing; }
 
 
 

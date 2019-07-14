@@ -80,6 +80,8 @@ public class JoystickWrapper {
             case UPPERLEFT:
                 compare = 315;
                 break;
+            default:
+                break;
         }
         return joy.getPOV() == compare;
     }

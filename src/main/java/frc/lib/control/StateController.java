@@ -1,14 +1,14 @@
 package frc.lib.control;
 
-public class StateWrapper {
+public class StateController {
 
     public enum RobotState{DISABLED, AUTONOMOUS, OPERATOR}
-    public static RobotState masterState;
+    private RobotState systemState;
     private boolean stateLocked;
 
     private boolean sameState(){
         boolean compare = true;
-        switch(getMasterState()){
+        switch(getSystemState()){
             case DISABLED:
                 compare = edu.wpi.first.wpilibj.RobotState.isDisabled();
                 break;
@@ -16,7 +16,7 @@ public class StateWrapper {
                 compare = edu.wpi.first.wpilibj.RobotState.isAutonomous();
                 break;
             case OPERATOR:
-                compare = edu.wpi.first.wpilibj.RobotState.isEnabled();
+                compare = edu.wpi.first.wpilibj.RobotState.isOperatorControl();
                 break;
             default:
                 break;
@@ -24,25 +24,26 @@ public class StateWrapper {
         return compare;
     }
 
-    public void updateMasterState(){
+    public void updateSystemState(){
         if(sameState()){ return; }
+
         if(edu.wpi.first.wpilibj.RobotState.isDisabled()){
-            changeMasterState(RobotState.DISABLED);
+            changeSystemState(RobotState.DISABLED);
         } else if(edu.wpi.first.wpilibj.RobotState.isAutonomous()){
-            changeMasterState(RobotState.AUTONOMOUS);
+            changeSystemState(RobotState.AUTONOMOUS);
         } else {
-            changeMasterState(RobotState.OPERATOR);
+            changeSystemState(RobotState.OPERATOR);
         }
     }
 
-    public void changeMasterState(RobotState state){
+    public void changeSystemState(RobotState state){
         if(!stateLocked){
-            masterState = state;
+            systemState = state;
         }
     }
 
-    public static RobotState getMasterState(){
-        return masterState;
+    public RobotState getSystemState(){
+        return systemState;
     }
 
     public void toggleStateLocked(){

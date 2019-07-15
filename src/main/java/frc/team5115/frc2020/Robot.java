@@ -1,25 +1,30 @@
 package frc.team5115.frc2020;
 
 import edu.wpi.first.wpilibj.TimedRobot;
-import frc.lib.control.StateWrapper;
+import frc.lib.control.StateController;
 import frc.lib.input.JoystickWrapper;
 
 public class Robot extends TimedRobot {
 
-  private StateWrapper masterState;
+  private StateController masterState;
 
   @Override
   public void robotInit() {
-    masterState = new StateWrapper();
+    masterState = new StateController();
   }
 
   @Override
   public void robotPeriodic() {
-    masterState.updateMasterState();
+    masterState.updateSystemState();
     if(JoystickWrapper.getInstance().observeButton(1, JoystickWrapper.buttonState.PRESSED)){
       masterState.toggleStateLocked();
     }
   }
+
+
+
+
+
 
 
 

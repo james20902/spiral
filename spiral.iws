@@ -2,12 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2737c509-dbf5-4cc9-86bb-ab70412f3b43" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/frc/lib/control/StateWrapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/frc/lib/control/SubsystemManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spiral.ipr" beforeDir="false" afterPath="$PROJECT_DIR$/spiral.ipr" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/frc/lib/control/StateController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spiral.iws" beforeDir="false" afterPath="$PROJECT_DIR$/spiral.iws" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/frc/lib/control/StateWrapper.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/frc/lib/control/Subsystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/lib/control/Subsystem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/lib/input/JoystickWrapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/lib/input/JoystickWrapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/frc/lib/control/SubsystemManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/lib/control/SubsystemManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/frc/team5115/frc2020/Robot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/team5115/frc2020/Robot.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -105,85 +104,22 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/frc/lib/control/DriveSignal.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="320">
-              <caret line="27" column="12" selection-start-line="27" selection-start-column="12" selection-end-line="27" selection-end-column="12" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/frc/lib/input/JoystickWrapper.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="464">
-              <caret line="74" column="30" lean-forward="true" selection-start-line="74" selection-start-column="30" selection-end-line="74" selection-end-column="30" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/frc/lib/control/Subsystem.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="368">
+            <state relative-caret-position="304">
               <caret line="25" lean-forward="true" selection-start-line="25" selection-end-line="25" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/frc/lib/input/ControllerNotFoundException.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="80">
-              <caret line="7" column="1" selection-start-line="7" selection-start-column="1" selection-end-line="7" selection-end-column="1" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/frc/team5115/frc2020/Robot.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/frc/lib/control/Subsystem.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="192">
-              <caret line="12" column="37" selection-start-line="12" selection-start-column="37" selection-end-line="12" selection-end-column="37" />
+            <state relative-caret-position="661">
+              <caret line="59" lean-forward="true" selection-start-line="59" selection-end-line="59" />
               <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#264#265#0" expanded="true" />
-                <element signature="e#306#307#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/frc/lib/control/StateWrapper.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="17" column="26" lean-forward="true" selection-start-line="17" selection-start-column="26" selection-end-line="17" selection-end-column="26" />
-              <folding>
-                <element signature="e#1024#1025#0" expanded="true" />
-                <element signature="e#1052#1053#0" expanded="true" />
-                <element signature="e#1089#1090#0" expanded="true" />
-                <element signature="e#1125#1126#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/frc/lib/control/SubsystemManager.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="176">
-              <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/edu.wpi.first.wpilibj/wpilibj-java/2019.4.1/ba505e826a3d95e2acc68d1c219bb55781cd2b94/wpilibj-java-2019.4.1-sources.jar!/edu/wpi/first/wpilibj/IterativeRobotBase.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="117" column="14" selection-start-line="117" selection-start-column="14" selection-end-line="117" selection-end-column="14" />
-              <folding>
-                <element signature="e#4226#4227#0" expanded="true" />
-                <element signature="e#4301#4302#0" expanded="true" />
+                <element signature="e#938#939#0" expanded="true" />
+                <element signature="e#986#987#0" expanded="true" />
+                <element signature="e#1521#1522#0" expanded="true" />
+                <element signature="e#1543#1544#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -192,8 +128,61 @@
       <file pinned="false" current-in-tab="false">
         <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/edu.wpi.first.wpilibj/wpilibj-java/2019.4.1/ba505e826a3d95e2acc68d1c219bb55781cd2b94/wpilibj-java-2019.4.1-sources.jar!/edu/wpi/first/wpilibj/Watchdog.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1872">
-              <caret line="26" column="13" selection-start-line="26" selection-start-column="13" selection-end-line="26" selection-end-column="13" />
+            <state relative-caret-position="-2192">
+              <caret line="9" column="7" lean-forward="true" selection-start-line="9" selection-start-column="7" selection-end-line="9" selection-end-column="7" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/frc/team5115/frc2020/Robot.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="96">
+              <caret line="6" column="32" selection-start-line="6" selection-start-column="32" selection-end-line="6" selection-end-column="32" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#270#271#0" expanded="true" />
+                <element signature="e#315#316#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/frc/lib/control/StateController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="309">
+              <caret line="24" column="5" lean-forward="true" selection-start-line="24" selection-start-column="5" selection-end-line="24" selection-end-column="5" />
+              <folding>
+                <element signature="e#1354#1355#0" expanded="true" />
+                <element signature="e#1388#1389#0" expanded="true" />
+                <element signature="e#1426#1427#0" expanded="true" />
+                <element signature="e#1468#1469#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/edu.wpi.first.wpilibj/wpilibj-java/2019.4.1/ba505e826a3d95e2acc68d1c219bb55781cd2b94/wpilibj-java-2019.4.1-sources.jar!/edu/wpi/first/wpilibj/TimedRobot.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="160">
+              <caret line="21" column="49" selection-start-line="21" selection-start-column="49" selection-end-line="21" selection-end-column="49" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/frc/lib/control/SubsystemManager.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="192">
+              <caret line="12" column="47" selection-start-line="12" selection-start-column="47" selection-end-line="12" selection-end-column="47" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -227,11 +216,13 @@
         <option value="$PROJECT_DIR$/src/main/java/frc/team5115/2020/Robot.java" />
         <option value="$PROJECT_DIR$/src/main/java/frc/team5115/Main.java" />
         <option value="$PROJECT_DIR$/src/main/java/frc/lib/control/DriveSignal.java" />
-        <option value="$PROJECT_DIR$/src/main/java/frc/lib/control/Subsystem.java" />
-        <option value="$PROJECT_DIR$/src/main/java/frc/lib/control/SubsystemManager.java" />
         <option value="$PROJECT_DIR$/src/main/java/frc/lib/input/JoystickWrapper.java" />
         <option value="$PROJECT_DIR$/src/main/java/frc/lib/control/StateWrapper.java" />
+        <option value="$PROJECT_DIR$/src/main/java/frc/lib/control/SubsystemManager.java" />
+        <option value="$PROJECT_DIR$/src/main/java/frc/lib/control/SystemState.java" />
         <option value="$PROJECT_DIR$/src/main/java/frc/team5115/frc2020/Robot.java" />
+        <option value="$PROJECT_DIR$/src/main/java/frc/lib/control/StateController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/frc/lib/control/Subsystem.java" />
       </list>
     </option>
   </component>
@@ -240,8 +231,8 @@
     <option name="LAST_EDITED_TAB_NAME" />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="552" />
-    <option name="y" value="59" />
+    <option name="x" value="283" />
+    <option name="y" value="43" />
     <option name="width" value="1340" />
     <option name="height" value="1050" />
   </component>
@@ -259,6 +250,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -345,7 +337,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -361,6 +352,7 @@
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="npm" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -432,26 +424,26 @@
       <workItem from="1562874782717" duration="1949000" />
       <workItem from="1563038793609" duration="2832000" />
       <workItem from="1563047134578" duration="4291000" />
-      <workItem from="1563072116181" duration="5318000" />
+      <workItem from="1563072116181" duration="5857000" />
+      <workItem from="1563105139216" duration="5572000" />
+      <workItem from="1563160210134" duration="4817000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="20755000" />
+    <option name="totallyTimeSpent" value="31683000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="64" y="3" width="1340" height="1050" extended-state="0" />
+    <frame x="283" y="43" width="1340" height="1050" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26953125" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.278125" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
       <window_info id="Capture Tool" order="4" />
       <window_info id="UI Designer" order="5" />
       <window_info id="Favorites" order="6" side_tool="true" />
-      <window_info anchor="bottom" id="Run with VisualVM" />
-      <window_info anchor="bottom" id="Debug with VisualVM" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" />
@@ -465,6 +457,8 @@
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Database Changes" order="11" />
       <window_info anchor="bottom" id="Version Control" order="12" />
+      <window_info anchor="bottom" id="Run with VisualVM" order="13" />
+      <window_info anchor="bottom" id="Debug with VisualVM" order="14" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -526,18 +520,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/edu.wpi.first.wpilibj/wpilibj-java/2019.4.1/ba505e826a3d95e2acc68d1c219bb55781cd2b94/wpilibj-java-2019.4.1-sources.jar!/edu/wpi/first/wpilibj/RobotBase.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="529">
-          <caret line="220" column="30" selection-start-line="220" selection-start-column="30" selection-end-line="220" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/frc/team5115/robot/Robot.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/frc/lib/control/DriveSignal.java">
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/edu.wpi.first.wpilibj/wpilibj-java/2019.4.1/ba505e826a3d95e2acc68d1c219bb55781cd2b94/wpilibj-java-2019.4.1-sources.jar!/edu/wpi/first/wpilibj/RobotState.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="27" column="12" selection-start-line="27" selection-start-column="12" selection-end-line="27" selection-end-column="12" />
+        <state relative-caret-position="80">
+          <caret line="10" column="19" selection-start-line="10" selection-start-column="19" selection-end-line="10" selection-end-column="19" />
         </state>
       </provider>
     </entry>
@@ -545,6 +532,21 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="80">
           <caret line="7" column="1" selection-start-line="7" selection-start-column="1" selection-end-line="7" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/frc/lib/control/StateWrapper.java" />
+    <entry file="jar://C:/Program Files/Java/jdk-11.0.1/lib/src.zip!/java.base/java/lang/Runnable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="704">
+          <caret line="67" column="25" selection-start-line="67" selection-start-column="25" selection-end-line="67" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/frc/lib/input/JoystickWrapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1088">
+          <caret line="74" column="30" selection-start-line="74" selection-start-column="30" selection-end-line="74" selection-end-column="30" />
         </state>
       </provider>
     </entry>
@@ -558,31 +560,66 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/edu.wpi.first.wpilibj/wpilibj-java/2019.4.1/ba505e826a3d95e2acc68d1c219bb55781cd2b94/wpilibj-java-2019.4.1-sources.jar!/edu/wpi/first/wpilibj/TimedRobot.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/frc/lib/control/DriveSignal.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="21" column="43" selection-start-line="21" selection-start-column="43" selection-end-line="21" selection-end-column="43" />
+        <state relative-caret-position="304">
+          <caret line="25" lean-forward="true" selection-start-line="25" selection-end-line="25" />
         </state>
       </provider>
     </entry>
     <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/edu.wpi.first.wpilibj/wpilibj-java/2019.4.1/ba505e826a3d95e2acc68d1c219bb55781cd2b94/wpilibj-java-2019.4.1-sources.jar!/edu/wpi/first/wpilibj/Watchdog.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1872">
-          <caret line="26" column="13" selection-start-line="26" selection-start-column="13" selection-end-line="26" selection-end-column="13" />
+        <state relative-caret-position="-2192">
+          <caret line="9" column="7" lean-forward="true" selection-start-line="9" selection-start-column="7" selection-end-line="9" selection-end-column="7" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/frc/lib/control/Subsystem.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/frc/lib/control/StateController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="368">
-          <caret line="25" lean-forward="true" selection-start-line="25" selection-end-line="25" />
+        <state relative-caret-position="309">
+          <caret line="24" column="5" lean-forward="true" selection-start-line="24" selection-start-column="5" selection-end-line="24" selection-end-column="5" />
+          <folding>
+            <element signature="e#1354#1355#0" expanded="true" />
+            <element signature="e#1388#1389#0" expanded="true" />
+            <element signature="e#1426#1427#0" expanded="true" />
+            <element signature="e#1468#1469#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/frc/team5115/frc2020/Robot.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="96">
+          <caret line="6" column="32" selection-start-line="6" selection-start-column="32" selection-end-line="6" selection-end-column="32" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#270#271#0" expanded="true" />
+            <element signature="e#315#316#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/edu.wpi.first.wpilibj/wpilibj-java/2019.4.1/ba505e826a3d95e2acc68d1c219bb55781cd2b94/wpilibj-java-2019.4.1-sources.jar!/edu/wpi/first/wpilibj/TimedRobot.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="21" column="49" selection-start-line="21" selection-start-column="49" selection-end-line="21" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/edu.wpi.first.wpilibj/wpilibj-java/2019.4.1/ba505e826a3d95e2acc68d1c219bb55781cd2b94/wpilibj-java-2019.4.1-sources.jar!/edu/wpi/first/wpilibj/RobotBase.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="195" column="12" lean-forward="true" selection-start-line="195" selection-start-column="12" selection-end-line="195" selection-end-column="12" />
         </state>
       </provider>
     </entry>
     <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/edu.wpi.first.wpilibj/wpilibj-java/2019.4.1/ba505e826a3d95e2acc68d1c219bb55781cd2b94/wpilibj-java-2019.4.1-sources.jar!/edu/wpi/first/wpilibj/IterativeRobotBase.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="117" column="14" selection-start-line="117" selection-start-column="14" selection-end-line="117" selection-end-column="14" />
+        <state relative-caret-position="592">
+          <caret line="45" column="51" lean-forward="true" selection-start-line="45" selection-start-column="51" selection-end-line="45" selection-end-column="51" />
           <folding>
             <element signature="e#4226#4227#0" expanded="true" />
             <element signature="e#4301#4302#0" expanded="true" />
@@ -592,46 +629,23 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/frc/lib/control/SubsystemManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/edu.wpi.first.wpilibj/wpilibj-java/2019.4.1/ba505e826a3d95e2acc68d1c219bb55781cd2b94/wpilibj-java-2019.4.1-sources.jar!/edu/wpi/first/wpilibj/RobotState.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="80">
-          <caret line="10" column="19" selection-start-line="10" selection-start-column="19" selection-end-line="10" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/frc/lib/input/JoystickWrapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="464">
-          <caret line="74" column="30" lean-forward="true" selection-start-line="74" selection-start-column="30" selection-end-line="74" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/frc/lib/control/StateWrapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="17" column="26" lean-forward="true" selection-start-line="17" selection-start-column="26" selection-end-line="17" selection-end-column="26" />
+        <state relative-caret-position="192">
+          <caret line="12" column="47" selection-start-line="12" selection-start-column="47" selection-end-line="12" selection-end-column="47" />
           <folding>
-            <element signature="e#1024#1025#0" expanded="true" />
-            <element signature="e#1052#1053#0" expanded="true" />
-            <element signature="e#1089#1090#0" expanded="true" />
-            <element signature="e#1125#1126#0" expanded="true" />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/frc/team5115/frc2020/Robot.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/frc/lib/control/Subsystem.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="12" column="37" selection-start-line="12" selection-start-column="37" selection-end-line="12" selection-end-column="37" />
+        <state relative-caret-position="661">
+          <caret line="59" lean-forward="true" selection-start-line="59" selection-end-line="59" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#264#265#0" expanded="true" />
-            <element signature="e#306#307#0" expanded="true" />
+            <element signature="e#938#939#0" expanded="true" />
+            <element signature="e#986#987#0" expanded="true" />
+            <element signature="e#1521#1522#0" expanded="true" />
+            <element signature="e#1543#1544#0" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -6,7 +6,7 @@ import java.util.Map;
 
 public class SubsystemManager {
 
-    Map<String, Subsystem> systems;
+    private Map<String, Subsystem> systems;
 
     private static SubsystemManager instance;
 
@@ -22,7 +22,7 @@ public class SubsystemManager {
     }
 
     public void addSubsystem(Subsystem system){
-        systems.put(system.getName(), system);
+        systems.put(system.getSystemName(), system);
     }
 
     public void addSubsystems(List<Subsystem> list){
@@ -31,6 +31,24 @@ public class SubsystemManager {
         }
     }
 
+    public void startSystems(){
+        systems.forEach((name, system) -> system.start());
+    }
 
+    public void stopSystem(String name){
+        try{
+            systems.get(name).interrupt();
+        } catch (NullPointerException e){
+            System.out.println("No subsystem with that specific name!");
+        }
+    }
+
+    public void printSystems(){
+        systems.forEach((name, system) -> System.out.println(name));
+    }
+
+    public void requestMasterStateOverride(){
+        //todo
+    }
 
 }

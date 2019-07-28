@@ -2,11 +2,15 @@ package frc.lib.control;
 
 import edu.wpi.first.wpilibj.Watchdog;
 
-public class Subsystem implements Runnable {
+public class Subsystem extends Thread {
 
     private long timing;
     private StateController systemState;
     private Watchdog watchdog;
+
+    public Subsystem(){
+        this(0);
+    }
 
     public Subsystem(long timing){
         this.timing = timing;
@@ -16,9 +20,10 @@ public class Subsystem implements Runnable {
 
     @Override
     public void run(){
+        watchdog.reset();
         while(true){
+            systemState.updateSystemState();
             try {
-                systemState.updateSystemState();
                 switch(systemState.getSystemState()){
                     case DISABLED:
                         disabledPeriodic();
@@ -32,7 +37,9 @@ public class Subsystem implements Runnable {
                 }
                 Thread.sleep(getTiming());
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                System.out.println(getSystemName() + " system stopped");
+                disabledPeriodic();
+                watchdog.disable();
             }
         }
     }
@@ -43,8 +50,8 @@ public class Subsystem implements Runnable {
 
     public void teleopPeriodic(){}
 
-    public String getName(){
-        return this.getClass().getName();
+    public String getSystemName(){
+        return this.getClass().getSimpleName();
     }
 
     public void setNewTiming(long timing){
@@ -55,12 +62,7 @@ public class Subsystem implements Runnable {
     public long getTiming(){ return timing; }
 
     public void logSlowdown(){
-
+        watchdog.printEpochs();
     }
-
-    public void masterStateOverride(StateController.RobotState state){
-        systemState.changeSystemState(state);
-    }
-
 
 }

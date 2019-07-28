@@ -5,45 +5,23 @@ import edu.wpi.first.wpilibj.Joystick;
 public class JoystickWrapper {
 
     private Joystick joy;
-    private static int port;
-    private static JoystickWrapper instance;
 
     public enum POV { NEUTRAL, UP, UPPERRIGHT, RIGHT, LOWERRIGHT, DOWN, LOWERLEFT, LEFT, UPPERLEFT }
 
     public enum buttonState{ NEUTRAL, PRESSED, HELD, RELEASED }
 
-    public static JoystickWrapper getInstance() {
-        if(instance == null){
-            instance = new JoystickWrapper();
-        }
-        return instance;
-    }
-
-    public JoystickWrapper(){}
-
-    public JoystickWrapper(int port){
-        this.port = port;
-        joy = new Joystick(port);
-    }
-
     public void findJoystick(){
         for(int i = 0; i < 5; i++){
-            if((!new Joystick(i).getName().equals("")) && (new Joystick(i).getButtonCount() > 0)){
+            if(new Joystick(i).getButtonCount() > 0){
                 registerStick(i);
                 break;
             }
         }
-        if(port == -1){
-            throw new ControllerNotFoundException(port);
-        }
     }
 
-    public static void registerStick(int port){
-        instance = new JoystickWrapper(port);
-    }
-
-    public static int getPort(){
-        return port;
+    public void registerStick(int port){
+        joy = new Joystick(port);
+        if(!joystickExists()){ throw new ControllerNotFoundException(port); }
     }
 
     public boolean joystickExists(){

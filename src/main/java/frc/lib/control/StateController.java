@@ -4,41 +4,24 @@ public class StateController {
 
     public enum RobotState{DISABLED, AUTONOMOUS, OPERATOR}
     private RobotState systemState;
-    private boolean stateLocked;
+    private boolean stateLocked = false;
 
-    private boolean sameState(){
-        boolean compare = true;
-        switch(getSystemState()){
-            case DISABLED:
-                compare = edu.wpi.first.wpilibj.RobotState.isDisabled();
-                break;
-            case AUTONOMOUS:
-                compare = edu.wpi.first.wpilibj.RobotState.isAutonomous();
-                break;
-            case OPERATOR:
-                compare = edu.wpi.first.wpilibj.RobotState.isOperatorControl();
-                break;
-            default:
-                break;
+    private RobotState translateSystemState(){
+        if(edu.wpi.first.wpilibj.RobotState.isDisabled()){
+            return RobotState.DISABLED;
+        } else if(edu.wpi.first.wpilibj.RobotState.isAutonomous()){
+            return RobotState.AUTONOMOUS;
+        } else {
+            return RobotState.OPERATOR;
         }
-        return compare;
     }
 
     public void updateSystemState(){
-        if(sameState()){ return; }
-
-        if(edu.wpi.first.wpilibj.RobotState.isDisabled()){
-            changeSystemState(RobotState.DISABLED);
-        } else if(edu.wpi.first.wpilibj.RobotState.isAutonomous()){
-            changeSystemState(RobotState.AUTONOMOUS);
-        } else {
-            changeSystemState(RobotState.OPERATOR);
+        if(systemState == translateSystemState()){
+            return;
         }
-    }
-
-    public void changeSystemState(RobotState state){
         if(!stateLocked){
-            systemState = state;
+            systemState = translateSystemState();
         }
     }
 
@@ -46,8 +29,8 @@ public class StateController {
         return systemState;
     }
 
-    public void toggleStateLocked(){
-        stateLocked = !stateLocked;
+    public void lockState(){
+        stateLocked = true;
     }
 
 }

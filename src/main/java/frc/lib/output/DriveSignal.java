@@ -1,4 +1,4 @@
-package frc.lib.control;
+package frc.lib.output;
 
 public class DriveSignal {
 

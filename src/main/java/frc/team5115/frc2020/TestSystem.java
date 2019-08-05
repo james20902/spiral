@@ -3,11 +3,6 @@ package frc.team5115.frc2020;
 import frc.lib.control.Subsystem;
 
 public class TestSystem extends Subsystem {
-
-    public TestSystem(long timing){
-        super(timing);
-    }
-
     @Override
     public void teleopPeriodic(){
         System.out.println("running");
@@ -20,6 +15,6 @@ public class TestSystem extends Subsystem {
 
     @Override
     public void disabledPeriodic(){
-        System.out.println("running quietly");
+//        System.out.println("running quietly");
     }
 }

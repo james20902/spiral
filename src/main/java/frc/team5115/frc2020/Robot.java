@@ -1,36 +1,34 @@
 package frc.team5115.frc2020;
 
+import edu.wpi.first.wpilibj.RobotState;
 import edu.wpi.first.wpilibj.TimedRobot;
-import frc.lib.control.StateController;
 import frc.lib.control.SubsystemManager;
-import frc.lib.input.JoystickWrapper;
 
 public class Robot extends TimedRobot {
 
-  private StateController masterState;
-  public static JoystickWrapper joystick;
-
   @Override
   public void robotInit() {
-    joystick = new JoystickWrapper();
-    joystick.findJoystick();
-    masterState = new StateController();
-    SubsystemManager.getInstance().addSubsystem(new TestSystem(5));
+    SubsystemManager.getInstance().addSubsystem(new TestSystem());
     SubsystemManager.getInstance().startSystems();
-    SubsystemManager.getInstance().printSystems();
-    SubsystemManager.getInstance().stopSystem("TestSystem");
   }
 
   @Override
   public void robotPeriodic() {
-    masterState.updateSystemState();
+    SubsystemManager.getInstance().masterState.set(getRobotStateID());
   }
 
-
-
-
-
-
+  private int getRobotStateID(){
+    if(RobotState.isDisabled()){
+      return 0;
+    } else if(RobotState.isAutonomous()){
+      return 1;
+    } else if(RobotState.isOperatorControl()){
+      return 2;
+    } else if(RobotState.isTest()){
+      return 3;
+    }
+    return -1;
+  }
 
 
 }

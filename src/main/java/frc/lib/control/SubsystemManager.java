@@ -3,10 +3,16 @@ package frc.lib.control;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class SubsystemManager {
 
+    //todo, look into scheduledthreadpoolexecutor
+    //https://docs.oracle.com/javase/9/docs/api/java/util/concurrent/ScheduledThreadPoolExecutor.html
+
     private Map<String, Subsystem> systems;
+
+    public AtomicInteger masterState = new AtomicInteger();
 
     private static SubsystemManager instance;
 
@@ -47,8 +53,8 @@ public class SubsystemManager {
         systems.forEach((name, system) -> System.out.println(name));
     }
 
-    public void requestMasterStateOverride(){
-        //todo
+    public void pollMasterState(int state){
+        masterState.set(state);
     }
 
 }

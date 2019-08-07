@@ -1,34 +1,29 @@
 package frc.team5115.frc2020;
 
-import edu.wpi.first.wpilibj.RobotState;
-import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.hal.HAL;
+import edu.wpi.first.wpilibj.RobotBase;
 import frc.lib.control.SubsystemManager;
 
-public class Robot extends TimedRobot {
+public class Robot extends RobotBase {
 
-  @Override
-  public void robotInit() {
-    SubsystemManager.getInstance().addSubsystem(new TestSystem());
-    SubsystemManager.getInstance().startSystems();
+  public void start() {
+//    SubsystemManager.getInstance().addSubsystem(new TestSystem());
+//    SubsystemManager.getInstance().startSystems();
+  }
+
+  public void loop() {
+    //todo translate raw HAL byte to something readable
+    SubsystemManager.getInstance().pollMasterState();
   }
 
   @Override
-  public void robotPeriodic() {
-    SubsystemManager.getInstance().masterState.set(getRobotStateID());
-  }
+  public void startCompetition() {
+    start();
+    HAL.observeUserProgramStarting();
 
-  private int getRobotStateID(){
-    if(RobotState.isDisabled()){
-      return 0;
-    } else if(RobotState.isAutonomous()){
-      return 1;
-    } else if(RobotState.isOperatorControl()){
-      return 2;
-    } else if(RobotState.isTest()){
-      return 3;
+    //noinspection InfiniteLoopStatement
+    while(true){
+      loop();
     }
-    return -1;
   }
-
-
 }

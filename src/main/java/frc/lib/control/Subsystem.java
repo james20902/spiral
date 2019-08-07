@@ -20,7 +20,7 @@ public class Subsystem extends Thread {
 
     public Subsystem(long timing){
         this.timing = timing;
-        watchdog = new Watchdog(timing * Math.pow(10, -3), this::logSlowdown);
+        watchdog = new Watchdog(5 * Math.pow(10, -3), this::logSlowdown);
     }
 
     @Override

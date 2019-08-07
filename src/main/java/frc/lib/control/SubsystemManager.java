@@ -1,5 +1,8 @@
 package frc.lib.control;
 
+import edu.wpi.first.hal.ControlWord;
+import edu.wpi.first.hal.HAL;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -9,6 +12,8 @@ public class SubsystemManager {
 
     //todo, look into scheduledthreadpoolexecutor
     //https://docs.oracle.com/javase/9/docs/api/java/util/concurrent/ScheduledThreadPoolExecutor.html
+
+    //todo, remove system state handling here
 
     private Map<String, Subsystem> systems;
 
@@ -53,8 +58,10 @@ public class SubsystemManager {
         systems.forEach((name, system) -> System.out.println(name));
     }
 
-    public void pollMasterState(int state){
-        masterState.set(state);
+    public void pollMasterState(){
+        masterState.set(HAL.nativeGetControlWord());
+        System.out.println((masterState.get() & 1));
     }
+
 
 }

@@ -1,7 +1,7 @@
 package frc.team5115.frc2020;
 
 import edu.wpi.first.hal.HAL;
-import edu.wpi.first.wpilibj.RobotBase;
+import frc.lib.control.RobotBase;
 import frc.lib.control.SubsystemManager;
 import frc.lib.utility.SystemState;
 
@@ -13,7 +13,6 @@ public class Robot extends RobotBase {
   }
 
   public void loop() {
-//    System.out.println("REEEEEE");
   }
 
   @Override
@@ -27,7 +26,7 @@ public class Robot extends RobotBase {
     HAL.observeUserProgramStarting();
 
     //noinspection InfiniteLoopStatement
-    while(true){
+    while(true){//todo while true bad don't do it big no no
       SystemState.getInstance().updateSystemState();
       loop();
     }

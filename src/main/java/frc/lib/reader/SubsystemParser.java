@@ -26,19 +26,20 @@ class SubsystemParser {
             //idk how to throw problem properly and print it correctly
         }
     }
-    void parse() {
+    void parse() {//need to add support for different encoders, right now its just whatever WPILib likes by default
         Mode mode;
         MotorData data;
         for (String[] line : lines) {
             mode = Mode.ON;
             data = new MotorData();
-            for(int i = 1; i < line.length; i++) {//line[0] determines motor type
+            for(int i = 1; i < line.length; i++) {//line[0] determines motor type, skip it
                 if(i == 1 && line[i].charAt(0) == 'd') {
                     data.drive = line[i];
                     continue;
                 }
                 if(line[i].equals("on")) {
-                    continue;//for cases of encoder or something, set different modes
+                    mode = Mode.ON;
+                    continue;
                 }
                 if(line[i].equals("encoder")) {
                     mode = Mode.ENCODER;

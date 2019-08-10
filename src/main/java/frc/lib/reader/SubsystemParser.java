@@ -3,6 +3,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.List;
 import java.util.ArrayList;
+import frc.lib.reader.MotorData.Type;
 class SubsystemParser {
     enum Mode{ON, ENCODER}
 
@@ -28,7 +29,7 @@ class SubsystemParser {
     void parse() {
         for (String[] line : lines) {
             Mode mode = Mode.ON;
-            MotorData data;
+            MotorData data = new MotorData();
             for(int i = 1; i < line.length; i++) {//line[0] determines motor type
                 if(line[i].equals("on")) continue;//for cases of encoder or something, set different modes
                 if(line[i].equals("encoder")) {
@@ -39,30 +40,40 @@ class SubsystemParser {
                     case ON:
                         switch (line[i]) {
                             case "can":
-                                data.canPos = Integer.parseInt(line[i+1]);
-                                i+= 1;
+                                data.canPos = Integer.parseInt(line[i + 1]);
+                                i += 1;
                             case "pdp":
-                                data.pdpPos = Integer.parseInt(line[i+1]);
-                                i+= 1;
+                                data.pdpPos = Integer.parseInt(line[i + 1]);
+                                i += 1;
                             case "pwm":
-                                data.pwmPos = Integer.parseInt(line[i+1]);
-                                i+= 1;
+                                data.pwmPos = Integer.parseInt(line[i + 1]);
+                                i += 1;
                             default:
                                 break;
                         }
                     case ENCODER:
-                        switch (line[i]) {
-                            case "motor":
-                                data.integratedEncoder = true;
-                            default:
-                                data.hasEncoder = true;
-                                data.encPos = Integer.parseInt(line[i+1]);
+                        if(line[i].equals("motor"))
+                            data.integratedEncoder = true;
+                        else {
+                            data.encPos = Integer.parseInt(line[i + 1]);
                         }
                     default:
                         //mental break;
                 }
-                
             }
+            switch (line[0]) {
+                case "talon":
+                    data.type = Type.TALON;
+                case "victor":
+                    data.type = Type.VICTOR;
+                case "spark":
+                    data.type = Type.SPARK;//Make it use motor sensor by default unless set to something else or PWM
+                case "blinkin":
+                    data.type = Type.BLINKIN;
+                case "blinkin_ind":
+                    data.type = Type.BLINKININD;
+            }
+            data.initialize();
         }
     }
 }

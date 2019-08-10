@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Watchdog {
-
     //todo reimplementation of WPI's watchdog class
 
         private long m_startTime; // us

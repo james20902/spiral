@@ -6,6 +6,7 @@ public class TestSystem extends Subsystem {
     @Override
     public void teleopPeriodic(){
         System.out.println("running");
+        timedExecution(1, this::oneMsLoop);
     }
 
     @Override
@@ -16,5 +17,9 @@ public class TestSystem extends Subsystem {
     @Override
     public void disabledPeriodic(){
         System.out.println("running quietly");
+    }
+
+    public void oneMsLoop(){
+        System.out.println("test");
     }
 }

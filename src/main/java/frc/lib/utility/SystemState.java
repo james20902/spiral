@@ -27,7 +27,6 @@ public class SystemState {
 
     public void updateSystemState(){
         if(!HAL.isNewControlData()){
-//            System.out.println("stale");
             return;
         }
         HAL.getControlWord(globalState);
@@ -77,6 +76,5 @@ public class SystemState {
     public boolean DSPresent(){
         return globalState.getDSAttached();
     }
-
 
 }

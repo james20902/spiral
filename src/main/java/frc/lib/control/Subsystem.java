@@ -1,6 +1,7 @@
 package frc.lib.control;
 
 import edu.wpi.first.wpilibj.Watchdog;
+import frc.lib.utility.SystemClock;
 import frc.lib.utility.SystemState;
 
 public class Subsystem extends Thread {
@@ -24,7 +25,6 @@ public class Subsystem extends Thread {
         watchdog.reset();
         while(true){
             try {
-                //todo implement SystemState
                 switch(SystemState.getInstance().getState()){
                     case SystemState.DISABLED:
                         watchdog.addEpoch("Disabled Loop");
@@ -45,7 +45,7 @@ public class Subsystem extends Thread {
                     default:
                         throw new IllegalStateException("If you got here somehow you've really messed up");
                 }
-                Thread.sleep(getTiming());
+                Thread.sleep(timing);
             } catch (InterruptedException e) {
                 System.out.println(getSystemName() + " system shutting down");
                 disabledPeriodic();
@@ -53,6 +53,13 @@ public class Subsystem extends Thread {
                 break;
             }
         }
+    }
+
+    public void timedExecution(long time, Runnable callback){
+        long executeTime = SystemClock.getSystemTime() + 1;
+        while(SystemClock.getSystemTime() < executeTime){
+        }
+        callback.run();
     }
 
     public void disabledPeriodic(){}
@@ -66,13 +73,6 @@ public class Subsystem extends Thread {
     String getSystemName(){
         return systemName;
     }
-
-    public void setNewTiming(long timing){
-        this.timing = timing;
-    }
-
-
-    public long getTiming(){ return timing; }
 
     public void logSlowdown(){
         watchdog.printEpochs();

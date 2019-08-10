@@ -11,12 +11,12 @@ public class Motor {
     Object motor;
     Encoder e;
 
-    Motor(Object motor){
+    public Motor(Object motor){
         this.motor = motor;
         Motors.motors.add(this);
     }
 
-    Motor(Object motor, int encoderPosA, int encoderPosB){
+    public Motor(Object motor, int encoderPosA, int encoderPosB){
         this.motor = motor;
         e = new Encoder(encoderPosA, encoderPosB);
         Motors.motors.add(this);

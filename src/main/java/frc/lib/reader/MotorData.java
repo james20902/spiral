@@ -1,6 +1,13 @@
 package frc.lib.reader;
 
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.VictorSPX;
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMaxLowLevel;
+import edu.wpi.first.wpilibj.Spark;
 import frc.lib.output.Blinkin;
+import frc.lib.output.Motor;
+import frc.lib.output.Motors;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,21 +21,30 @@ public class MotorData {
     String drive;
     List<Integer> encPos = new ArrayList<Integer>();
     Type type = Type.EMPTY;
+
     /*
     * if you use pwm talons and sparks you dumb so don't because they aren't gonna be supported
     * this method initializes and adds all the motors to the master list
      */
     public void initialize() {
-        switch(type){
+        switch(type){//could probably make it better but eh it'll work
             case TALON:
+                TalonSRX tal = new TalonSRX(canPos);
+                Motors.motors.add(new Motor(tal));
             case VICTOR:
+                VictorSPX vic = new VictorSPX(canPos);
+                Motors.motors.add(new Motor(vic));
             case SPARK:
                 if(canPos != -1) {
-
+                    CANSparkMax max = new CANSparkMax(canPos, CANSparkMaxLowLevel.MotorType.kBrushless);
+                    Motors.motors.add(new Motor(max));
                 } else {
+                    Spark sp = new Spark(pwmPos);
                     if(!encPos.isEmpty()) {
-
+                        Motors.motors.add(new Motor(sp, encPos.get(0), encPos.get(1)));
+                        break;
                     }
+                    Motors.motors.add(new Motor(sp));
                 }
             case BLINKIN:
                 Blinkin.initSpark(pwmPos, false);

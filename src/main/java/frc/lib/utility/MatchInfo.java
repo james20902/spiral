@@ -13,11 +13,16 @@ public class MatchInfo {
 
     private static MatchInfo instance;
 
-    public static MatchInfo seekMatchInfo(){
+    public static MatchInfo currentInfo(){
         if(instance == null){
             instance = new MatchInfo();
         }
+
         return instance;
+    }
+
+    public void fetchMatchInfo(){
+        HAL.getMatchInfo(currentMatch);
     }
 
     public Position getDSPosition(){

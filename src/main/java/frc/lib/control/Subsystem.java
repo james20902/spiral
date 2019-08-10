@@ -6,11 +6,6 @@ public class Subsystem extends Thread {
 
     private String systemName = this.getClass().getSimpleName();
 
-    private static final int DISABLED = 0;
-    private static final int AUTONOMOUS = 1;
-    private static final int OPERATOR = 2;
-    private static final int TEST = 3;
-
     private long timing;
     private Watchdog watchdog;
 
@@ -28,7 +23,8 @@ public class Subsystem extends Thread {
         watchdog.reset();
         while(true){
             try {
-                switch(SubsystemManager.getInstance().masterState.get()){
+                //todo implement SystemState
+                switch(){
                     case DISABLED:
                         watchdog.addEpoch("Disabled Loop");
                         disabledPeriodic();

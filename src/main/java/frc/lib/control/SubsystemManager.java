@@ -17,8 +17,6 @@ public class SubsystemManager {
 
     private Map<String, Subsystem> systems;
 
-    public AtomicInteger masterState = new AtomicInteger();
-
     private static SubsystemManager instance;
 
     public static SubsystemManager getInstance(){
@@ -57,11 +55,5 @@ public class SubsystemManager {
     public void printSystems(){
         systems.forEach((name, system) -> System.out.println(name));
     }
-
-    public void pollMasterState(){
-        masterState.set(HAL.nativeGetControlWord());
-        System.out.println((masterState.get() & 1));
-    }
-
 
 }

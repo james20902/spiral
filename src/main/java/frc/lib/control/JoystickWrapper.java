@@ -1,4 +1,4 @@
-package frc.lib.input;
+package frc.lib.control;
 
 import edu.wpi.first.wpilibj.Joystick;
 

@@ -15,6 +15,6 @@ public class TestSystem extends Subsystem {
 
     @Override
     public void disabledPeriodic(){
-//        System.out.println("running quietly");
+        System.out.println("running quietly");
     }
 }

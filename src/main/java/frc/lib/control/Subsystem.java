@@ -1,6 +1,7 @@
 package frc.lib.control;
 
 import edu.wpi.first.wpilibj.Watchdog;
+import frc.lib.utility.SystemState;
 
 public class Subsystem extends Thread {
 
@@ -10,12 +11,12 @@ public class Subsystem extends Thread {
     private Watchdog watchdog;
 
     public Subsystem(){
-        this(0);
+        this(2);
     }
 
     public Subsystem(long timing){
         this.timing = timing;
-        watchdog = new Watchdog(5 * Math.pow(10, -3), this::logSlowdown);
+        watchdog = new Watchdog(timing * Math.pow(10, -3), this::logSlowdown);
     }
 
     @Override
@@ -24,27 +25,26 @@ public class Subsystem extends Thread {
         while(true){
             try {
                 //todo implement SystemState
-                switch(){
-                    case DISABLED:
+                switch(SystemState.getInstance().getState()){
+                    case SystemState.DISABLED:
                         watchdog.addEpoch("Disabled Loop");
                         disabledPeriodic();
                         break;
-                    case AUTONOMOUS:
+                    case SystemState.AUTONOMOUS:
                         watchdog.addEpoch("Autonomous Loop");
                         autonomousPeriodic();
                         break;
-                    case OPERATOR:
+                    case SystemState.OPERATOR:
                         watchdog.addEpoch("Teleop Loop");
                         teleopPeriodic();
                         break;
-                    case TEST:
+                    case SystemState.TEST:
                         watchdog.addEpoch("Test Loop");
                         testPeriodic();
                         break;
                     default:
                         throw new IllegalStateException("If you got here somehow you've really messed up");
                 }
-                watchdog.printEpochs();
                 Thread.sleep(getTiming());
             } catch (InterruptedException e) {
                 System.out.println(getSystemName() + " system shutting down");

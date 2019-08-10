@@ -17,11 +17,21 @@ public class CANMonitor {
         return instance;
     }
 
+
+
     public double getUtilization(){
         return data.percentBusUtilization;
     }
 
-    //todo methods to measure transmit/recieve errors as well as busoff and tx errors
+    public int transmitErrors(){ return data.transmitErrorCount; }
+
+    public int recieveErrors(){ return data.receiveErrorCount; }
+
+    public int busOffErrors(){ return data.busOffCount; }
+
+    public int TXOverloads(){ return data.txFullCount; }
+
+
 
 
 

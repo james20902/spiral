@@ -1,11 +1,10 @@
 package frc.lib.output;
 
-import edu.wpi.first.wpilibj.SpeedControllerGroup;
-import frc.lib.output.Motor;
-
+import java.util.ArrayList;
 import java.util.List;
 
 public class Motors {
-    public static SpeedControllerGroup left, right;
-    public static List<Motor> motors;
+    public static List<Motor> left = new ArrayList<Motor>();
+    public static List<Motor> right = new ArrayList<Motor>();
+    public static List<Motor> motors = new ArrayList<Motor>();
 }

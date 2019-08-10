@@ -7,3 +7,5 @@ red_framework didn't really work out, lost motivation and ideas were convoluted.
 1. simplicity
 2. efficiency
 3. future-proof
+
+It is pretty much a faster command based structure with many utilities to make development easier and getting a moving robot as fast as possible

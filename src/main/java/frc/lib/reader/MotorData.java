@@ -1,6 +1,9 @@
 package frc.lib.reader;
 
-import frc.lib.motors.Blinkin;
+import frc.lib.output.Blinkin;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MotorData {
     public enum Type{TALON, VICTOR, SPARK, BLINKIN, BLINKININD, EMPTY};
@@ -8,7 +11,8 @@ public class MotorData {
     int pdpPos = -1;
     int canPos = -1;
     int pwmPos = -1;
-    int encPos = -1;
+    String drive;
+    List<Integer> encPos = new ArrayList<Integer>();
     Type type = Type.EMPTY;
     /*
     * if you use pwm talons and sparks you dumb so don't because they aren't gonna be supported
@@ -22,7 +26,7 @@ public class MotorData {
                 if(canPos != -1) {
 
                 } else {
-                    if(encPos != -1) {
+                    if(!encPos.isEmpty()) {
 
                     }
                 }

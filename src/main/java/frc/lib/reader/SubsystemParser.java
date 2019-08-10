@@ -31,6 +31,10 @@ class SubsystemParser {
             Mode mode = Mode.ON;
             MotorData data = new MotorData();
             for(int i = 1; i < line.length; i++) {//line[0] determines motor type
+                if(i == 1 && line[i].charAt(0) == 'd') {
+                    data.drive = line[i];
+                    continue;
+                }
                 if(line[i].equals("on")) continue;//for cases of encoder or something, set different modes
                 if(line[i].equals("encoder")) {
                     mode = Mode.ENCODER;
@@ -55,10 +59,8 @@ class SubsystemParser {
                         if(line[i].equals("motor"))
                             data.integratedEncoder = true;
                         else {
-                            data.encPos = Integer.parseInt(line[i + 1]);
+                            data.encPos.add(Integer.parseInt(line[i]));
                         }
-                    default:
-                        //mental break;
                 }
             }
             switch (line[0]) {

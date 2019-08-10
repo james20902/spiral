@@ -1,4 +1,4 @@
-package frc.lib.motors;
+package frc.lib.output;
 
 import edu.wpi.first.wpilibj.Spark;
 

@@ -1,4 +1,4 @@
-package frc.lib.motors;
+package frc.lib.output;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
@@ -13,11 +13,13 @@ public class Motor {
 
     Motor(Object motor){
         this.motor = motor;
+        Motors.motors.add(this);
     }
 
     Motor(Object motor, int encoderPosA, int encoderPosB){
         this.motor = motor;
         e = new Encoder(encoderPosA, encoderPosB);
+        Motors.motors.add(this);
     }
 
     public void setPercent(double value){

@@ -34,12 +34,10 @@ public class DriverStation {
     AtomicBoolean test = new AtomicBoolean(false);
     AtomicBoolean DSAttached = new AtomicBoolean(false);
     AtomicBoolean FMSAttached = new AtomicBoolean(false);
-    AtomicInteger matchNumber = new AtomicInteger(-1);
-    AtomicInteger replayNumber = new AtomicInteger(-1);
-    AtomicReference<String> gameSpecificMessage = new AtomicReference<String>("");
-    AtomicReference<String> eventName = new AtomicReference<String>("");
-    AtomicReference<MatchType> matchType = new AtomicReference<MatchType>(MatchType.None);
     private static final int kJoystickPorts = 6;
+
+    public static void reportWarning(String error, boolean b) {
+    }
 
     private static class HALJoystickButtons {
         int m_buttons;
@@ -224,7 +222,7 @@ public class DriverStation {
      * to error message.
      *
      */
-    private static void reportError(String error) {
+    static void reportError(String error) {
         reportErrorImpl(true, 1, error, false);
     }
 
@@ -233,7 +231,7 @@ public class DriverStation {
      * to error message.
      * @param stackTrace The stack trace to append
      */
-    private static void reportError(String error, StackTraceElement[] stackTrace) {
+    static void reportError(String error, StackTraceElement[] stackTrace) {
         reportErrorImpl(true, 1, error, stackTrace);
     }
 
@@ -241,7 +239,7 @@ public class DriverStation {
      * Report warning to Driver Station. Optionally appends Stack
      * trace to warning message.
      */
-    private static void reportWarning(String error) {
+    static void reportWarning(String error) {
         reportErrorImpl(false, 1, error, false);
     }
 
@@ -931,24 +929,7 @@ public class DriverStation {
             auto.set(m_controlWordCache.getAutonomous());
             test.set(m_controlWordCache.getTest());
             DSAttached.set(m_controlWordCache.getDSAttached());
-            FMSAttached.set(m_controlWordCache.getFMSAttached());
-            matchNumber.set(m_matchInfo.matchNumber);//todo these only need to be updated at the start of a match
-            replayNumber.set(m_matchInfo.replayNumber);//todo might need to lock/unlock m_cacheDataMutex before/after these calls(test first)
-            gameSpecificMessage.set(m_matchInfo.gameSpecificMessage);
-            eventName.set(m_matchInfo.eventName);
-            int matchtype;
-            matchtype = m_matchInfo.matchType;
-            switch (matchtype) {
-                case 1:
-                    matchType.set(MatchType.Practice);
-                case 2:
-                    matchType.set(MatchType.Qualification);
-                case 3:
-                    matchType.set(MatchType.Elimination);
-                default:
-                    matchType.set(MatchType.None);
-            }
-
+            FMSAttached.set(m_controlWordCache.getFMSAttached());//todo might need to lock/unlock m_cacheDataMutex before/after these calls(test first)
 
             if (enabled.get()) {
                 safetyCounter = 0;

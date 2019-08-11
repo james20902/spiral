@@ -9,7 +9,7 @@ public class Logger {
     //timedExecution(500, this::send);
     static Watchdog w = new Watchdog(500, Logger::send);
     private static List<String> messages = new ArrayList<String>();
-    //todo watchdog time
+    //todo watchdog
     /*
     * Adds messages to a queue that is printed every 10ms
     * This reduces lag caused by many print messages

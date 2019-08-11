@@ -41,7 +41,7 @@ public class MatchInfo {
         }
     }
 
-    public Alliance getAlliance(){
+    public Alliance getAlliance(){//todo could make these a variable to avoid a switch statement at runtime
         switch(HAL.getAllianceStation()){
             case Red1:
             case Red2:

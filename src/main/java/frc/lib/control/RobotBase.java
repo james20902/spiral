@@ -21,10 +21,10 @@ import edu.wpi.first.hal.FRCNetComm.tResourceType;
 import edu.wpi.first.hal.HAL;
 import edu.wpi.first.hal.HALUtil;
 import edu.wpi.first.networktables.NetworkTableInstance;
-import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.util.WPILibVersion;
+import frc.lib.utility.MatchInfo;
 
 /**
  * Implement a Robot Program framework. The RobotBase class is intended to be subclassed by a user
@@ -41,7 +41,7 @@ public abstract class RobotBase implements AutoCloseable {
     public static final long MAIN_THREAD_ID = Thread.currentThread().getId();
 
     /*
-    * starts a camera server for sending streams to the driver station.
+    * Starts a camera server for sending streams to the driver station. Only use if needed
      */
     private static void setupCameraServerShared() {
         CameraServerShared shared = new CameraServerShared() {
@@ -58,7 +58,8 @@ public abstract class RobotBase implements AutoCloseable {
 
             @Override
             public void reportDriverStationError(String error) {
-                DriverStation.reportError(error, true);
+                DriverStation.reportError(error);
+                System.err.println(Thread.currentThread().getStackTrace());
             }
 
             @Override
@@ -75,7 +76,19 @@ public abstract class RobotBase implements AutoCloseable {
         CameraServerSharedStore.setCameraServerShared(shared);
     }
 
+    /*
+    * sets up camera server to stream to Driver Station WITH OPENCV, IF YOU DON'T NEED OPENCV, DONT DO THIS
+    * DO setupCameraServerShared() instead
+     */
+    public void setupCams(){
+        setupCameraServerShared();
+        // Call a CameraServer JNI function to force OpenCV native library loading
+        // Needed because all the OpenCV JNI functions don't have built in loading
+        CameraServerJNI.enumerateSinks();
+    }
+
     protected final DriverStation m_ds;
+    protected final MatchInfo matchInfo;
 
     /**
      * Constructor for a generic robot program. User code should be placed in the constructor that
@@ -91,6 +104,7 @@ public abstract class RobotBase implements AutoCloseable {
         inst.setNetworkIdentity("Robot");
         inst.startServer("/home/lvuser/networktables.ini");
         m_ds = DriverStation.getInstance();
+        matchInfo = MatchInfo.currentInfo();
         inst.getTable("LiveWindow").getSubTable(".status").getEntry("LW Enabled").setBoolean(false);
 
         LiveWindow.setEnabled(false);
@@ -115,7 +129,6 @@ public abstract class RobotBase implements AutoCloseable {
      */
     public abstract void startCompetition();
 
-    @SuppressWarnings("JavadocMethod")
     public static boolean getBooleanProperty(String name, boolean defaultValue) {
         String propVal = System.getProperty(name);
         if (propVal == null) {
@@ -134,16 +147,10 @@ public abstract class RobotBase implements AutoCloseable {
      * Starting point for the applications.
      * Unmodified WPILib method, except for a few things for speed
      */
-    @SuppressWarnings({"PMD.AvoidInstantiatingObjectsInLoops", "PMD.AvoidCatchingThrowable",
-            "PMD.CyclomaticComplexity", "PMD.NPathComplexity"})
     public static <T extends RobotBase> void startRobot(Supplier<T> robotSupplier) {
         if (!HAL.initialize(500, 0)) {
             throw new IllegalStateException("Failed to initialize HAL. Terminating");
         }
-
-        // Call a CameraServer JNI function to force OpenCV native library loading
-        // Needed because all the OpenCV JNI functions don't have built in loading
-        CameraServerJNI.enumerateSinks();//todo only do this if needed
 
         HAL.report(tResourceType.kResourceType_Language, tInstances.kLanguage_Java);
 
@@ -165,7 +172,7 @@ public abstract class RobotBase implements AutoCloseable {
             DriverStation.reportError("Unhandled exception instantiating robot " + robotName + " "
                     + throwable.toString(), elements);
             DriverStation.reportWarning("Robots should not quit, but yours did!", false);
-            DriverStation.reportError("Could not instantiate robot " + robotName + "!", false);
+            DriverStation.reportError("Could not instantiate robot " + robotName + "!");
             System.exit(1);
             return;
         }
@@ -204,13 +211,13 @@ public abstract class RobotBase implements AutoCloseable {
             errorOnExit = true;
         } finally {
             // startCompetition never returns unless exception occurs....
-            DriverStation.reportWarning("Robots should not quit, but yours did!", false);
+            DriverStation.reportWarning("Robots should not quit, but yours did!");
             if (errorOnExit) {
                 DriverStation.reportError(
                         "The startCompetition() method (or methods called by it) should have "
-                                + "handled the exception above.", false);
+                                + "handled the exception above.");
             } else {
-                DriverStation.reportError("Unexpected return from startCompetition() method.", false);
+                DriverStation.reportError("Unexpected return from startCompetition() method.");
             }
         }
         System.exit(1);

@@ -18,12 +18,13 @@ public class SystemClock {
 
     }
 
+    //todo, redo convert method
     public static double convert(long measure, Units unit){
-        return Math.pow(measure, unit.pow);
+        return measure * Math.pow(10, unit.pow);
     }
 
-    public static long getSystemTime(){
-        return HALUtil.getFPGATime();
+    public static double getSystemTime(){
+        return convert(HALUtil.getFPGATime(), Units.MILLISECONDS);
     }
 
     public static double getMatchTime(){

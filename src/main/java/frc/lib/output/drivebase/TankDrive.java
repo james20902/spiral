@@ -1,4 +1,4 @@
-package frc.lib.output;
+package frc.lib.output.drivebase;
 
 import frc.lib.control.Subsystem;
 

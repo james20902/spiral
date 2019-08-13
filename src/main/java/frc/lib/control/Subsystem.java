@@ -55,13 +55,6 @@ public class Subsystem extends Thread {
         }
     }
 
-    public void timedExecution(long time, Runnable callback){
-        long executeTime = SystemClock.getSystemTime() + 1;
-        while(SystemClock.getSystemTime() < executeTime){
-        }
-        callback.run();
-    }
-
     public void disabledPeriodic(){}
 
     public void autonomousPeriodic(){}

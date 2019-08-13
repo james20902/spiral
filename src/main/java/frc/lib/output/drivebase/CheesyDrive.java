@@ -1,6 +1,7 @@
-package frc.lib.output;
+package frc.lib.output.drivebase;
 
 import frc.lib.control.Subsystem;
+
 /*
 * This is Cheesy Drive taken from team 254, the Cheesy Poofs
 * it is a curvature based drive that follows a directory

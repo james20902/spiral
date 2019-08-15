@@ -845,12 +845,6 @@ public class DriverStation {
             m_joystickButtonsCache[stick].m_buttons = HAL.getJoystickButtons(stick, m_buttonCountBuffer);
             m_joystickButtonsCache[stick].m_count = m_buttonCountBuffer.get(0);
         }
-
-        HAL.getMatchInfo(m_matchInfoCache);
-
-        // Force a control word update, to make sure the data is the newest.
-        updateControlWord();
-
         // lock joystick mutex to swap cache data
         m_cacheDataMutex.lock();
         try {
@@ -940,29 +934,7 @@ public class DriverStation {
                 MotorSafety.checkMotors();
                 safetyCounter = 0;
             }
-            if (m_userInDisabled) {
-                HAL.observeUserProgramDisabled();
-            }
-            if (m_userInAutonomous) {
-                HAL.observeUserProgramAutonomous();
-            }
-            if (m_userInTeleop) {
-                HAL.observeUserProgramTeleop();
-            }
-            if (m_userInTest) {
-                HAL.observeUserProgramTest();
-            }
         }
     }
 
-    /**
-     * Updates the data in the control word cache.
-     */
-    private void updateControlWord() {
-        long now = System.currentTimeMillis();
-        synchronized (m_controlWordMutex) {
-            HAL.getControlWord(m_controlWordCache);
-            m_lastControlWordUpdate = now;
-        }
-    }
 }

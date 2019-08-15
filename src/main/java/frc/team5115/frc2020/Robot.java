@@ -25,8 +25,7 @@ public class Robot extends RobotBase {
     start();
     HAL.observeUserProgramStarting();
 
-    //noinspection InfiniteLoopStatement
-    while(true){//todo while true bad don't do it big no no
+    while(!SystemState.getInstance().emergencyStopped()){
       SystemState.getInstance().updateSystemState();
       loop();
     }

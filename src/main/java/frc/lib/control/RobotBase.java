@@ -13,9 +13,6 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.function.Supplier;
 
-import edu.wpi.cscore.CameraServerJNI;
-import edu.wpi.first.cameraserver.CameraServerShared;
-import edu.wpi.first.cameraserver.CameraServerSharedStore;
 import edu.wpi.first.hal.FRCNetComm.tInstances;
 import edu.wpi.first.hal.FRCNetComm.tResourceType;
 import edu.wpi.first.hal.HAL;
@@ -37,55 +34,6 @@ public abstract class RobotBase implements AutoCloseable {
     /**
      * The ID of the main Java thread.
      */
-    // This is usually 1, but it is best to make sure
-    public static final long MAIN_THREAD_ID = Thread.currentThread().getId();
-
-    /*
-    * Starts a camera server for sending streams to the driver station. Only use if needed
-     */
-    private static void setupCameraServerShared() {
-        CameraServerShared shared = new CameraServerShared() {
-
-            @Override
-            public void reportVideoServer(int id) {
-                HAL.report(tResourceType.kResourceType_PCVideoServer, id);
-            }
-
-            @Override
-            public void reportUsbCamera(int id) {
-                HAL.report(tResourceType.kResourceType_UsbCamera, id);
-            }
-
-            @Override
-            public void reportDriverStationError(String error) {
-                DriverStation.reportError(error);
-                System.err.println(Thread.currentThread().getStackTrace());
-            }
-
-            @Override
-            public void reportAxisCamera(int id) {
-                HAL.report(tResourceType.kResourceType_AxisCamera, id);
-            }
-
-            @Override
-            public Long getRobotMainThreadId() {
-                return MAIN_THREAD_ID;
-            }
-        };
-
-        CameraServerSharedStore.setCameraServerShared(shared);
-    }
-
-    /*
-    * sets up camera server to stream to Driver Station WITH OPENCV, IF YOU DON'T NEED OPENCV, DONT DO THIS
-    * DO setupCameraServerShared() instead
-     */
-    public void setupCams(){
-        setupCameraServerShared();
-        // Call a CameraServer JNI function to force OpenCV native library loading
-        // Needed because all the OpenCV JNI functions don't have built in loading
-        CameraServerJNI.enumerateSinks();
-    }
 
     protected final DriverStation m_ds;
     protected final MatchInfo matchInfo;
@@ -116,32 +64,10 @@ public abstract class RobotBase implements AutoCloseable {
     }
 
     /**
-     * Get if the robot is real.
-     *
-     * @return If the robot is running in the real world.
-     */
-    public static boolean isReal() {
-        return HALUtil.getHALRuntimeType() == 0;
-    }
-
-    /**
      * Main loop for robots to implement
      */
     public abstract void startCompetition();
 
-    public static boolean getBooleanProperty(String name, boolean defaultValue) {
-        String propVal = System.getProperty(name);
-        if (propVal == null) {
-            return defaultValue;
-        }
-        if ("false".equalsIgnoreCase(propVal)) {
-            return false;
-        } else if ("true".equalsIgnoreCase(propVal)) {
-            return true;
-        } else {
-            throw new IllegalStateException(propVal);
-        }
-    }
 
     /**
      * Starting point for the applications.
@@ -177,7 +103,7 @@ public abstract class RobotBase implements AutoCloseable {
             return;
         }
 
-        if (isReal()) {
+        if (HALUtil.getHALRuntimeType() == 0) {
             try {
                 final File file = new File("/tmp/frc_versions/FRC_Lib_Version.ini");
 

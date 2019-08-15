@@ -7,7 +7,7 @@
 
 package frc.team5115;
 
-import edu.wpi.first.wpilibj.RobotBase;
+import frc.lib.control.RobotBase;
 import frc.team5115.frc2020.Robot;
 
 /**

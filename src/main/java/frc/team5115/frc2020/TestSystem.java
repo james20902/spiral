@@ -1,12 +1,20 @@
 package frc.team5115.frc2020;
 
 import frc.lib.control.Subsystem;
+import frc.lib.control.TimedExecution;
 
 public class TestSystem extends Subsystem {
+
+    TimedExecution testloop;
+
+    public TestSystem(){
+        testloop = new TimedExecution(TimedExecution.timeMode.RELATIVE, 1, this::oneMsLoop);
+    }
+
     @Override
     public void teleopPeriodic(){
         System.out.println("running");
-        timedExecution(1, this::oneMsLoop);
+//        testloop.execute();
     }
 
     @Override

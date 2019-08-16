@@ -7,8 +7,6 @@ package frc.lib.control;
 /*----------------------------------------------------------------------------*/
 import java.nio.ByteBuffer;
 import java.util.concurrent.atomic.AtomicBoolean;
-import java.util.concurrent.atomic.AtomicInteger;
-import java.util.concurrent.atomic.AtomicReference;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
@@ -21,6 +19,7 @@ import edu.wpi.first.hal.MatchInfoData;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
+import frc.lib.output.Logger;
 
 /**
  * Provide access to the network communication data to / from the Driver Station.
@@ -36,8 +35,7 @@ public class DriverStation {
     AtomicBoolean FMSAttached = new AtomicBoolean(false);
     private static final int kJoystickPorts = 6;
 
-    public static void reportWarning(String error, boolean b) {
-    }
+
 
     private static class HALJoystickButtons {
         int m_buttons;
@@ -65,13 +63,6 @@ public class DriverStation {
     /**
      * The robot alliance that the robot is a part of.
      */
-    public enum Alliance {
-        Red, Blue, Invalid
-    }
-
-    public enum MatchType {
-        None, Practice, Qualification, Elimination
-    }
 
     private static final double JOYSTICK_UNPLUGGED_MESSAGE_INTERVAL = 1.0;
     private double m_nextMessageTime;
@@ -217,75 +208,7 @@ public class DriverStation {
         m_threadKeepAlive = false;
     }
 
-    /**
-     * Report error to Driver Station. Optionally appends Stack trace
-     * to error message.
-     *
-     */
-    static void reportError(String error) {
-        reportErrorImpl(true, 1, error, false);
-    }
 
-    /**
-     * Report error to Driver Station. Appends provided stack trace
-     * to error message.
-     * @param stackTrace The stack trace to append
-     */
-    static void reportError(String error, StackTraceElement[] stackTrace) {
-        reportErrorImpl(true, 1, error, stackTrace);
-    }
-
-    /**
-     * Report warning to Driver Station. Optionally appends Stack
-     * trace to warning message.
-     */
-    static void reportWarning(String error) {
-        reportErrorImpl(false, 1, error, false);
-    }
-
-    /**
-     * Report warning to Driver Station. Appends provided stack
-     * trace to warning message.
-     *
-     * @param stackTrace The stack trace to append
-     */
-    private static void reportWarning(String error, StackTraceElement[] stackTrace) {
-        reportErrorImpl(false, 1, error, stackTrace);
-    }
-
-    private static void reportErrorImpl(boolean isError, int code, String error, boolean
-            printTrace) {
-        reportErrorImpl(isError, code, error, printTrace, Thread.currentThread().getStackTrace(), 3);
-    }
-
-    private static void reportErrorImpl(boolean isError, int code, String error,
-                                        StackTraceElement[] stackTrace) {
-        reportErrorImpl(isError, code, error, true, stackTrace, 0);
-    }
-
-    private static void reportErrorImpl(boolean isError, int code, String error,
-                                        boolean printTrace, StackTraceElement[] stackTrace, int stackTraceFirst) {
-        String locString;
-        if (stackTrace.length >= stackTraceFirst + 1) {
-            locString = stackTrace[stackTraceFirst].toString();
-        } else {
-            locString = "";
-        }
-        StringBuilder traceString = new StringBuilder();
-        if (printTrace) {
-            boolean haveLoc = false;
-            for (int i = stackTraceFirst; i < stackTrace.length; i++) {
-                String loc = stackTrace[i].toString();
-                traceString.append("\tat ").append(loc).append('\n');
-                // get first user function
-                if (!haveLoc && !loc.startsWith("edu.wpi.first")) {
-                    locString = loc;
-                    haveLoc = true;
-                }
-            }
-        }
-        HAL.sendError(isError, code, false, error, locString, traceString.toString(), true);
-    }
 
     /**
      * The state of one joystick button. Button indexes begin at 1.
@@ -587,199 +510,6 @@ public class DriverStation {
         return HAL.getJoystickAxisType((byte) stick, (byte) axis);
     }
 
-    /**
-     * Gets a value indicating whether the Driver Station requires the robot to be running in
-     * operator-controlled mode.
-     *
-     * @return True if operator-controlled mode should be enabled, false otherwise.
-     */
-    public boolean isOperatorControl() {
-        return !(auto.get() || test.get());
-    }
-
-    /**
-     * Get the event name.
-     *
-     * @return the event name
-     */
-    public String getEventName() {
-        m_cacheDataMutex.lock();
-        try {
-            return m_matchInfo.eventName;
-        } finally {
-            m_cacheDataMutex.unlock();
-        }
-    }
-
-    /**
-     * Get the match type.
-     *
-     * @return the match type
-     */
-    public MatchType getMatchType() {
-        int matchType;
-        m_cacheDataMutex.lock();
-        try {
-            matchType = m_matchInfo.matchType;
-        } finally {
-            m_cacheDataMutex.unlock();
-        }
-        switch (matchType) {
-            case 1:
-                return MatchType.Practice;
-            case 2:
-                return MatchType.Qualification;
-            case 3:
-                return MatchType.Elimination;
-            default:
-                return MatchType.None;
-        }
-    }
-
-    /**
-     * Get the replay number.
-     *
-     * @return the replay number
-     */
-    public int getReplayNumber() {
-        m_cacheDataMutex.lock();
-        try {
-            return m_matchInfo.replayNumber;
-        } finally {
-            m_cacheDataMutex.unlock();
-        }
-    }
-
-    /**
-     * Get the current alliance from the FMS.
-     *
-     * @return the current alliance
-     */
-    public Alliance getAlliance() {
-        AllianceStationID allianceStationID = HAL.getAllianceStation();
-        if (allianceStationID == null) {
-            return Alliance.Invalid;
-        }
-
-        switch (allianceStationID) {
-            case Red1:
-            case Red2:
-            case Red3:
-                return Alliance.Red;
-
-            case Blue1:
-            case Blue2:
-            case Blue3:
-                return Alliance.Blue;
-
-            default:
-                return Alliance.Invalid;
-        }
-    }
-
-    /**
-     * Gets the location of the team's driver station controls.
-     *
-     * @return the location of the team's driver station controls: 1, 2, or 3
-     */
-    public int getLocation() {
-        AllianceStationID allianceStationID = HAL.getAllianceStation();
-        if (allianceStationID == null) {
-            return 0;
-        }
-        switch (allianceStationID) {
-            case Red1:
-            case Blue1:
-                return 1;
-
-            case Red2:
-            case Blue2:
-                return 2;
-
-            case Blue3:
-            case Red3:
-                return 3;
-
-            default:
-                return 0;
-        }
-    }
-
-    /**
-     * Wait for new data or for timeout, which ever comes first. If timeout is 0, wait for new data
-     * only.
-     *
-     * @return true if there is new data, otherwise false
-     */
-    public boolean waitForData() {
-        m_waitForDataMutex.lock();
-        try {
-            int currentCount = m_waitForDataCount;
-            while (m_waitForDataCount == currentCount) {
-                m_waitForDataCond.await();
-            }
-            // Return true if we have received a proper signal
-            return true;
-        } catch (InterruptedException ex) {
-            // return false on a thread interrupt
-            return false;
-        } finally {
-            m_waitForDataMutex.unlock();
-        }
-    }
-
-    /**
-     * Return the approximate match time. The FMS does not send an official match time to the robots,
-     * but does send an approximate match time. The value will count down the time remaining in the
-     * current period (auto or teleop). Warning: This is not an official time (so it cannot be used to
-     * dispute ref calls or guarantee that a function will trigger before the match ends) The
-     * Practice Match function of the DS approximates the behaviour seen on the field.
-     *
-     * @return Time remaining in current match period (auto or teleop) in seconds
-     */
-    public double getMatchTime() {
-        return HAL.getMatchTime();
-    }
-
-    /**
-     * Only to be used to tell the Driver Station what code you claim to be executing for diagnostic
-     * purposes only.
-     *
-     * @param entering If true, starting disabled code; if false, leaving disabled code
-     */
-    public void InDisabled(boolean entering) {
-        m_userInDisabled = entering;
-    }
-
-    /**
-     * Only to be used to tell the Driver Station what code you claim to be executing for diagnostic
-     * purposes only.
-     *
-     * @param entering If true, starting autonomous code; if false, leaving autonomous code
-     */
-    public void InAutonomous(boolean entering) {
-        m_userInAutonomous = entering;
-    }
-
-    /**
-     * Only to be used to tell the Driver Station what code you claim to be executing for diagnostic
-     * purposes only.
-     *
-     * @param entering If true, starting teleop code; if false, leaving teleop code
-     */
-    public void InOperatorControl(boolean entering) {
-        m_userInTeleop = entering;
-    }
-
-    /**
-     * Only to be used to tell the Driver Station what code you claim to be executing for diagnostic
-     * purposes only.
-     *
-     * @param entering If true, starting test code; if false, leaving test code
-     */
-    public void InTest(boolean entering) {
-        m_userInTest = entering;
-    }
 
     private void sendMatchData() {
         AllianceStationID alliance = HAL.getAllianceStation();
@@ -893,7 +623,7 @@ public class DriverStation {
     private void reportJoystickUnpluggedError(String message) {
         double currentTime = Timer.getFPGATimestamp();
         if (currentTime > m_nextMessageTime) {
-            reportError(message);
+            Logger.reportError(message);
             m_nextMessageTime = currentTime + JOYSTICK_UNPLUGGED_MESSAGE_INTERVAL;
         }
     }
@@ -905,7 +635,7 @@ public class DriverStation {
     private void reportJoystickUnpluggedWarning(String message) {
         double currentTime = Timer.getFPGATimestamp();
         if (currentTime > m_nextMessageTime) {
-            reportWarning(message);
+            Logger.reportWarning(message);
             m_nextMessageTime = currentTime + JOYSTICK_UNPLUGGED_MESSAGE_INTERVAL;
         }
     }

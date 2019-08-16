@@ -4,7 +4,7 @@ import frc.lib.utility.SystemClock;
 
 public class TimedExecution {
 
-    private enum timeMode{
+    public enum timeMode{
         RELATIVE, ABSOLUTE
     }
 

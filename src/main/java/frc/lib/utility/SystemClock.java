@@ -18,15 +18,12 @@ public class SystemClock {
 
     }
 
-    //todo, redo convert method
-    public static double convert(long measure, Units unit){
-        return measure * Math.pow(10, unit.pow);
-    }
-
+    //micro converted to milli
     public static double getSystemTime(){
-        return convert(HALUtil.getFPGATime(), Units.MILLISECONDS);
+        return HALUtil.getFPGATime() / 1000 ;
     }
 
+    //milli
     public static double getMatchTime(){
         return HAL.getMatchTime();
     }

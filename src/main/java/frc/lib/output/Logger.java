@@ -40,9 +40,6 @@ public class Logger {
         reportErrorImpl(false, 1, error, false);
     }
 
-    public synchronized static void reportWarning(String error, boolean b) {
-    }
-
     public synchronized static void reportWarning(String error, StackTraceElement[] stackTrace) {
         reportErrorImpl(false, 1, error, stackTrace);
     }

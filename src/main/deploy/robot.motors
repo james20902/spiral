@@ -1,2 +1,3 @@
 // example: talon dl on pdp 4 can 24 encoder motor
 // this means there is a talon SRX left drive motor on the PDP slot 4 with CAN id 24, and the encoder device is integrated. you could do 2 3 after encoder for A at 2 and B at 3
+// make sure to declare left drive motors, then right, and begin each group with the motor with and encoder

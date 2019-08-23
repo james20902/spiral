@@ -3,6 +3,8 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.List;
 import java.util.ArrayList;
+
+import edu.wpi.first.wpilibj.Filesystem;
 import frc.lib.reader.MotorData.Type;
 class SubsystemParser {
     enum Mode{ON, ENCODER}
@@ -11,7 +13,7 @@ class SubsystemParser {
     List<String[]> lines;
     void init() {
         try {
-            reader = new BufferedReader(new FileReader("robot.motors"));
+            reader = new BufferedReader(new FileReader(Filesystem.getDeployDirectory().getAbsolutePath()+"/robot.motors"));
         } catch(Exception e) {
             //idk how to throw problem properly and print it correctly
         }

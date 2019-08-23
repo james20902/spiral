@@ -6,7 +6,6 @@ import frc.lib.control.SubsystemManager;
 import frc.lib.utility.SystemState;
 
 public class Robot extends RobotBase {
-
   public void start() {
     SubsystemManager.getInstance().addSubsystem(new TestSystem());
     SubsystemManager.getInstance().startSystems();

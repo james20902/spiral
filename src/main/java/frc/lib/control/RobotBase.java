@@ -13,16 +13,20 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.function.Supplier;
 
+import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.hal.FRCNetComm.tInstances;
 import edu.wpi.first.hal.FRCNetComm.tResourceType;
 import edu.wpi.first.hal.HAL;
 import edu.wpi.first.hal.HALUtil;
 import edu.wpi.first.networktables.NetworkTableInstance;
+import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.util.WPILibVersion;
 import frc.lib.output.Logger;
+import frc.lib.utility.Gyro;
 import frc.lib.utility.MatchInfo;
+import frc.lib.utility.Settings;
 
 /**
  * Implement a Robot Program framework. The RobotBase class is intended to be subclassed by a user
@@ -38,7 +42,6 @@ public abstract class RobotBase implements AutoCloseable {
 
     protected final DriverStation m_ds;
     protected final MatchInfo matchInfo;
-
     /**
      * Constructor for a generic robot program. User code should be placed in the constructor that
      * runs before the Autonomous or Operator Control period starts. The constructor will run to
@@ -54,6 +57,8 @@ public abstract class RobotBase implements AutoCloseable {
         inst.startServer("/home/lvuser/networktables.ini");
         m_ds = DriverStation.getInstance();
         matchInfo = MatchInfo.currentInfo();
+        Gyro.init();
+        Settings.load();
         inst.getTable("LiveWindow").getSubTable(".status").getEntry("LW Enabled").setBoolean(false);
 
         LiveWindow.setEnabled(false);

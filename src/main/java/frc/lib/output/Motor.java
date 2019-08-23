@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj.Spark;
 public class Motor {
     Object motor;
     Encoder e;
-
+    //todo callbacks instead of else ifs
     public Motor(Object motor){
         this.motor = motor;
         Motors.motors.add(this);

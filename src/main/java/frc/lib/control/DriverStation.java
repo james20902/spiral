@@ -649,11 +649,13 @@ public class DriverStation {
             HAL.waitForDSData();
             getData();
 
-            enabled.set(m_controlWordCache.getEnabled() && m_controlWordCache.getDSAttached());
-            auto.set(m_controlWordCache.getAutonomous());
-            test.set(m_controlWordCache.getTest());
-            DSAttached.set(m_controlWordCache.getDSAttached());
-            FMSAttached.set(m_controlWordCache.getFMSAttached());//todo might need to lock/unlock m_cacheDataMutex before/after these calls(test first)
+            synchronized (m_cacheDataMutex) {
+                enabled.set(m_controlWordCache.getEnabled() && m_controlWordCache.getDSAttached());
+                auto.set(m_controlWordCache.getAutonomous());
+                test.set(m_controlWordCache.getTest());
+                DSAttached.set(m_controlWordCache.getDSAttached());
+                FMSAttached.set(m_controlWordCache.getFMSAttached());//todo won't need to put this in synchronized once all joystick access is relegated to Atomics
+            }
 
             if (enabled.get()) {
                 safetyCounter = 0;

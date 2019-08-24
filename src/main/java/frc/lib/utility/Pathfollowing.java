@@ -21,12 +21,12 @@ public class Pathfollowing {
         rightFoll = new EncoderFollower(rightTrajectory);
 
         leftFoll.configureEncoder((int)Motors.left.get(0).getRotations(), (int)Settings.ticksPerRevolution, Settings.wheelDiameter);
-        leftFoll.configurePIDVA(1, 0, 0, 1/Settings.maxVelocity, 0);//todo add a setting for max velocity and do auto tuning
+        leftFoll.configurePIDVA(1, 0, 0, 1/Settings.maxVelocity, 0);//todo auto tuning
 
         rightFoll.configureEncoder((int)Motors.right.get(0).getRotations(), (int)Settings.ticksPerRevolution, Settings.wheelDiameter);
         rightFoll.configurePIDVA(1, 0, 0, 1/Settings.maxVelocity, 0);
 
-        notifier = new Notifier(this::followPath);
+        notifier = new Notifier(this::followPath);//todo i think notifiers needed a rewrite?
         notifier.startPeriodic(leftTrajectory.get(0).dt);
     }
 

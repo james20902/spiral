@@ -32,12 +32,12 @@ public class Motor {
     public void setPercent(double value){
         try {
             if (motor instanceof TalonSRX || motor instanceof VictorSPX) {
-                set.invoke(ControlMode.PercentOutput, value);
+                set.invoke(motor, ControlMode.PercentOutput, value);
             } else {
-                set.invoke(value);
+                set.invoke(motor, value);
             }
         } catch(Exception e) {
-            e.printStackTrace();
+            e.printStackTrace();//todo use custom error reporting
             System.err.println("There was a problem setting motor speed. This is most likely a spiral problem. Create an issue on the repository and include the error report and your robot.motors file.");
         }
     }

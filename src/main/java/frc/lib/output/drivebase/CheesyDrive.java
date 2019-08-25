@@ -1,10 +1,12 @@
 package frc.lib.output.drivebase;
 
-import frc.lib.control.Subsystem;
+import frc.lib.control.Subsystems.Subsystem;
+import frc.lib.output.Motors;
 
 /*
 * This is Cheesy Drive taken from team 254, the Cheesy Poofs
 * it is a curvature based drive that follows a directory
+* the only changes were spelling fixes and return statement, it fit right in
 * https://github.com/Team254/FRC-2018-Public/blob/master/src/main/java/com/team254/lib/util/CheesyDriveHelper.java
  */
 public class CheesyDrive extends Subsystem {//todo figure out joystick stuff so inputs can be done
@@ -28,11 +30,11 @@ public class CheesyDrive extends Subsystem {//todo figure out joystick stuff so 
     private static final double kQuickStopWeight = 0.1;
     private static final double kQuickStopScalar = 5.0;
 
-    private double mOldWheel = 0.0;
-    private double mQuickStopAccumlator = 0.0;
-    private double mNegInertiaAccumlator = 0.0;
+    private static double mOldWheel = 0.0;
+    private static double mQuickStopAccumulator = 0.0;
+    private static double mNegInertiaAccumulator = 0.0;
 
-    public DriveSignal cheesyDrive(double throttle, double wheel, boolean isQuickTurn,
+    public static void cheesyDrive(double throttle, double wheel, boolean isQuickTurn,
                                    boolean isHighGear) {
 
         wheel = handleDeadband(wheel, kWheelDeadband);
@@ -83,15 +85,15 @@ public class CheesyDrive extends Subsystem {//todo figure out joystick stuff so 
             sensitivity = kSensitivity;
         }
         double negInertiaPower = negInertia * negInertiaScalar;
-        mNegInertiaAccumlator += negInertiaPower;
+        mNegInertiaAccumulator += negInertiaPower;
 
-        wheel = wheel + mNegInertiaAccumlator;
-        if (mNegInertiaAccumlator > 1) {
-            mNegInertiaAccumlator -= 1;
-        } else if (mNegInertiaAccumlator < -1) {
-            mNegInertiaAccumlator += 1;
+        wheel = wheel + mNegInertiaAccumulator;
+        if (mNegInertiaAccumulator > 1) {
+            mNegInertiaAccumulator -= 1;
+        } else if (mNegInertiaAccumulator < -1) {
+            mNegInertiaAccumulator += 1;
         } else {
-            mNegInertiaAccumlator = 0;
+            mNegInertiaAccumulator = 0;
         }
         linearPower = throttle;
 
@@ -99,20 +101,20 @@ public class CheesyDrive extends Subsystem {//todo figure out joystick stuff so 
         if (isQuickTurn) {
             if (Math.abs(linearPower) < kQuickStopDeadband) {
                 double alpha = kQuickStopWeight;
-                mQuickStopAccumlator = (1 - alpha) * mQuickStopAccumlator
+                mQuickStopAccumulator = (1 - alpha) * mQuickStopAccumulator
                         + alpha * Math.min(1, Math.max(-1, wheel)) * kQuickStopScalar;
             }
             overPower = 1.0;
             angularPower = wheel;
         } else {
             overPower = 0.0;
-            angularPower = Math.abs(throttle) * wheel * sensitivity - mQuickStopAccumlator;
-            if (mQuickStopAccumlator > 1) {
-                mQuickStopAccumlator -= 1;
-            } else if (mQuickStopAccumlator < -1) {
-                mQuickStopAccumlator += 1;
+            angularPower = Math.abs(throttle) * wheel * sensitivity - mQuickStopAccumulator;
+            if (mQuickStopAccumulator > 1) {
+                mQuickStopAccumulator -= 1;
+            } else if (mQuickStopAccumulator < -1) {
+                mQuickStopAccumulator += 1;
             } else {
-                mQuickStopAccumlator = 0.0;
+                mQuickStopAccumulator = 0.0;
             }
         }
 
@@ -133,10 +135,11 @@ public class CheesyDrive extends Subsystem {//todo figure out joystick stuff so 
             leftPwm += overPower * (-1.0 - rightPwm);
             rightPwm = -1.0;
         }
-        return new DriveSignal(leftPwm, rightPwm);
+
+        Motors.setDrive(new DriveSignal(leftPwm, rightPwm));
     }
 
-    public double handleDeadband(double val, double deadband) {
+    public static double handleDeadband(double val, double deadband) {
         return (Math.abs(val) > Math.abs(deadband)) ? val : 0.0;
     }
 }

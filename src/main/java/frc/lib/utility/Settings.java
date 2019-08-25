@@ -1,11 +1,11 @@
 package frc.lib.utility;
 
 public class Settings {
-    static float maxVelocity;
-    static float ticksPerRevolution;
-    static float wheelDiameter;
+    static float maxVelocity = -1;
+    static float ticksPerRevolution = -1;
+    static float wheelDiameter = -1;
 
-    public static void load(){//todo code or something
+    public static void load(){//todo YAML loading, make sure to verify proper loading
 
     }
 }

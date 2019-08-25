@@ -1,6 +1,6 @@
 package frc.lib.output.drivebase;
 
-import frc.lib.control.Subsystem;
+import frc.lib.control.Subsystems.Subsystem;
 /*
 * this is based off of something i saw from 4456
 * it sets speed as a percentage of the maximum wheel velocity, simply a more stable arcade

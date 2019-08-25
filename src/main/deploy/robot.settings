@@ -1,0 +1,3 @@
+maxVelocity: 15 #fps
+ticksPerRevolution: 4096
+wheelDiameter: 6 #in

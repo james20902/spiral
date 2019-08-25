@@ -25,10 +25,10 @@ class MotorParser {
                     lines.add(line.split(" "));//todo edge case, the comment exactly like this one, at the end of line. just detect a // and remove everything after
             }
         } catch(Exception e) {
-            //idk how to throw problem properly and print it correctly
+            //the problem catcher thing
         }
     }
-    void parse() {//need to add support for different encoders, right now its just whatever WPILib likes by default
+    void parse() {//todo need to add support for different encoders, right now its just whatever WPILib likes by default
         Mode mode;
         MotorData data;
         for (String[] line : lines) {
@@ -65,8 +65,13 @@ class MotorParser {
                     case ENCODER:
                         if(line[i].equals("motor")) {
                             data.integratedEncoder = true;
+                            data.ticksPerRev = Integer.parseInt(line[i+1]);
+                            i += 1;
                         } else {
                             data.encPos.add(Integer.parseInt(line[i]));
+                            data.encPos.add(Integer.parseInt(line[i+1]));
+                            data.ticksPerRev = Integer.parseInt(line[i+2]);
+                            i += 2;
                         }
                 }
             }
@@ -76,7 +81,7 @@ class MotorParser {
                 case "victor":
                     data.type = Type.VICTOR;
                 case "spark":
-                    data.type = Type.SPARK;//Make it use motor sensor by default unless set to something else or PWM
+                    data.type = Type.SPARK;
                 case "blinkin":
                     data.type = Type.BLINKIN;
                 case "blinkin_ind":

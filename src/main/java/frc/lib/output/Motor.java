@@ -5,7 +5,6 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import com.revrobotics.CANSparkMax;
 import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.Spark;
 
 import java.lang.reflect.Method;
 
@@ -13,7 +12,8 @@ public class Motor {
     Object motor;
     Encoder e;
     Method set;
-    public Motor(Object motor){
+    int ticksPerRev;
+    public Motor(Object motor, int ticksPerRev){
         this.motor = motor;
         Motors.motors.add(this);
         try {
@@ -22,10 +22,11 @@ public class Motor {
             e.printStackTrace();
             System.err.println("There was a spiral problem initializing the Motor class. Please create an issue in the repository.");
         }
+        this.ticksPerRev = ticksPerRev;
     }
 
-    public Motor(Object motor, int encoderPosA, int encoderPosB){
-        this(motor);
+    public Motor(Object motor, int encoderPosA, int encoderPosB, int ticksPerRev){
+        this(motor, ticksPerRev);
         e = new Encoder(encoderPosA, encoderPosB);
     }
 
@@ -42,15 +43,15 @@ public class Motor {
         }
     }
 
-    public double getRotations() {//todo ticks/rev is needed for these due to gear ratios.
+    public double getRotations() {
         if(e != null){//todo casting bad
-            return e.get();
+            return e.get()/ticksPerRev;
         } else if(motor instanceof TalonSRX) {
-            return ((TalonSRX)motor).getSelectedSensorPosition(0);
+            return ((TalonSRX)motor).getSelectedSensorPosition(0)/ticksPerRev;
         } else if(motor instanceof CANSparkMax){
-            return ((CANSparkMax)motor).getEncoder().getPosition();
+            return ((CANSparkMax)motor).getEncoder().getPosition()/ticksPerRev;
         }
         System.err.println("There was an error getting the encoder position for a motor/motors, please check cable connections and if using integrated encoder make sure it is either a Spark Max or TalonSRX. If you want more motor controllers with integrated encoders supported, create a feature request.");
-        return 0;
+        return -1;
     }
 }

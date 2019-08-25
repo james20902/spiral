@@ -2,20 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2737c509-dbf5-4cc9-86bb-ab70412f3b43" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/frc/lib/input/Input.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/frc/lib/input/Joystick.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/fileHashes.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/spiral.iws" beforeDir="false" afterPath="$PROJECT_DIR$/spiral.iws" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/lib/control/ControllerNotFoundException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/lib/control/JoystickWrapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/lib/control/TimedExecution.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/lib/control/TimedExecution.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/lib/output/Logger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/lib/output/Logger.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/lib/utility/SystemClock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/lib/utility/SystemClock.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/team5115/frc2020/TestSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/team5115/frc2020/TestSystem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/frc/lib/input/Input.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/lib/input/Input.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/frc/lib/input/Joystick.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/lib/input/Joystick.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/frc/lib/utility/Gyro.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/lib/utility/Gyro.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/frc/team5115/frc2020/Robot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/team5115/frc2020/Robot.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -177,6 +168,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="frc.lib.control" />
       <recent name="frc.team5115.frc2020" />
     </key>
   </component>
@@ -359,7 +351,11 @@
       <workItem from="1566002324710" duration="2210000" />
       <workItem from="1566080294906" duration="9186000" />
       <workItem from="1566260402682" duration="2987000" />
-      <workItem from="1566328923641" duration="1656000" />
+      <workItem from="1566328923641" duration="2900000" />
+      <workItem from="1566499903653" duration="602000" />
+      <workItem from="1566560296812" duration="3439000" />
+      <workItem from="1566596537600" duration="4107000" />
+      <workItem from="1566739647419" duration="7942000" />
     </task>
     <servers />
   </component>

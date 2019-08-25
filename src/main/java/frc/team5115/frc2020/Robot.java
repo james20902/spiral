@@ -3,6 +3,7 @@ package frc.team5115.frc2020;
 import edu.wpi.first.hal.HAL;
 import frc.lib.control.RobotBase;
 import frc.lib.control.SubsystemManager;
+import frc.lib.input.Input;
 import frc.lib.utility.SystemState;
 
 public class Robot extends RobotBase {

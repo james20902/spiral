@@ -1,6 +1,6 @@
 package frc.team5115.frc2020;
 
-import frc.lib.control.Subsystem;
+import frc.lib.control.Subsystems.Subsystem;
 
 public class TestSystem extends Subsystem {
 

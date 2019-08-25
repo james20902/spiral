@@ -1,7 +1,6 @@
-package frc.lib.control;
+package frc.lib.control.Subsystems;
 
 import edu.wpi.first.wpilibj.Watchdog;
-import frc.lib.utility.SystemClock;
 import frc.lib.utility.SystemState;
 
 public class Subsystem extends Thread {
@@ -17,7 +16,7 @@ public class Subsystem extends Thread {
 
     public Subsystem(long timing){
         this.timing = timing;
-        watchdog = new Watchdog(timing * Math.pow(10, -3), this::logSlowdown);
+        watchdog = new Watchdog(timing * Math.pow(10, -3), this::logSlowdown);//todo were these going to be redone? i forgot
     }
 
     @Override
@@ -63,7 +62,7 @@ public class Subsystem extends Thread {
 
     public void testPeriodic(){}
 
-    String getSystemName(){
+    public String getSystemName(){
         return systemName;
     }
 

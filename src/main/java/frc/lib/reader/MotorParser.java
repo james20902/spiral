@@ -33,7 +33,7 @@ class MotorParser {
         MotorData data;
         for (String[] line : lines) {
             mode = Mode.ON;
-            data = new MotorData();
+            data = new MotorData();//todo reset because memory allocation slow(er)
             for(int i = 1; i < line.length; i++) {//line[0] determines motor type, skip it
                 if(i == 1 && line[i].charAt(0) == 'd') {
                     data.drive = line[i];

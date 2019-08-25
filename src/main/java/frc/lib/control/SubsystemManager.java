@@ -1,12 +1,10 @@
 package frc.lib.control;
 
-import edu.wpi.first.hal.ControlWord;
-import edu.wpi.first.hal.HAL;
+import frc.lib.control.Subsystems.Subsystem;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.atomic.AtomicInteger;
 
 public class SubsystemManager {
 

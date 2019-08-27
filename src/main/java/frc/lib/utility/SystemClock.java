@@ -2,30 +2,25 @@ package frc.lib.utility;
 
 import edu.wpi.first.hal.HAL;
 import edu.wpi.first.hal.HALUtil;
+import java.util.concurrent.TimeUnit;
 
 public class SystemClock {
 
-    public enum Units {
-        NANOSECONDS(-9),
-        MICROSECONDS(-6),
-        MILLISECONDS(-3),
-        SECONDS(1);
+    //todo, self implementation of TimeUnit using a LUT or something
 
-        private final int pow;
-        private Units(int pow){
-            this.pow = pow;
-        }
-
+    //micro
+    public static double getSystemTime(TimeUnit unit){
+        return TimeUnit.MICROSECONDS.convert(HALUtil.getFPGATime(), unit);
     }
-
-    //micro converted to milli
     public static double getSystemTime(){
-        return HALUtil.getFPGATime() / 1000 ;
+        return getSystemTime(TimeUnit.MILLISECONDS);
     }
 
-    //milli
+    public static double getMatchTime(TimeUnit unit){
+        return TimeUnit.MILLISECONDS.convert((long)HAL.getMatchTime(), unit);
+    }
     public static double getMatchTime(){
-        return HAL.getMatchTime();
+        return getMatchTime(TimeUnit.SECONDS);
     }
 
 }

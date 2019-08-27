@@ -9,6 +9,8 @@ public class TestSystem extends Subsystem {
 
     }
 
+    public void kill(){ }
+
     @Override
     public void teleopPeriodic(){
         System.out.println("running");

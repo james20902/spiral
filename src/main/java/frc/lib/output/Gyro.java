@@ -1,4 +1,4 @@
-package frc.lib.utility;
+package frc.lib.output;
 
 import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.SerialPort;

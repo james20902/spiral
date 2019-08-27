@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Motors {
+    //todo, on robot initialization convert arraylist to array with fixed size
+    //no point in having a relatively slow arraylist when it isnt changing
     public static List<Motor> left = new ArrayList<Motor>();
     public static List<Motor> right = new ArrayList<Motor>();
     public static List<Motor> motors = new ArrayList<Motor>();

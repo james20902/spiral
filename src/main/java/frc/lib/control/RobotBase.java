@@ -13,20 +13,19 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.function.Supplier;
 
-import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.hal.FRCNetComm.tInstances;
 import edu.wpi.first.hal.FRCNetComm.tResourceType;
 import edu.wpi.first.hal.HAL;
 import edu.wpi.first.hal.HALUtil;
 import edu.wpi.first.networktables.NetworkTableInstance;
-import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.util.WPILibVersion;
 import frc.lib.output.Logger;
-import frc.lib.utility.Gyro;
+import frc.lib.output.Gyro;
 import frc.lib.utility.MatchInfo;
 import frc.lib.utility.Settings;
+import frc.lib.utility.SystemState;
 
 /**
  * Implement a Robot Program framework. The RobotBase class is intended to be subclassed by a user
@@ -39,7 +38,6 @@ public abstract class RobotBase implements AutoCloseable {
     /**
      * The ID of the main Java thread.
      */
-
     protected final DriverStation m_ds;
     protected final MatchInfo matchInfo;
     /**
@@ -69,10 +67,26 @@ public abstract class RobotBase implements AutoCloseable {
     public void close() {
     }
 
+    public abstract void start();
+
+    public abstract void loop();
     /**
      * Main loop for robots to implement
      */
-    public abstract void startCompetition();
+    public void startCompetition(){
+        while(!SystemState.getInstance().DSPresent()){
+            SystemState.getInstance().updateSystemState();
+        }
+        System.out.println("DriverStation connected, initializing");
+
+        start();
+        HAL.observeUserProgramStarting();
+
+        while(!SystemState.getInstance().emergencyStopped()){
+            SystemState.getInstance().updateSystemState();
+            loop();
+        }
+    }
 
 
     /**

@@ -21,7 +21,7 @@ import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.util.WPILibVersion;
-import frc.lib.output.Logger;
+import frc.lib.utility.Console;
 import frc.lib.output.Gyro;
 import frc.lib.utility.MatchInfo;
 import frc.lib.utility.Settings;
@@ -57,7 +57,6 @@ public abstract class RobotBase implements AutoCloseable {
         m_ds = DriverStation.getInstance();
         matchInfo = MatchInfo.currentInfo();
         systemState = SystemState.getInstance();
-        Gyro.init();
         Settings.load();
         inst.getTable("LiveWindow").getSubTable(".status").getEntry("LW Enabled").setBoolean(false);
 
@@ -115,10 +114,10 @@ public abstract class RobotBase implements AutoCloseable {
             if (elements.length > 0) {
                 robotName = elements[0].getClassName();
             }
-            Logger.reportError("Unhandled exception instantiating robot " + robotName + " "
+            Console.reportError("Unhandled exception instantiating robot " + robotName + " "
                     + throwable.toString(), elements);
-            Logger.reportWarning("Robots should not quit, but yours did!");
-            Logger.reportError("Could not instantiate robot " + robotName + "!");
+            Console.reportWarning("Robots should not quit, but yours did!");
+            Console.reportError("Could not instantiate robot " + robotName + "!");
             System.exit(1);
             return;
         }
@@ -139,7 +138,7 @@ public abstract class RobotBase implements AutoCloseable {
                 }
 
             } catch (IOException ex) {
-                Logger.reportError("Could not write FRC_Lib_Version.ini: " + ex.toString(),
+                Console.reportError("Could not write FRC_Lib_Version.ini: " + ex.toString(),
                         ex.getStackTrace());
             }
         }
@@ -152,18 +151,18 @@ public abstract class RobotBase implements AutoCloseable {
             if (cause != null) {
                 throwable = cause;
             }
-            Logger.reportError("Unhandled exception: " + throwable.toString(),
+            Console.reportError("Unhandled exception: " + throwable.toString(),
                     throwable.getStackTrace());
             errorOnExit = true;
         } finally {
             // startCompetition never returns unless exception occurs....
-            Logger.reportWarning("Robots should not quit, but yours did!");
+            Console.reportWarning("Robots should not quit, but yours did!");
             if (errorOnExit) {
-                Logger.reportError(
+                Console.reportError(
                         "The startCompetition() method (or methods called by it) should have "
                                 + "handled the exception above.");
             } else {
-                Logger.reportError("Unexpected return from startCompetition() method.");
+                Console.reportError("Unexpected return from startCompetition() method.");
             }
         }
         System.exit(1);

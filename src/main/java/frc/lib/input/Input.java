@@ -1,7 +1,7 @@
 package frc.lib.input;
 
 import edu.wpi.first.hal.HAL;
-import frc.lib.output.Logger;
+import frc.lib.utility.Console;
 
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
@@ -72,7 +72,7 @@ public class Input{
         }
         availableJoysticks = storage.toArray(new Joystick[storage.size()]);
         if (availableJoysticks.length == 0){
-            Logger.reportError("No joysticks present!");
+            Console.reportError("No joysticks present!");
         }
         for(Joystick stick : availableJoysticks){
             byte port = stick.getPort();

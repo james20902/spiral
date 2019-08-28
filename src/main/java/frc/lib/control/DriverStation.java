@@ -19,7 +19,7 @@ import edu.wpi.first.hal.MatchInfoData;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
-import frc.lib.output.Logger;
+import frc.lib.utility.Console;
 
 /**
  * Provide access to the network communication data to / from the Driver Station.
@@ -481,7 +481,7 @@ public class DriverStation {
     private void reportJoystickUnpluggedError(String message) {
         double currentTime = Timer.getFPGATimestamp();
         if (currentTime > m_nextMessageTime) {
-            Logger.reportError(message);
+            Console.reportError(message);
             m_nextMessageTime = currentTime + JOYSTICK_UNPLUGGED_MESSAGE_INTERVAL;
         }
     }
@@ -493,7 +493,7 @@ public class DriverStation {
     private void reportJoystickUnpluggedWarning(String message) {
         double currentTime = Timer.getFPGATimestamp();
         if (currentTime > m_nextMessageTime) {
-            Logger.reportWarning(message);
+            Console.reportWarning(message);
             m_nextMessageTime = currentTime + JOYSTICK_UNPLUGGED_MESSAGE_INTERVAL;
         }
     }

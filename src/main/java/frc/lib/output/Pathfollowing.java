@@ -35,7 +35,7 @@ public class Pathfollowing {
         } else {
             double left_speed = leftFoll.calculate((int)Motors.left.get(0).getRotations());
             double right_speed = rightFoll.calculate((int)Motors.left.get(0).getRotations());
-            double heading = Gyro.getNavx().getAngle();
+            double heading = 0;
             double desired_heading = Pathfinder.r2d(leftFoll.getHeading());
             double heading_difference = Pathfinder.boundHalfDegrees(desired_heading - heading);
             double turn =  0.8 * (-1.0/80.0) * heading_difference;

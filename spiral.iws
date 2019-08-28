@@ -10,12 +10,11 @@
       <change beforePath="$PROJECT_DIR$/spiral.iws" beforeDir="false" afterPath="$PROJECT_DIR$/spiral.iws" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/frc/lib/control/DriverStation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/lib/control/DriverStation.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/frc/lib/control/RobotBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/lib/control/RobotBase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/lib/input/Joystick.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/lib/input/Joystick.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/frc/lib/input/Input.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/lib/input/Input.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/frc/lib/output/Gyro.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/lib/output/Gyro.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/lib/output/drivebase/CheesyDrive.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/lib/output/drivebase/CheesyDrive.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/lib/output/drivebase/TankDrive.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/lib/output/drivebase/TankDrive.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/lib/output/drivebase/VelocityDrive.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/lib/output/drivebase/VelocityDrive.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/lib/utility/MatchInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/lib/utility/MatchInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/frc/lib/output/Logger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/lib/utility/Console.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/frc/lib/output/Pathfollowing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/lib/output/Pathfollowing.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/frc/team5115/frc2020/Robot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/team5115/frc2020/Robot.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -367,7 +366,8 @@
       <workItem from="1566739647419" duration="7942000" />
       <workItem from="1566757274948" duration="253000" />
       <workItem from="1566909671340" duration="3246000" />
-      <workItem from="1566948356260" duration="9044000" />
+      <workItem from="1566948356260" duration="9684000" />
+      <workItem from="1566994367766" duration="2764000" />
     </task>
     <servers />
   </component>

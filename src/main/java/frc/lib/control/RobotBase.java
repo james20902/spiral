@@ -40,6 +40,7 @@ public abstract class RobotBase implements AutoCloseable {
      */
     protected final DriverStation m_ds;
     protected final MatchInfo matchInfo;
+    private final SystemState systemState;
     /**
      * Constructor for a generic robot program. User code should be placed in the constructor that
      * runs before the Autonomous or Operator Control period starts. The constructor will run to
@@ -55,6 +56,7 @@ public abstract class RobotBase implements AutoCloseable {
         inst.startServer("/home/lvuser/networktables.ini");
         m_ds = DriverStation.getInstance();
         matchInfo = MatchInfo.currentInfo();
+        systemState = SystemState.getInstance();
         Gyro.init();
         Settings.load();
         inst.getTable("LiveWindow").getSubTable(".status").getEntry("LW Enabled").setBoolean(false);
@@ -70,11 +72,9 @@ public abstract class RobotBase implements AutoCloseable {
     public abstract void start();
 
     public abstract void loop();
-    /**
-     * Main loop for robots to implement
-     */
+
     public void startCompetition(){
-        while(!SystemState.getInstance().DSPresent()){
+        while(!systemState.DSPresent()){
             SystemState.getInstance().updateSystemState();
         }
         System.out.println("DriverStation connected, initializing");

@@ -45,7 +45,7 @@ public class Console {
 
     private synchronized static void HALErrorReport(boolean error, String message, StackTraceElement[] stackTrace){
         if(stackTrace == null){
-            HAL.sendError(error, 1 ,false, message, "", "", true);
+            HAL.sendError(error, 1 ,false, message, "", "", false);
             return;
         }
         String locString;
@@ -65,6 +65,6 @@ public class Console {
                 haveLoc = true;
             }
         }
-        HAL.sendError(error, 1, false, message, locString, traceString.toString(), true);
+        HAL.sendError(error, 1, false, message, locString, traceString.toString(), false);
     }
 }

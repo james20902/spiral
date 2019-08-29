@@ -27,7 +27,7 @@ public class Input{
         }
     }
 
-    public Joystick getJoystick(byte port){
+    public Joystick getJoystick(int port){
         return availableJoysticks[port];
     }
 
@@ -54,11 +54,11 @@ public class Input{
     }
 
     public byte axesCount(byte port){
-        return (byte)HAL.getJoystickAxes(port, new float[0]);
+        return (byte)HAL.getJoystickAxes(port, new float[12]);
     }
 
     public byte POVCount(byte port){
-        return (byte)HAL.getJoystickPOVs(port, new short[0]);
+        return (byte)HAL.getJoystickPOVs(port, new short[12]);
     }
 
     public void findJoysticks(){

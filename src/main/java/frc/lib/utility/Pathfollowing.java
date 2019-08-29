@@ -8,7 +8,7 @@ import jaci.pathfinder.PathfinderFRC;
 import jaci.pathfinder.Trajectory;
 import jaci.pathfinder.followers.EncoderFollower;
 
-public class Pathfollowing {
+public class Pathfollowing {//todo make sure motors don't fight eachother
     private EncoderFollower leftFoll, rightFoll;
     private Trajectory leftTrajectory, rightTrajectory;
     private Notifier notifier;
@@ -26,7 +26,7 @@ public class Pathfollowing {
         rightFoll.configureEncoder((int)Motors.right.get(0).getRotations(), (int)Settings.ticksPerRevolution, Settings.wheelDiameter);
         rightFoll.configurePIDVA(1, 0, 0, 1/Settings.maxVelocity, 0);
 
-        notifier = new Notifier(this::followPath);//todo i think notifiers needed a rewrite?
+        notifier = new Notifier(this::followPath);//todo i think notifiers needed a rewrite???
         notifier.startPeriodic(leftTrajectory.get(0).dt);
     }
 

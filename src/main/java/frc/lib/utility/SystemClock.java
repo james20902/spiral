@@ -5,27 +5,22 @@ import edu.wpi.first.hal.HALUtil;
 
 public class SystemClock {
 
-    public enum Units {
-        NANOSECONDS(-9),
-        MICROSECONDS(-6),
-        MILLISECONDS(-3),
-        SECONDS(1);
+    //todo, self implementation of TimeUnit using a LUT or something
+    //this class is very very broken right now, the conversions are wrong
 
-        private final int pow;
-        private Units(int pow){
-            this.pow = pow;
-        }
-
+    //micro
+    public static double getSystemTime(Units unit){
+        return Units.MICRO.convert(HALUtil.getFPGATime(), unit);
     }
-
-    //micro converted to milli
     public static double getSystemTime(){
-        return HALUtil.getFPGATime() / 1000 ;
+        return getSystemTime(Units.MILLI);
     }
 
-    //milli
+    public static double getMatchTime(Units unit){
+        return Units.MILLI.convert((long)HAL.getMatchTime(), unit);
+    }
     public static double getMatchTime(){
-        return HAL.getMatchTime();
+        return getMatchTime(Units.BASE);
     }
 
 }

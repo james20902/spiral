@@ -9,6 +9,8 @@ public class MatchInfo {
 
     public enum Position{ RIGHT, CENTER, LEFT }
 
+    public enum MatchType{ NONE, PRACTICE, QUALIFICATION, ELIMINATION }
+
     private MatchInfoData currentMatch;
 
     private static MatchInfo instance;
@@ -17,8 +19,36 @@ public class MatchInfo {
         if(instance == null){
             instance = new MatchInfo();
         }
-
         return instance;
+    }
+
+    public String getEventName(){
+        return currentMatch.eventName;
+    }
+
+    public String getGameMessage(){
+        return currentMatch.gameSpecificMessage;
+    }
+
+    public int getMatchNumber(){
+        return currentMatch.matchNumber;
+    }
+
+    public int getReplayNumber(){
+        return currentMatch.replayNumber;
+    }
+
+    public MatchType getMatchType(){
+        switch (currentMatch.matchType) {
+            case 1:
+                return MatchType.PRACTICE;
+            case 2:
+                return MatchType.QUALIFICATION;
+            case 3:
+                return MatchType.ELIMINATION;
+            default:
+                return MatchType.NONE;
+        }
     }
 
     public void fetchMatchInfo(){
@@ -41,7 +71,7 @@ public class MatchInfo {
         }
     }
 
-    public Alliance getAlliance(){//todo could make these a variable to avoid a switch statement at runtime
+    public Alliance getAlliance(){
         switch(HAL.getAllianceStation()){
             case Red1:
             case Red2:
@@ -55,6 +85,4 @@ public class MatchInfo {
                 return null;
         }
     }
-
-
 }

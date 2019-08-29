@@ -7,4 +7,5 @@ import frc.lib.control.Subsystems.Subsystem;
 * https://github.com/TEAM4456/MechLaunch2019/blob/master/src/main/java/frc/team4456/robot/subsystems/Drive.java
  */
 public class VelocityDrive extends Subsystem {
+    public void kill(){}
 }

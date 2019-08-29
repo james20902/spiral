@@ -1,8 +1,7 @@
-package frc.lib.utility;
+package frc.lib.output;
 
 import edu.wpi.first.wpilibj.Notifier;
-import frc.lib.output.Motor;
-import frc.lib.output.Motors;
+import frc.lib.utility.Settings;
 import jaci.pathfinder.Pathfinder;
 import jaci.pathfinder.PathfinderFRC;
 import jaci.pathfinder.Trajectory;
@@ -20,7 +19,7 @@ public class Pathfollowing {//todo make sure motors don't fight eachother
         leftFoll = new EncoderFollower(leftTrajectory);
         rightFoll = new EncoderFollower(rightTrajectory);
 
-        leftFoll.configureEncoder((int)Motors.left.get(0).getRotations(), (int)Settings.ticksPerRevolution, Settings.wheelDiameter);
+        leftFoll.configureEncoder((int)Motors.left.get(0).getRotations(), (int) Settings.ticksPerRevolution, Settings.wheelDiameter);
         leftFoll.configurePIDVA(1, 0, 0, 1/Settings.maxVelocity, 0);//todo auto tuning
 
         rightFoll.configureEncoder((int)Motors.right.get(0).getRotations(), (int)Settings.ticksPerRevolution, Settings.wheelDiameter);
@@ -36,7 +35,7 @@ public class Pathfollowing {//todo make sure motors don't fight eachother
         } else {
             double left_speed = leftFoll.calculate((int)Motors.left.get(0).getRotations());
             double right_speed = rightFoll.calculate((int)Motors.left.get(0).getRotations());
-            double heading = Gyro.getNavx().getAngle();
+            double heading = 0;
             double desired_heading = Pathfinder.r2d(leftFoll.getHeading());
             double heading_difference = Pathfinder.boundHalfDegrees(desired_heading - heading);
             double turn =  0.8 * (-1.0/80.0) * heading_difference;

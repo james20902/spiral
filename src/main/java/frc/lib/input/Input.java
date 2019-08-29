@@ -14,8 +14,6 @@ public class Input{
     private Joystick[] availableJoysticks;
 
     public Input(){
-        findJoysticks();
-        pollAllJoysticks();
     }
 
     public void pollAllJoysticks(){
@@ -23,8 +21,8 @@ public class Input{
             byte port = instance.getPort();
             instance.updateData(
                     pollButtons(port),
-                    pollAxes(port, instance.axesCount),
-                    pollPOV(port, instance.POVcount)
+                    pollAxes(port, instance.getAxesCount()),
+                    pollPOV(port, instance.getPOVcount())
             );
         }
     }
@@ -72,7 +70,7 @@ public class Input{
         }
         availableJoysticks = storage.toArray(new Joystick[storage.size()]);
         if (availableJoysticks.length == 0){
-            Console.reportError("No joysticks present!");
+            throw new NullPointerException("no joysticks present!");
         }
         for(Joystick stick : availableJoysticks){
             byte port = stick.getPort();

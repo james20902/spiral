@@ -7,13 +7,10 @@
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/spiral.iws" beforeDir="false" afterPath="$PROJECT_DIR$/spiral.iws" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/lib/control/DriverStation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/lib/control/DriverStation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/lib/control/RobotBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/lib/control/RobotBase.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/frc/lib/input/Input.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/lib/input/Input.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/lib/output/Gyro.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/lib/output/Gyro.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/lib/output/Logger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/lib/utility/Console.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/lib/output/Pathfollowing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/lib/output/Pathfollowing.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/frc/lib/utility/Console.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/lib/utility/Console.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/frc/team5115/frc2020/Robot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/team5115/frc2020/Robot.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -367,7 +364,7 @@
       <workItem from="1566757274948" duration="253000" />
       <workItem from="1566909671340" duration="3246000" />
       <workItem from="1566948356260" duration="9684000" />
-      <workItem from="1566994367766" duration="2764000" />
+      <workItem from="1566994367766" duration="11708000" />
     </task>
     <servers />
   </component>

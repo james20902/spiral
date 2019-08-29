@@ -28,52 +28,43 @@ public class Console {
     }
 
     public synchronized static void reportError(String error) {
-        reportErrorImpl(true, 1, error, false);
+        HALErrorReport(true, error, null);
     }
 
     public synchronized static void reportError(String error, StackTraceElement[] stackTrace) {
-        reportErrorImpl(true, 1, error, stackTrace);
+        HALErrorReport(true, error, stackTrace);
     }
 
     public synchronized static void reportWarning(String error) {
-        reportErrorImpl(false, 1, error, false);
+        HALErrorReport(false, error, null);
     }
 
     public synchronized static void reportWarning(String error, StackTraceElement[] stackTrace) {
-        reportErrorImpl(false, 1, error, stackTrace);
+        HALErrorReport(false, error, stackTrace);
     }
 
-    private static void reportErrorImpl(boolean isError, int code, String error, boolean
-            printTrace) {
-        reportErrorImpl(isError, code, error, printTrace, Thread.currentThread().getStackTrace(), 3);
-    }
-
-    private static void reportErrorImpl(boolean isError, int code, String error,
-                                        StackTraceElement[] stackTrace) {
-        reportErrorImpl(isError, code, error, true, stackTrace, 0);
-    }
-
-    private static void reportErrorImpl(boolean isError, int code, String error,
-                                        boolean printTrace, StackTraceElement[] stackTrace, int stackTraceFirst) {
+    private synchronized static void HALErrorReport(boolean error, String message, StackTraceElement[] stackTrace){
+        if(stackTrace == null){
+            HAL.sendError(error, 1 ,false, message, "", "", true);
+            return;
+        }
         String locString;
-        if (stackTrace.length >= stackTraceFirst + 1) {
-            locString = stackTrace[stackTraceFirst].toString();
+        if (stackTrace.length >= 1) {
+            locString = stackTrace[0].toString();
         } else {
             locString = "";
         }
         StringBuilder traceString = new StringBuilder();
-        if (printTrace) {
-            boolean haveLoc = false;
-            for (int i = stackTraceFirst; i < stackTrace.length; i++) {
-                String loc = stackTrace[i].toString();
-                traceString.append("\tat ").append(loc).append('\n');
-                // get first user function
-                if (!haveLoc && !loc.startsWith("edu.wpi.first")) {
-                    locString = loc;
-                    haveLoc = true;
-                }
+        boolean haveLoc = false;
+        for (int i = 0; i < stackTrace.length; i++) {
+            String loc = stackTrace[i].toString();
+            traceString.append("\tat ").append(loc).append('\n');
+            // get first user function
+            if (!haveLoc && !loc.startsWith("edu.wpi.first")) {
+                locString = loc;
+                haveLoc = true;
             }
         }
-        HAL.sendError(isError, code, false, error, locString, traceString.toString(), true);
+        HAL.sendError(error, 1, false, message, locString, traceString.toString(), true);
     }
 }

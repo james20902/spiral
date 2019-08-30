@@ -5,12 +5,12 @@ import edu.wpi.first.wpilibj.Watchdog;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ErrorHandler {
+public class ErrorHandler {//todo make it only do one print statement for speed
     private static List<Error> errors;
     private static Watchdog thog;
     public static void init(){
         errors = new ArrayList<Error>();
-        thog = new Watchdog(1000, ErrorHandler::print);
+        thog = new Watchdog(1000, ErrorHandler::print);//todo how tf this stuff work
     }
 
     public static void report(Error e) {

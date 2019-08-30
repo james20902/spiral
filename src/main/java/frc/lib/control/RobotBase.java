@@ -38,7 +38,6 @@ public abstract class RobotBase implements AutoCloseable {
     /**
      * The ID of the main Java thread.
      */
-    protected final DriverStation m_ds;
     protected final MatchInfo matchInfo;
     private final SystemState systemState;
     /**
@@ -54,7 +53,6 @@ public abstract class RobotBase implements AutoCloseable {
         NetworkTableInstance inst = NetworkTableInstance.getDefault();
         inst.setNetworkIdentity("Robot");
         inst.startServer("/home/lvuser/networktables.ini");
-        m_ds = DriverStation.getInstance();
         matchInfo = MatchInfo.currentInfo();
         systemState = SystemState.getInstance();
         Settings.load();

@@ -14,7 +14,16 @@ public class Controller {
 
     private byte port;
 
-    public enum ButtonState{NEUTRAL, PRESSED, HELD, RELEASED}
+    public enum ButtonState{
+        NEUTRAL(0), PRESSED(0), HELD(1), RELEASED(1);
+        float speed;
+        ButtonState(float speed){
+            this.speed = speed;
+        }
+        public float getSpeed(){
+            return speed;
+        }
+    }
 
     public Controller(byte port){
         this.port = port;
@@ -52,7 +61,7 @@ public class Controller {
         return (buttonStatesCache & 1 << (ID - 1)) != 0;
     }
 
-    public ButtonState buttonState(int ID){
+    public ButtonState getButtonState(int ID){
         boolean current = rawButtonState(ID);
         boolean cached = rawCacheState(ID);
 

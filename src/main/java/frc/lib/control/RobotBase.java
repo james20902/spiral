@@ -22,7 +22,6 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.util.WPILibVersion;
 import frc.lib.utility.Console;
-import frc.lib.output.Gyro;
 import frc.lib.utility.MatchInfo;
 import frc.lib.utility.Settings;
 import frc.lib.utility.SystemState;
@@ -72,15 +71,15 @@ public abstract class RobotBase implements AutoCloseable {
 
     public void startCompetition(){
         while(!systemState.DSPresent()){
-            SystemState.getInstance().updateSystemState();
+            systemState.updateSystemState();
         }
         System.out.println("DriverStation connected, initializing");
 
         start();
         HAL.observeUserProgramStarting();
 
-        while(!SystemState.getInstance().emergencyStopped()){
-            SystemState.getInstance().updateSystemState();
+        while(!systemState.emergencyStopped()){
+            systemState.updateSystemState();
             loop();
         }
     }

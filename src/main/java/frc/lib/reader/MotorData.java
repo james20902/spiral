@@ -14,7 +14,7 @@ import java.util.List;
 
 public class MotorData {
     public enum Type{TALON, VICTOR, SPARK, BLINKIN, BLINKININD, EMPTY};
-    boolean integratedEncoder;
+    boolean integratedEncoder = false;
     int ticksPerRev = -1;
     int pdpPos = -1;
     int canPos = -1;
@@ -22,6 +22,17 @@ public class MotorData {
     String drive;
     List<Integer> encPos = new ArrayList<Integer>();
     Type type = Type.EMPTY;
+
+    public void reset() {
+        integratedEncoder = false;
+        ticksPerRev = -1;
+        pdpPos = -1;
+        canPos = -1;
+        pwmPos = -1;
+        drive = "";
+        encPos = new ArrayList<Integer>();
+        type = Type.EMPTY;
+    }
 
     /*
     * if you use pwm talons and sparks you dumb so don't because they aren't gonna be supported

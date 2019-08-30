@@ -1,5 +1,5 @@
 package frc.team5115.frc2020;
-//todo do a thing about power, supposedly robotController.getbatteryvoltage or pdp stuff
+
 import edu.wpi.first.wpilibj.Timer;
 import frc.lib.control.RobotBase;
 import frc.lib.control.SubsystemManager;

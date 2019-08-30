@@ -30,10 +30,10 @@ class MotorParser {
     }
     void parse() {//todo need to add support for different encoders, right now its just whatever WPILib likes by default
         Mode mode;
-        MotorData data;
+        MotorData data = new MotorData();
         for (String[] line : lines) {
             mode = Mode.ON;
-            data = new MotorData();//todo reset because memory allocation slow(er)
+            data.reset();
             for(int i = 1; i < line.length; i++) {//line[0] determines motor type, skip it
                 if(i == 1 && line[i].charAt(0) == 'd') {
                     data.drive = line[i];

@@ -1,6 +1,6 @@
 package frc.lib.input;
 
-public class Joystick {
+public class Controller {
 
     byte buttonCount;
     byte axesCount;
@@ -16,7 +16,7 @@ public class Joystick {
 
     public enum ButtonState{NEUTRAL, PRESSED, HELD, RELEASED}
 
-    public Joystick(byte port){
+    public Controller(byte port){
         this.port = port;
     }
 

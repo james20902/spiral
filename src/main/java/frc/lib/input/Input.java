@@ -1,7 +1,6 @@
 package frc.lib.input;
 
 import edu.wpi.first.hal.HAL;
-import frc.lib.utility.Console;
 
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
@@ -11,13 +10,13 @@ public class Input{
 
     public static final byte MAX_JOYSTICKS = 6;
 
-    private Joystick[] availableJoysticks;
+    private Controller[] availableJoysticks;
 
     public Input(){
     }
 
     public void pollAllJoysticks(){
-        for(Joystick instance : availableJoysticks){
+        for(Controller instance : availableJoysticks){
             byte port = instance.getPort();
             instance.updateData(
                     pollButtons(port),
@@ -27,7 +26,7 @@ public class Input{
         }
     }
 
-    public Joystick getJoystick(int port){
+    public Controller getJoystick(int port){
         return availableJoysticks[port];
     }
 
@@ -62,17 +61,17 @@ public class Input{
     }
 
     public void findJoysticks(){
-        List<Joystick> storage = new ArrayList<>();
+        List<Controller> storage = new ArrayList<>();
         for(byte i = 0; i < MAX_JOYSTICKS; i++){
             if(buttonCount(i) > 0){
-                storage.add(new Joystick(i));
+                storage.add(new Controller(i));
             }
         }
-        availableJoysticks = storage.toArray(new Joystick[storage.size()]);
+        availableJoysticks = storage.toArray(new Controller[storage.size()]);
         if (availableJoysticks.length == 0){
             throw new NullPointerException("no joysticks present!");
         }
-        for(Joystick stick : availableJoysticks){
+        for(Controller stick : availableJoysticks){
             byte port = stick.getPort();
             stick.initialize(buttonCount(port), axesCount(port), POVCount(port));
         }

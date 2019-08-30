@@ -10,8 +10,8 @@ import java.util.concurrent.ScheduledThreadPoolExecutor;
 public class SubsystemManager {
 
     //todo, look into scheduledthreadpoolexecutor
-    //https://docs.oracle.com/javase/9/docs/api/java/util/concurrent/ScheduledThreadPoolExecutor.html
 
+    //https://docs.oracle.com/javase/9/docs/api/java/util/concurrent/ScheduledThreadPoolExecutor.html
     private Map<String, Subsystem> systems;
     private ScheduledThreadPoolExecutor scheduler;
 
@@ -54,7 +54,7 @@ public class SubsystemManager {
         try{
             systems.get(name).interrupt();
         } catch (NullPointerException e){
-            System.out.println("No subsystem with that specific name!");
+            System.out.println("No subsystem with the name " + name + "!");
         }
     }
 

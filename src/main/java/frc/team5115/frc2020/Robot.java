@@ -3,14 +3,14 @@ package frc.team5115.frc2020;
 import frc.lib.control.RobotBase;
 import frc.lib.control.SubsystemManager;
 import frc.lib.input.Input;
-import frc.lib.input.Joystick;
+import frc.lib.input.Controller;
 import frc.lib.utility.Console;
 import frc.lib.utility.SystemClock;
 
 public class Robot extends RobotBase {
 
   Input manager;
-  Joystick stick;
+  Controller stick;
   double checkpoint = 0;
   boolean pressed = false;
 

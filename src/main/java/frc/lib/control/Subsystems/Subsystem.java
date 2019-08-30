@@ -5,8 +5,7 @@ import frc.lib.utility.SystemState;
 
 import java.lang.reflect.Method;
 
-public abstract class Subsystem extends Thread {
-
+public abstract class Subsystem implements Runnable {
     private String systemName = this.getClass().getSimpleName();
 
     private long timing = 0;
@@ -20,34 +19,33 @@ public abstract class Subsystem extends Thread {
     @Override
     public void run() {
         watchdog.reset();
-        while (!interrupted()) {
-            switch (SystemState.getInstance().getState()) {
-                case SystemState.DISABLED:
-                    watchdog.addEpoch("Disabled Loop");
-                    disabledPeriodic();
-                    break;
-                case SystemState.AUTONOMOUS:
-                    watchdog.addEpoch("Autonomous Loop");
-                    autonomousPeriodic();
-                    break;
-                case SystemState.OPERATOR:
-                    watchdog.addEpoch("Teleop Loop");
-                    teleopPeriodic();
-                    break;
-                case SystemState.TEST:
-                    watchdog.addEpoch("Test Loop");
-                    testPeriodic();
-                    break;
-                default:
-                    throw new IllegalStateException("If you got here somehow you've really messed up");
-            }
-            System.out.println(getSystemName() + " system shutting down");
-            kill();
-            watchdog.disable();
+        switch (SystemState.getInstance().getState()) {
+            case SystemState.DISABLED:
+                watchdog.addEpoch("Disabled Loop");
+                disabledPeriodic();
+                break;
+            case SystemState.AUTONOMOUS:
+                watchdog.addEpoch("Autonomous Loop");
+                autonomousPeriodic();
+                break;
+            case SystemState.OPERATOR:
+                watchdog.addEpoch("Teleop Loop");
+                teleopPeriodic();
+                break;
+            case SystemState.TEST:
+                watchdog.addEpoch("Test Loop");
+                testPeriodic();
+                break;
+            default:
+                throw new IllegalStateException("If you got here somehow you've really messed up");
         }
     }
 
-    public abstract void kill();
+    public void kill(){
+        System.out.println(getSystemName() + " system shutting down");
+        kill();
+        watchdog.disable();
+    }
 
     public void disabledPeriodic(){}
 

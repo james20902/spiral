@@ -16,11 +16,11 @@ public class SubsystemParser {
     //todo types of subsystem: arm, spinner(avocado, and support for scissor style thing), pneumatic(toggle). Must use class based introspection in case another one is added by teams. Need to allow for motor groups
     //todo allow grammar in robot.motors and subsystems, and just .replace it with ""
     enum Mode{HID, MOTORS};
-    BufferedReader reader;
-    List<String[]> lines;
-    List<Class<?>> types;
+    static BufferedReader reader;
+    static List<String[]> lines;
+    static List<Class<?>> types;
 
-    public void init() {
+    public static void init() {
         try {
             reader = new BufferedReader(new FileReader(Filesystem.getDeployDirectory().getAbsolutePath()+"/robot.subsystems"));
         } catch(Exception e) {
@@ -39,7 +39,7 @@ public class SubsystemParser {
         types = ClassFinder.find(Subsystem.class.getPackage().getName());
         types = Collections.unmodifiableList(types);
     }
-    public void parse() {
+    public static void parse() {
         SubsystemData data;
         for (String[] line : lines) {
             data = new SubsystemData();//todo reset because memory allocation slow(er)

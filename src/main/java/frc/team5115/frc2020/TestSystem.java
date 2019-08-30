@@ -6,7 +6,7 @@ public class TestSystem extends Subsystem {
 
 
     public TestSystem(){
-
+        super(20);
     }
 
     public void kill(){ }

@@ -1,6 +1,7 @@
 package frc.lib.control;
 
 import frc.lib.control.Subsystems.Subsystem;
+import frc.team5115.frc2020.Robot;
 
 import java.util.HashMap;
 import java.util.List;
@@ -8,12 +9,7 @@ import java.util.Map;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 
 public class SubsystemManager {
-
-    //todo, look into scheduledthreadpoolexecutor
-
-    //https://docs.oracle.com/javase/9/docs/api/java/util/concurrent/ScheduledThreadPoolExecutor.html
     private Map<String, Subsystem> systems;
-    private ScheduledThreadPoolExecutor scheduler;
 
     private static SubsystemManager instance;
 
@@ -38,21 +34,11 @@ public class SubsystemManager {
         }
     }
 
-    public void startScheduler(){
-        int size = systems.size();
-        if(size == 0){
-            throw new NullPointerException("No systems present!");
-        }
-        scheduler = new ScheduledThreadPoolExecutor(size);
-    }
-
-    public void startSystems(){
-
-    }
-
     public void stopSystem(String name){
         try{
-            systems.get(name).interrupt();
+            Subsystem s = systems.get(name);
+            s.kill();
+            Robot.robotInstance.removeTask(s);
         } catch (NullPointerException e){
             System.out.println("No subsystem with the name " + name + "!");
         }
@@ -61,5 +47,4 @@ public class SubsystemManager {
     public void printSystems(){
         systems.forEach((name, system) -> System.out.println(name));
     }
-
 }

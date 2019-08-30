@@ -7,12 +7,12 @@ import java.util.ArrayList;
 import edu.wpi.first.wpilibj.Filesystem;
 import frc.lib.output.error.ErrorHandler;
 import frc.lib.reader.MotorData.Type;
-class MotorParser {
+public class MotorParser {
     enum Mode{ON, ENCODER}
 
-    BufferedReader reader;
-    List<String[]> lines;
-    void init() {
+    static BufferedReader reader;
+    static List<String[]> lines;
+    public static void init() {
         try {
             reader = new BufferedReader(new FileReader(Filesystem.getDeployDirectory().getAbsolutePath()+"/robot.motors"));
         } catch(Exception e) {
@@ -29,7 +29,7 @@ class MotorParser {
             ErrorHandler.report(e, "Make sure robot.motors is not empty. Try turning your robot off and on again. If that doesn't work make an issue on the git repository.", "Motor");
         }
     }
-    void parse() {//todo need to add support for different encoders, right now its just whatever WPILib likes by default
+    public static void parse() {//todo need to add support for different encoders, right now its just whatever WPILib likes by default
         Mode mode;
         MotorData data = new MotorData();
         for (String[] line : lines) {

@@ -11,6 +11,9 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.concurrent.ScheduledThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 import java.util.function.Supplier;
 
 import edu.wpi.first.hal.FRCNetComm.tInstances;
@@ -21,6 +24,11 @@ import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.util.WPILibVersion;
+import frc.lib.input.ControllerManager;
+import frc.lib.output.Pathfollowing;
+import frc.lib.output.error.ErrorHandler;
+import frc.lib.reader.MotorParser;
+import frc.lib.reader.SubsystemParser;
 import frc.lib.utility.Console;
 import frc.lib.utility.MatchInfo;
 import frc.lib.utility.Settings;
@@ -37,6 +45,7 @@ public abstract class RobotBase implements AutoCloseable {
     /**
      * The ID of the main Java thread.
      */
+    private final ScheduledThreadPoolExecutor executor;
     protected final MatchInfo matchInfo;
     private final SystemState systemState;
     /**
@@ -54,15 +63,32 @@ public abstract class RobotBase implements AutoCloseable {
         inst.startServer("/home/lvuser/networktables.ini");
         matchInfo = MatchInfo.currentInfo();
         systemState = SystemState.getInstance();
+        executor = new ScheduledThreadPoolExecutor(6);
+        executor.setKeepAliveTime(2, TimeUnit.MILLISECONDS);
         Settings.load();
+        ControllerManager.init();
+        new ErrorHandler().init();
+        ControllerManager.init();
         inst.getTable("LiveWindow").getSubTable(".status").getEntry("LW Enabled").setBoolean(false);
 
         LiveWindow.setEnabled(false);
         Shuffleboard.disableActuatorWidgets();
+        MotorParser.init();
+        SubsystemParser.init();
+        MotorParser.parse();
+        SubsystemParser.parse();
     }
 
     @Override
     public void close() {
+    }
+
+    public void addTask(Runnable r, int period, TimeUnit t){
+        executor.scheduleAtFixedRate(r, 0, period, t);
+    }
+
+    public void removeTask(Runnable r){
+        executor.remove(r);
     }
 
     public abstract void start();

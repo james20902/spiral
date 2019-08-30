@@ -87,7 +87,4 @@ public class Controller {
         this.axesOutput = axesOutput;
         this.POV = POV;
     }
-
-
-
 }

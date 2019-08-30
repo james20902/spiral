@@ -1,16 +1,17 @@
 package frc.lib.output.error;
 
 import edu.wpi.first.wpilibj.Watchdog;
+import frc.team5115.frc2020.Robot;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
-public class ErrorHandler {//todo make it only do one print statement for speed
+public class ErrorHandler implements Runnable{//todo make it only do one print statement for speed
     private static List<Error> errors;
-    private static Watchdog thog;
-    public static void init(){
+    public void init(){
         errors = new ArrayList<Error>();
-        thog = new Watchdog(1000, ErrorHandler::print);//todo how tf this stuff work
+        Robot.robotInstance.addTask(this, 2, TimeUnit.MILLISECONDS);
     }
 
     public static void report(Error e) {
@@ -33,7 +34,7 @@ public class ErrorHandler {//todo make it only do one print statement for speed
         }
     }
 
-    private static void print() {
+    public void run() {
         if(errors.size() > 0){
             System.out.println("Error in Spiral. Details below.");
             for(Error e : errors) {

@@ -12,8 +12,7 @@ public class Input{
 
     private Controller[] availableJoysticks;
 
-    public Input(){
-    }
+    public Input(){}
 
     public void pollAllJoysticks(){
         for(Controller instance : availableJoysticks){

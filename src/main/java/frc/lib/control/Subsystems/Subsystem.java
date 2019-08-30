@@ -3,15 +3,14 @@ package frc.lib.control.Subsystems;
 import edu.wpi.first.wpilibj.Watchdog;
 import frc.lib.utility.SystemState;
 
+import java.lang.reflect.Method;
+
 public abstract class Subsystem extends Thread {
 
     private String systemName = this.getClass().getSimpleName();
 
     private long timing = 0;
     private Watchdog watchdog;
-
-    public Subsystem(){
-    }
 
     public Subsystem(long timing){
         this.timing = timing;

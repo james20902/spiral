@@ -35,7 +35,7 @@ public class MotorData {
     }
 
     /*
-    * if you use pwm talons and sparks you dumb so don't because they aren't gonna be supported
+    * if you use pwm talons and sparks don't because they aren't gonna be supported
     * this method initializes and adds all the motors to the master list
      */
     public void initialize() {

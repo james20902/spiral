@@ -11,6 +11,8 @@ public class Error {
 
     public void print(){
         System.out.println("There was an error in the " + module + "module. " + advice + " Stacktrace is below.");
-        e.printStackTrace();
+        if(e != null) {
+            e.printStackTrace();
+        }
     }
 }

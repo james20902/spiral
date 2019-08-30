@@ -1,6 +1,7 @@
 package frc.lib.output;
 
 import edu.wpi.first.wpilibj.Spark;
+import frc.lib.output.error.ErrorHandler;
 
 public class Blinkin {
     public enum Colors{
@@ -17,7 +18,11 @@ public class Blinkin {
     private static Spark spark;
     private static boolean individual;
     public static void set(float color) {
-        spark.set(color);
+        if(spark != null){
+            spark.set(color);
+        } else {
+            ErrorHandler.report("Please check that you initialized the Blinkin in robot.motors correctly", "Blinkin");
+        }
     }
     public static void initSpark(int pwm, boolean ind) {
         spark = new Spark(pwm);

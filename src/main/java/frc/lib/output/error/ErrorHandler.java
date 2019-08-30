@@ -19,6 +19,20 @@ public class ErrorHandler {
         }
     }
 
+    public static void report(Exception e, String advice, String module) {
+        Error err = new Error(e, advice, module);
+        if(errors.isEmpty() || !err.equals(errors.get(errors.size()-1))) {
+            errors.add(err);
+        }
+    }
+
+    public static void report(String advice, String module) {
+        Error e = new Error(null, advice, module);
+        if(errors.isEmpty() || !e.equals(errors.get(errors.size()-1))) {
+            errors.add(e);
+        }
+    }
+
     private static void print() {
         if(errors.size() > 0){
             System.out.println("Error in Spiral. Details below.");
@@ -26,7 +40,7 @@ public class ErrorHandler {
                 e.print();
             }
             errors.clear();
-            System.out.println("End of errors. Good luck debugging!");
+            System.out.println("End of errors. Good luck debugging! Remember that the top error could cause the others, so take care of that first!");
         }
     }
 }

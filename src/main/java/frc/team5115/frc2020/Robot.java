@@ -1,12 +1,13 @@
 package frc.team5115.frc2020;
 //todo do a thing about power, supposedly robotController.getbatteryvoltage or pdp stuff
-import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.hal.HALUtil;
 import frc.lib.control.RobotBase;
 import frc.lib.control.SubsystemManager;
 import frc.lib.input.Input;
 import frc.lib.input.Joystick;
 import frc.lib.utility.Console;
 import frc.lib.utility.SystemClock;
+import frc.lib.utility.Units;
 
 public class Robot extends RobotBase {
 
@@ -21,23 +22,20 @@ public class Robot extends RobotBase {
     manager = new Input();
     try {
       manager.findJoysticks();
+      stick = manager.getJoystick(0);
     } catch (NullPointerException ex){
       Console.reportWarning("nice", ex.getStackTrace());
     }
-    stick = manager.getJoystick(0);
     //todo, ScheduledThreadPoolExecutor implementation
   }
 
   public void loop() {
-    if(Timer.getFPGATimestamp() > checkpoint + 1){
+    if(SystemClock.getSystemTime() > checkpoint + 5){
       //joystick values only update as fast as the poll all joysticks method is called
       //task framework is ESSENTIAL now, as the input task needs to run on its own loop at priority 10
       manager.pollAllJoysticks();
-      if(stick.buttonState(1) == Joystick.ButtonState.PRESSED){
-        pressed = true;
-      }
-      System.out.println(pressed);
-      checkpoint = Timer.getFPGATimestamp();
+      System.out.println("hello world");
+      checkpoint = SystemClock.getSystemTime();
     }
   }
 }

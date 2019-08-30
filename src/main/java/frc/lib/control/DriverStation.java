@@ -197,7 +197,7 @@ public class DriverStation {
         // Internal Driver Station thread
         Thread m_thread = new Thread(new DriverStationTask(this), "FRCDriverStation");
         m_thread.setPriority((Thread.NORM_PRIORITY + Thread.MAX_PRIORITY) / 2);
-
+        System.out.println("DS thread starting");
         m_thread.start();
     }
 
@@ -207,109 +207,6 @@ public class DriverStation {
     public void release() {
         m_threadKeepAlive = false;
     }
-
-    /**
-     * Get the value of the axis on a joystick. This depends on the mapping of the joystick connected
-     * to the specified port.
-     *
-     * @param stick The joystick to read.
-     * @param axis  The analog axis value to read from the joystick.
-     * @return The value of the axis on the joystick.
-     */
-    public double getStickAxis(int stick, int axis) {
-        if (stick < 0 || stick >= kJoystickPorts) {
-            throw new IllegalArgumentException("Joystick index is out of range, should be 0-5");
-        }
-        if (axis < 0 || axis >= HAL.kMaxJoystickAxes) {
-            throw new IllegalArgumentException("Joystick axis is out of range");
-        }
-
-        m_cacheDataMutex.lock();
-        try {
-            if (axis >= m_joystickAxes[stick].m_count) {
-                // Unlock early so error printing isn't locked.
-                m_cacheDataMutex.unlock();
-                reportJoystickUnpluggedWarning("Joystick axis " + axis + " on port " + stick
-                        + " not available, check if controller is plugged in");
-                return 0.0;
-            }
-
-            return m_joystickAxes[stick].m_axes[axis];
-        } finally {
-            if (m_cacheDataMutex.isHeldByCurrentThread()) {
-                m_cacheDataMutex.unlock();
-            }
-        }
-    }
-
-    /**
-     * Get the state of a POV on the joystick.
-     *
-     * @return the angle of the POV in degrees, or -1 if the POV is not pressed.
-     */
-    public int getStickPOV(int stick, int pov) {
-        if (stick < 0 || stick >= kJoystickPorts) {
-            throw new IllegalArgumentException("Joystick index is out of range, should be 0-5");
-        }
-        if (pov < 0 || pov >= HAL.kMaxJoystickPOVs) {
-            throw new IllegalArgumentException("Joystick POV is out of range");
-        }
-
-        m_cacheDataMutex.lock();
-        try {
-            if (pov >= m_joystickPOVs[stick].m_count) {
-                // Unlock early so error printing isn't locked.
-                m_cacheDataMutex.unlock();
-                reportJoystickUnpluggedWarning("Joystick POV " + pov + " on port " + stick
-                        + " not available, check if controller is plugged in");
-            }
-        } finally {
-            if (m_cacheDataMutex.isHeldByCurrentThread()) {
-                m_cacheDataMutex.unlock();
-            }
-        }
-
-        return m_joystickPOVs[stick].m_povs[pov];
-    }
-
-    /**
-     * The state of the buttons on the joystick.
-     *
-     * @param stick The joystick to read.
-     * @return The state of the buttons on the joystick.
-     */
-    public int getStickButtons(final int stick) {
-        if (stick < 0 || stick >= kJoystickPorts) {
-            throw new IllegalArgumentException("Joystick index is out of range, should be 0-3");
-        }
-
-        m_cacheDataMutex.lock();
-        try {
-            return m_joystickButtons[stick].m_buttons;
-        } finally {
-            m_cacheDataMutex.unlock();
-        }
-    }
-
-    /**
-     * Returns the number of axes on a given joystick port.
-     *
-     * @param stick The joystick port number
-     * @return The number of axes on the indicated joystick
-     */
-    public int getStickAxisCount(int stick) {
-        if (stick < 0 || stick >= kJoystickPorts) {
-            throw new IllegalArgumentException("Joystick index is out of range, should be 0-5");
-        }
-
-        m_cacheDataMutex.lock();
-        try {
-            return m_joystickAxes[stick].m_count;
-        } finally {
-            m_cacheDataMutex.unlock();
-        }
-    }
-
 
     /**
      * Gets the value of isXbox on a joystick.
@@ -475,35 +372,12 @@ public class DriverStation {
     }
 
     /**
-     * Reports errors related to unplugged joysticks Throttles the errors so that they don't overwhelm
-     * the DS.
-     */
-    private void reportJoystickUnpluggedError(String message) {
-        double currentTime = Timer.getFPGATimestamp();
-        if (currentTime > m_nextMessageTime) {
-            Console.reportError(message);
-            m_nextMessageTime = currentTime + JOYSTICK_UNPLUGGED_MESSAGE_INTERVAL;
-        }
-    }
-
-    /**
-     * Reports errors related to unplugged joysticks Throttles the errors so that they don't overwhelm
-     * the DS.
-     */
-    private void reportJoystickUnpluggedWarning(String message) {
-        double currentTime = Timer.getFPGATimestamp();
-        if (currentTime > m_nextMessageTime) {
-            Console.reportWarning(message);
-            m_nextMessageTime = currentTime + JOYSTICK_UNPLUGGED_MESSAGE_INTERVAL;
-        }
-    }
-
-    /**
      * Provides the service routine for the DS polling m_thread.
      */
     private void run() {
         int safetyCounter = 0;
         while (m_threadKeepAlive) {
+            System.out.println("DS running!");
             HAL.waitForDSData();
             getData();
 

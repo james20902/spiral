@@ -32,7 +32,7 @@ public class Robot extends RobotBase {
       //joystick values only update as fast as the poll all joysticks method is called
       //task framework is ESSENTIAL now, as the input task needs to run on its own loop at priority 10
       manager.pollAllJoysticks();
-      System.out.println("hello world");
+//      System.out.println("hello world");
       checkpoint = SystemClock.getSystemTime();
     }
   }

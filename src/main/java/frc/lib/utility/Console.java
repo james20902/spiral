@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Console {
-    static Watchdog w = new Watchdog(500, Console::send);
+    static Watchdog w = new Watchdog(1000, Console::send);
     private static List<String> messages = new ArrayList<String>();
     //todo watchdog
     /*

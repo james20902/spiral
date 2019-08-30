@@ -2,6 +2,7 @@ package frc.lib.reader;
 
 import edu.wpi.first.wpilibj.Filesystem;
 import frc.lib.control.Subsystems.Subsystem;
+import frc.lib.output.error.ErrorHandler;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -21,9 +22,9 @@ public class SubsystemParser {
 
     public void init() {
         try {
-            reader = new BufferedReader(new FileReader(Filesystem.getDeployDirectory().getAbsolutePath()+"/robot.motors"));
+            reader = new BufferedReader(new FileReader(Filesystem.getDeployDirectory().getAbsolutePath()+"/robot.subsystems"));
         } catch(Exception e) {
-            //todo the problem catcher thing
+            ErrorHandler.report(e, "Make sure robot.subsystems exists. Turn your robot off and on again. If those don't work, create an issue on the git repository", "Subsystem");
         }
         lines = new ArrayList<String[]>();
         String line;
@@ -33,7 +34,7 @@ public class SubsystemParser {
                     lines.add(line.split(" "));//todo edge case, the comment exactly like this one, at the end of line. just detect a // and remove everything after
             }
         } catch(Exception e) {
-            //the problem catcher thing
+            ErrorHandler.report(e, "Make sure you spelled the subsystem class name correctly. If you did, make an issue on the git repository.", "Subsystem");
         }
         types = ClassFinder.find(Subsystem.class.getPackage().getName());
         types = Collections.unmodifiableList(types);
@@ -42,7 +43,7 @@ public class SubsystemParser {
         SubsystemData data;
         for (String[] line : lines) {
             data = new SubsystemData();//todo reset because memory allocation slow(er)
-            for (int i = 2; i < line.length; i++) {//line[0] determines subsystem type, skip it
+            for (int i = 2; i < line.length; i++) {//line[0-1] determines subsystem type, skip it
 
             }
             data.name = line[1];

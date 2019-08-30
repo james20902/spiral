@@ -7,7 +7,7 @@ import jaci.pathfinder.PathfinderFRC;
 import jaci.pathfinder.Trajectory;
 import jaci.pathfinder.followers.EncoderFollower;
 
-public class Pathfollowing {//todo make sure motors don't fight eachother
+public class Pathfollowing {//todo make sure motors don't fight eachother while person driving(like a mutex but for driving)
     private EncoderFollower leftFoll, rightFoll;
     private Trajectory leftTrajectory, rightTrajectory;
     private Notifier notifier;

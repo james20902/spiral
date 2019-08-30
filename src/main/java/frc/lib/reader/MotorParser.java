@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.ArrayList;
 
 import edu.wpi.first.wpilibj.Filesystem;
+import frc.lib.output.error.ErrorHandler;
 import frc.lib.reader.MotorData.Type;
 class MotorParser {
     enum Mode{ON, ENCODER}
@@ -15,7 +16,7 @@ class MotorParser {
         try {
             reader = new BufferedReader(new FileReader(Filesystem.getDeployDirectory().getAbsolutePath()+"/robot.motors"));
         } catch(Exception e) {
-            //todo the problem catcher thing
+            ErrorHandler.report(e, "Make sure robot.motors exists. Try turning your robot off and on again. If that doesn't work make an issue on the git repository.", "Motor");
         }
         lines = new ArrayList<String[]>();
         String line;
@@ -25,15 +26,15 @@ class MotorParser {
                     lines.add(line.split(" "));//todo edge case, the comment exactly like this one, at the end of line. just detect a // and remove everything after
             }
         } catch(Exception e) {
-            //the problem catcher thing
+            ErrorHandler.report(e, "Make sure robot.motors is not empty. Try turning your robot off and on again. If that doesn't work make an issue on the git repository.", "Motor");
         }
     }
     void parse() {//todo need to add support for different encoders, right now its just whatever WPILib likes by default
         Mode mode;
-        MotorData data;
+        MotorData data = new MotorData();
         for (String[] line : lines) {
             mode = Mode.ON;
-            data = new MotorData();//todo reset because memory allocation slow(er)
+            data.reset();
             for(int i = 1; i < line.length; i++) {//line[0] determines motor type, skip it
                 if(i == 1 && line[i].charAt(0) == 'd') {
                     data.drive = line[i];

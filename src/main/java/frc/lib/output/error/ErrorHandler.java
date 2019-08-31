@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-public class ErrorHandler implements Runnable{//todo make it only do one print statement for speed
+public class ErrorHandler implements Runnable{
     private static List<Error> errors;
     public void init(){
         errors = new ArrayList<Error>();
@@ -36,12 +36,14 @@ public class ErrorHandler implements Runnable{//todo make it only do one print s
 
     public void run() {
         if(errors.size() > 0){
-            System.out.println("Error in Spiral. Details below.");
+            String message = "";
+            message += "Error in Spiral. Details below. \n";
             for(Error e : errors) {
-                e.print();
+                message += e.print() + "\n";
             }
             errors.clear();
-            System.out.println("End of errors. Good luck debugging! Remember that the top error could cause the others, so take care of that first!");
+            message += "End of errors. Good luck debugging! Remember that the top error could cause the others, so take care of that first!";
+            System.out.println(message);
         }
     }
 }

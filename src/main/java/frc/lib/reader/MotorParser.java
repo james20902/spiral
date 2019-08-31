@@ -29,6 +29,7 @@ public class MotorParser {
             ErrorHandler.report(e, "Make sure robot.motors is not empty. Try turning your robot off and on again. If that doesn't work make an issue on the git repository.", "Motor");
         }
     }
+
     public static void parse() {//todo need to add support for different encoders, right now its just whatever WPILib likes by default
         Mode mode;
         MotorData data = new MotorData();

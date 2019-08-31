@@ -11,6 +11,12 @@ public class SimpleButtonHold extends Subsystem {
         this.button = button;
         this.controller = 0;
     }
+    public SimpleButtonHold(long timing, boolean reversed, int button, int controller, int motorID){
+        super(timing);
+        this.button = button;
+        this.controller = controller;
+    }
+
     public void teleopPeriodic(){
         Motors.motors.get(motorID).setPercent(ControllerManager.controllers[controller].getButtonState(button).getSpeed());
     }

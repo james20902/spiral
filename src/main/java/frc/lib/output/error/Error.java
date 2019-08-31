@@ -9,10 +9,9 @@ public class Error {
         this.module = module;
     }
 
-    public void print(){
-        System.out.println("There was an error in the " + module + "module. " + advice + " Stacktrace is below.");
-        if(e != null) {
-            e.printStackTrace();
-        }
+    public String print(){
+        if(e != null)
+        return "There was an error in the " + module + "module. " + advice + " Stacktrace is below.\n" + e.toString();
+        else return "There was an error in the " + module + "module. " + advice + " Stacktrace is below.\n";
     }
 }

@@ -2,8 +2,10 @@ package frc.lib.control.Subsystems;
 
 import edu.wpi.first.wpilibj.Watchdog;
 import frc.lib.utility.SystemState;
+import frc.team5115.frc2020.Robot;
 
 import java.lang.reflect.Method;
+import java.util.concurrent.TimeUnit;
 
 public abstract class Subsystem implements Runnable {
     private String systemName = this.getClass().getSimpleName();
@@ -13,7 +15,8 @@ public abstract class Subsystem implements Runnable {
 
     public Subsystem(long timing){
         this.timing = timing;
-        watchdog = new Watchdog(timing * Math.pow(10, -3), this::logSlowdown);//todo were these going to be redone? i forgot
+        Robot.robotInstance.addTask(this, 10, TimeUnit.MILLISECONDS);
+        watchdog = new Watchdog(timing * Math.pow(10, -3), this::logSlowdown);
     }
 
     @Override

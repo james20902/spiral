@@ -11,6 +11,11 @@ public class SimpleJoystick extends Subsystem {
         this.joystick = joystick;
         this.controller = 0;
     }
+    public SimpleJoystick(long timing, boolean reversed, int joystick, int controller, int motorID){
+        super(timing);
+        this.joystick = joystick;
+        this.controller = controller;
+    }
     public void teleopPeriodic(){
         Motors.motors.get(motorID).setPercent(ControllerManager.controllers[controller].getAxis(joystick));
     }

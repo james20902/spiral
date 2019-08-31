@@ -24,6 +24,7 @@ import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.util.WPILibVersion;
+import frc.lib.input.Controller;
 import frc.lib.input.ControllerManager;
 import frc.lib.output.Pathfollowing;
 import frc.lib.output.error.ErrorHandler;
@@ -66,8 +67,8 @@ public abstract class RobotBase implements AutoCloseable {
         executor = new ScheduledThreadPoolExecutor(6);
         executor.setKeepAliveTime(2, TimeUnit.MILLISECONDS);
         Settings.load();
-        ControllerManager.init();
         new ErrorHandler().init();
+        addTask(new ControllerManager(), 4, TimeUnit.MILLISECONDS);
         ControllerManager.init();
         inst.getTable("LiveWindow").getSubTable(".status").getEntry("LW Enabled").setBoolean(false);
 

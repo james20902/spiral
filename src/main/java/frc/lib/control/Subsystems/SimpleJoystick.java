@@ -11,7 +11,7 @@ public class SimpleJoystick extends Subsystem {
         this.joystick = joystick;
         this.controller = 0;
     }
-    public SimpleJoystick(int timing, boolean reversed, int joystick, int controller, int motorID){
+    public SimpleJoystick(int timing, boolean reversed, int joystick, int controller, int motorID){//todo make Subsystem have identical constructor
         super(timing);
         this.joystick = joystick;
         this.controller = controller;
@@ -24,5 +24,5 @@ public class SimpleJoystick extends Subsystem {
         Motors.motors.get(motorID).setPercent(ControllerManager.controllers[controller].getAxis(joystick));
     }
 
-    public void kill(){ }
+    public void kill(){}
 }

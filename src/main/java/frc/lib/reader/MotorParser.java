@@ -23,7 +23,7 @@ public class MotorParser {
         try {
             while((line = reader.readLine()) != null) {
                 if(line.charAt(0) != '/' && line.charAt(1) != '/')
-                    lines.add(line.split(" "));//todo edge case, the comment exactly like this one, at the end of line. just detect a // and remove everything after
+                    lines.add(line.split("//")[0].split(" "));
             }
         } catch(Exception e) {
             ErrorHandler.report(e, "Make sure robot.motors is not empty. Try turning your robot off and on again. If that doesn't work make an issue on the git repository.", "Motor");

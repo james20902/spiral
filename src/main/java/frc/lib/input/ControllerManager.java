@@ -10,13 +10,14 @@ import java.util.List;
 public class ControllerManager implements Runnable{
     public static final byte MAX_JOYSTICKS = 6;
     public static Controller[] controllers;
+    public static final float[] deadzones = {0.15f, 0.2f};//todo deadzone settings loading
 
     public static void init(){
         controllers = new Controller[MAX_JOYSTICKS];
         for(int i = 0; i < MAX_JOYSTICKS; i++){
             controllers[i] = new Controller((byte)i);
         }
-        findJoysticks();
+        findJoysticks();//todo actually initialize the controller
     }
 
     public void run(){

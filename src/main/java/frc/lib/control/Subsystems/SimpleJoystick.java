@@ -24,5 +24,5 @@ public class SimpleJoystick extends Subsystem {
         Motors.motors.get(motorID).setPercent(ControllerManager.controllers[controller].getAxis(joystick));
     }
 
-    public void kill(){ }
+    public void kill(){}
 }

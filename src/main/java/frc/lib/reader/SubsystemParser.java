@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SubsystemParser {
-    //todo allow grammar in robot.motors and subsystems, and just .replace it with ""
+    //todo allow grammar in robot.motors and subsystems, and just .replace it with "". also support subsystems without motors passed
     enum Mode{INPUT, MOTOR};
     static BufferedReader reader;
     static List<String[]> lines;

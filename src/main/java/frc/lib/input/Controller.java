@@ -95,5 +95,14 @@ public class Controller {
         this.buttonStates = buttonStates;
         this.axesOutput = axesOutput;
         this.POV = POV;
+
+        if(ControllerManager.deadzones.length < port) {
+            for(int i = 0; i < axesOutput.length; i++) {
+                if (axesOutput[i] < ControllerManager.deadzones[port]) {
+                    axesOutput[i] = 0;
+                }else axesOutput[i] = (axesOutput[i] - ControllerManager.deadzones[port]) / (1 - ControllerManager.deadzones[port]);
+            }
+        }
+
     }
 }

@@ -11,7 +11,7 @@ public class SimpleJoystick extends Subsystem {
         this.joystick = joystick;
         this.controller = 0;
     }
-    public SimpleJoystick(long timing, boolean reversed, int joystick, int controller, int motorID){
+    public SimpleJoystick(long timing, boolean reversed, int joystick, int controller, int motorID){//todo make Subsystem have identical constructor
         super(timing);
         this.joystick = joystick;
         this.controller = controller;

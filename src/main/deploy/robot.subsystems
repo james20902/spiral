@@ -1,2 +1,1 @@
-frontArm Arm motors (5,2) joystick 2
-                               or button 2 3
+frontArm SimpleJoystick 10 motor 5,2 input 0,2,false//this makes a subsystem called frontArm of type SimpleJoystick.class with a loop time of 10ms and the motors 5 and 2. It takes input from controller 0 and joystick 2 and is not reversed

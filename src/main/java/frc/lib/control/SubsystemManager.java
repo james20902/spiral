@@ -20,7 +20,7 @@ public class SubsystemManager {
         return instance;
     }
 
-    public SubsystemManager(){
+    private SubsystemManager(){
         systems = new HashMap<>();
     }
 
@@ -38,7 +38,6 @@ public class SubsystemManager {
         try{
             Subsystem s = systems.get(name);
             s.kill();
-            Robot.robotInstance.removeTask(s);
         } catch (NullPointerException e){
             System.out.println("No subsystem with the name " + name + "!");
         }

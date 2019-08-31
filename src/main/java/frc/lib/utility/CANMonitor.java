@@ -5,7 +5,7 @@ import edu.wpi.first.hal.can.CANStatus;
 
 public class CANMonitor {
 
-    private static CANStatus data;
+    private static CANStatus data = new CANStatus();
 
     private static CANMonitor instance;
 
@@ -16,8 +16,6 @@ public class CANMonitor {
         CANJNI.GetCANStatus(data);
         return instance;
     }
-
-
 
     public double getUtilization(){
         return data.percentBusUtilization;

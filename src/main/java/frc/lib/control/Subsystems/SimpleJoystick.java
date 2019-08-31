@@ -6,12 +6,12 @@ import frc.lib.output.Motors;
 public class SimpleJoystick extends Subsystem {
     protected int joystick, motorID, controller;
     boolean reversed;
-    public SimpleJoystick(long timing, boolean reversed, int joystick, int motorID){
+    public SimpleJoystick(int timing, boolean reversed, int joystick, int motorID){
         super(timing);
         this.joystick = joystick;
         this.controller = 0;
     }
-    public SimpleJoystick(long timing, boolean reversed, int joystick, int controller, int motorID){
+    public SimpleJoystick(int timing, boolean reversed, int joystick, int controller, int motorID){
         super(timing);
         this.joystick = joystick;
         this.controller = controller;

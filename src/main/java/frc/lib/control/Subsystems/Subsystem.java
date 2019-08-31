@@ -10,12 +10,17 @@ import java.util.concurrent.TimeUnit;
 public abstract class Subsystem implements Runnable {
     private String systemName = this.getClass().getSimpleName();
 
-    private long timing = 0;
+    private int timing = 0;
     private Watchdog watchdog;
 
-    public Subsystem(long timing){
+    public Subsystem(){
+        this(0);
+    }
+
+    public Subsystem(int timing){
         this.timing = timing;
-        Robot.robotInstance.addTask(this, 10, TimeUnit.MILLISECONDS);
+//        Robot.robotInstance.addTask(this, this.timing, TimeUnit.MILLISECONDS);
+        //todo redo this to run on its own scheduler
         watchdog = new Watchdog(timing * Math.pow(10, -3), this::logSlowdown);
     }
 

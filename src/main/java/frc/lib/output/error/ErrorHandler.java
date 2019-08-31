@@ -1,17 +1,27 @@
 package frc.lib.output.error;
 
-import edu.wpi.first.wpilibj.Watchdog;
+import frc.lib.control.Task;
 import frc.team5115.frc2020.Robot;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-public class ErrorHandler implements Runnable{
+public class ErrorHandler extends Task {
+
+    private static ErrorHandler instance;
+
+    public static ErrorHandler getInstance(){
+        if(instance == null){
+            instance = new ErrorHandler();
+        }
+        return instance;
+    }
+
     private static List<Error> errors;
+
     public void init(){
         errors = new ArrayList<Error>();
-        Robot.robotInstance.addTask(this, 2, TimeUnit.MILLISECONDS);
     }
 
     public static void report(Error e) {

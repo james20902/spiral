@@ -1,17 +1,27 @@
 package frc.lib.input;
 
 import edu.wpi.first.hal.HAL;
-import frc.team5115.frc2020.Robot;
+import frc.lib.control.Task;
 
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ControllerManager implements Runnable{
+public class ControllerManager extends Task {
+
+    private static ControllerManager instance;
+
+    public static ControllerManager getInstance(){
+        if(instance == null){
+            instance = new ControllerManager();
+        }
+        return instance;
+    }
+
     public static final byte MAX_JOYSTICKS = 6;
     public static Controller[] controllers;
 
-    public static void init(){
+    public void init(){
         controllers = new Controller[MAX_JOYSTICKS];
         for(int i = 0; i < MAX_JOYSTICKS; i++){
             controllers[i] = new Controller((byte)i);

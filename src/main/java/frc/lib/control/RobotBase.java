@@ -46,7 +46,7 @@ public abstract class RobotBase implements AutoCloseable {
     /**
      * The ID of the main Java thread.
      */
-    private final ScheduledThreadPoolExecutor executor;
+    private final TaskManager manager;
     protected final MatchInfo matchInfo;
     private final SystemState systemState;
     /**
@@ -64,33 +64,25 @@ public abstract class RobotBase implements AutoCloseable {
         inst.startServer("/home/lvuser/networktables.ini");
         matchInfo = MatchInfo.currentInfo();
         systemState = SystemState.getInstance();
-        executor = new ScheduledThreadPoolExecutor(6);
-        executor.setKeepAliveTime(2, TimeUnit.MILLISECONDS);
+        manager = TaskManager.getInstance();
         Settings.load();
-        new ErrorHandler().init();
-        addTask(new ControllerManager(), 4, TimeUnit.MILLISECONDS);
-        ControllerManager.init();
         inst.getTable("LiveWindow").getSubTable(".status").getEntry("LW Enabled").setBoolean(false);
 
         LiveWindow.setEnabled(false);
         Shuffleboard.disableActuatorWidgets();
-        MotorParser.init();
-        SubsystemParser.init();
-        MotorParser.parse();
-        SubsystemParser.parse();
+//        MotorParser.init();
+//        SubsystemParser.init();
+//        MotorParser.parse();
+//        SubsystemParser.parse();
+        manager.schedulePeriodicTask(ErrorHandler.getInstance(), 100);
+        manager.schedulePeriodicTask(ControllerManager.getInstance(), 1);
     }
 
     @Override
     public void close() {
     }
 
-    public void addTask(Runnable r, int period, TimeUnit t){
-        executor.scheduleAtFixedRate(r, 0, period, t);
-    }
 
-    public void removeTask(Runnable r){
-        executor.remove(r);
-    }
 
     public abstract void start();
 

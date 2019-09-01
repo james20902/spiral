@@ -1,17 +1,35 @@
 package frc.lib.utility;
 
-public class Settings {
+import edu.wpi.first.wpilibj.Filesystem;
+import org.yaml.snakeyaml.TypeDescription;
+import org.yaml.snakeyaml.Yaml;
+import org.yaml.snakeyaml.constructor.Constructor;
 
-    public static final float maxVelocity;
-    public static final float ticksPerRevolution;
-    public static final float wheelDiameter;
-    static {
-        //todo, load file and assign constants with static initializer???
-        load();
+public class Settings {
+    private static Settings instance;
+
+    public float maxVelocity;
+    public float ticksPerRevolutionWB;
+    public float wheelDiameter;
+    public float[][] deadzones;
+
+    public Settings(){
         maxVelocity = 1;
-        ticksPerRevolution = -1;
+        ticksPerRevolutionWB = -1;
         wheelDiameter = -1;
+        deadzones = new float[6][12];
     }
-    public static void load(){//todo YAML loading, make sure to verify proper loading
+
+    public static Settings getInstance(){
+        if(instance == null) instance = new Settings();
+        return instance;
+    }
+
+    public void load(){
+        Constructor constructor = new Constructor(Settings.class);
+        TypeDescription description = new TypeDescription(Settings.class);
+        constructor.addTypeDescription(description);
+        Yaml yaml = new Yaml(constructor);
+        instance = (Settings) yaml.load(Filesystem.getDeployDirectory().getAbsolutePath()+"/robot.settings");
     }
 }

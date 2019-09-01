@@ -1,4 +1,11 @@
 maxVelocity: 15 #fps
-ticksPerRevolution: 4096
+ticksPerRevolutionWB: 4096
 wheelDiameter: 6 #in
-deadzonesC0: 0.2, 0.2, 0.2, 0.2, 0.2, 0.2
+deadzones:
+    0:
+        - 0.2
+        - 0.2
+        - 0.2
+        - 0.2
+        - 0.2
+        - 0.2

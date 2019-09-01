@@ -9,7 +9,7 @@ public class CANMonitor {
 
     private static CANMonitor instance;
 
-    public static CANMonitor getInstance(){//todo make this work
+    public static CANMonitor getInstance(){
         if(instance == null){
             instance = new CANMonitor();
         }

@@ -26,7 +26,8 @@ public class SubsystemParser {
         String line;
         try {
             while((line = reader.readLine()) != null) {
-                lines.add(line.split("//")[0].split(" "));
+                if(line.charAt(0) != '/' && line.charAt(1) != '/')
+                    lines.add(line.split("//")[0].split(" "));
             }
         } catch(Exception e) {
             ErrorHandler.report(e, "Make sure robot.subsystems is not empty. If you did, make an issue on the git repository.", "Subsystem");

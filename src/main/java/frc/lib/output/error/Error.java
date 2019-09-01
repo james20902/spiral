@@ -11,7 +11,7 @@ public class Error {
 
     public String print(){
         if(e != null)
-        return "There was an error in the " + module + "module. " + advice + " Stacktrace is below.\n" + e.toString();
-        else return "There was an error in the " + module + "module. " + advice + " Stacktrace is below.\n";
+        return "There was an error in the " + module + " module. " + advice + " Stacktrace is below.\n" + e.toString();
+        else return "There was an error in the " + module + " module. " + advice + " Stacktrace is below.\n";
     }
 }

@@ -65,7 +65,7 @@ public abstract class RobotBase implements AutoCloseable {
         matchInfo = MatchInfo.currentInfo();
         systemState = SystemState.getInstance();
         manager = TaskManager.getInstance();
-        Settings.load();
+        new Settings().load();
         inst.getTable("LiveWindow").getSubTable(".status").getEntry("LW Enabled").setBoolean(false);
 
         LiveWindow.setEnabled(false);

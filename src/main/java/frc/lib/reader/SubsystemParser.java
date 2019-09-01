@@ -11,12 +11,18 @@ import java.util.List;
 public class SubsystemParser {
     //todo allow grammar in robot.motors and subsystems, and just .replace it with "". also support subsystems without motors passed
     enum Mode{INPUT, MOTOR};
-    static BufferedReader reader;
-    static List<String[]> lines;
-    static List<Class<?>> types;
-    static Mode mode = Mode.MOTOR;
+    BufferedReader reader;
+    List<String[]> lines;
+    List<Class<?>> types;
+    Mode mode = Mode.MOTOR;
+    static SubsystemParser instance;
 
-    public static void init() {
+    public static SubsystemParser getInstance(){
+        if(instance == null) instance = new SubsystemParser();
+        return instance;
+    }
+
+    public SubsystemParser() {
         try {
             reader = new BufferedReader(new FileReader(Filesystem.getDeployDirectory().getAbsolutePath()+"/robot.subsystems"));
         } catch(Exception e) {
@@ -33,7 +39,7 @@ public class SubsystemParser {
             ErrorHandler.report(e, "Make sure robot.subsystems is not empty. If you did, make an issue on the git repository.", "Subsystem");
         }
     }
-    public static void parse() {
+    public void parse() {
         SubsystemData data = new SubsystemData();
         String[] temp;
         for (String[] line : lines) {

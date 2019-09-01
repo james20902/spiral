@@ -2,6 +2,7 @@ package frc.lib.input;
 
 import edu.wpi.first.hal.HAL;
 import frc.lib.control.Task;
+import frc.lib.utility.SystemClock;
 
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
@@ -35,6 +36,7 @@ public class ControllerManager extends Task {
     }
 
     public static void pollAllJoysticks(){
+        HAL.waitForDSDataTimeout(25);
         for(Controller instance : controllers){
             byte port = instance.getPort();
             instance.updateData(

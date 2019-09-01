@@ -2,21 +2,13 @@ package frc.lib.utility;
 
 import edu.wpi.first.hal.ControlWord;
 import edu.wpi.first.hal.HAL;
+import frc.lib.control.Task;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class SystemState {
-
-    public static final int DISABLED = 0;
-    public static final int AUTONOMOUS = 1;
-    public static final int OPERATOR = 2;
-    public static final int TEST = 3;
-
-    private ControlWord globalState = new ControlWord();
+public class SystemState extends Task {
 
     private static SystemState instance;
-
-    private AtomicInteger translatedState = new AtomicInteger();
 
     public static SystemState getInstance(){
         if(instance == null) {
@@ -25,7 +17,20 @@ public class SystemState {
         return instance;
     }
 
-    public void updateSystemState(){
+    public static final int DISABLED = 0;
+    public static final int AUTONOMOUS = 1;
+    public static final int OPERATOR = 2;
+    public static final int TEST = 3;
+
+    private ControlWord globalState = new ControlWord();
+    private AtomicInteger translatedState = new AtomicInteger();
+
+    public void init(){
+        globalState = new ControlWord();
+        translatedState = new AtomicInteger();
+    }
+
+    public void run(){
         if(!HAL.isNewControlData()){
             return;
         }

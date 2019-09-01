@@ -38,7 +38,7 @@ public class TaskManager {
     }
 
     public void schedulePeriodicTask(Task task, int executionTime, TimeUnit unit){
-        executor.scheduleAtFixedRate(task, 0, executionTime, unit);
+        executor.scheduleWithFixedDelay(task, 0, executionTime, unit);
     }
 
     public void removeTask(Runnable r){

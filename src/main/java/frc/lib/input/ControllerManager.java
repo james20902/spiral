@@ -2,15 +2,18 @@ package frc.lib.input;
 
 import edu.wpi.first.hal.HAL;
 import frc.lib.control.Task;
+import frc.lib.utility.Console;
 import frc.lib.utility.Settings;
 
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class ControllerManager extends Task {
 
     private static ControllerManager instance;
+    AtomicBoolean lock;
 
     public static ControllerManager getInstance(){
         if(instance == null){
@@ -21,15 +24,24 @@ public class ControllerManager extends Task {
 
     public static final byte MAX_JOYSTICKS = 6;
     public static Controller[] controllers;
-    public static float[][] deadzones = new float[1][1];//todo deadzone settings loading
+    public static float[][] deadzones = new float[1][1];
 
     public void init(){
         deadzones = Settings.getInstance().deadzones;
         findJoysticks();
+        lock = new AtomicBoolean(false);
     }
 
-    public void run(){
+    public void run() {
+        if(lock.get()) Thread.currentThread().interrupt();
+        lock.set(true);
         pollAllJoysticks();
+        lock.set(false);
+    }
+
+    @Override
+    public void logSlowdown() {
+        Console.reportError("Slowdown on ControllerManager! Realistically this shouldn't happen so make an issue on the git repo.");
     }
 
     public static void pollAllJoysticks(){
@@ -86,7 +98,7 @@ public class ControllerManager extends Task {
         }
         controllers = storage.toArray(new Controller[storage.size()]);
         if (controllers.length == 0){
-            throw new NullPointerException("no joysticks present!");
+            throw new NullPointerException("no joysticks present!");//todo we shouldn't do these because they will crash the whole robot program
         }
         for(Controller stick : controllers){
             byte port = stick.getPort();

@@ -2,8 +2,6 @@ package frc.lib.control.Subsystems;
 
 import edu.wpi.first.wpilibj.Watchdog;
 import frc.lib.utility.SystemState;
-import frc.team5115.frc2020.Robot;
-import java.util.concurrent.TimeUnit;
 
 public abstract class Subsystem implements Runnable {
     private String systemName = this.getClass().getSimpleName();

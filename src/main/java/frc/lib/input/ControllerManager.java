@@ -2,6 +2,7 @@ package frc.lib.input;
 
 import edu.wpi.first.hal.HAL;
 import frc.lib.control.Task;
+import frc.lib.utility.Settings;
 
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
@@ -20,14 +21,11 @@ public class ControllerManager extends Task {
 
     public static final byte MAX_JOYSTICKS = 6;
     public static Controller[] controllers;
-    public static final float[] deadzones = {0.15f, 0.2f};//todo deadzone settings loading
+    public static float[][] deadzones = new float[1][1];//todo deadzone settings loading
 
     public void init(){
-        controllers = new Controller[MAX_JOYSTICKS];
-        for(int i = 0; i < MAX_JOYSTICKS; i++){
-            controllers[i] = new Controller((byte)i);
-        }
-        findJoysticks();//todo actually initialize the controller
+        deadzones = Settings.getInstance().deadzones;
+        findJoysticks();
     }
 
     public void run(){

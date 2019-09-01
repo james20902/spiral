@@ -97,10 +97,10 @@ public class Controller {
         this.POV = POV;
 
         if(ControllerManager.deadzones.length < port) {
-            for(int i = 0; i < axesOutput.length; i++) {
-                if (axesOutput[i] < ControllerManager.deadzones[port]) {
+            for(int i = 0; i < axesOutput.length && i < ControllerManager.deadzones[port].length; i++) {
+                if (axesOutput[i] < ControllerManager.deadzones[port][i]) {
                     axesOutput[i] = 0;
-                }else axesOutput[i] = (axesOutput[i] - ControllerManager.deadzones[port]) / (1 - ControllerManager.deadzones[port]);
+                }else axesOutput[i] = (axesOutput[i] - ControllerManager.deadzones[port][i]) / (1 - ControllerManager.deadzones[port][i]);
             }
         }
 

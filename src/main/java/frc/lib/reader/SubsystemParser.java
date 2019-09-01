@@ -22,7 +22,7 @@ public class SubsystemParser {
         return instance;
     }
 
-    public SubsystemParser() {
+    private SubsystemParser() {
         try {
             reader = new BufferedReader(new FileReader(Filesystem.getDeployDirectory().getAbsolutePath()+"/robot.subsystems"));
         } catch(Exception e) {

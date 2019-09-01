@@ -19,7 +19,7 @@ public class MotorParser {
         return instance;
     }
 
-    public MotorParser() {
+    private MotorParser() {
         try {
             reader = new BufferedReader(new FileReader(Filesystem.getDeployDirectory().getAbsolutePath()+"/robot.motors"));
         } catch(Exception e) {

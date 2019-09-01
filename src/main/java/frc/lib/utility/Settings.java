@@ -13,7 +13,7 @@ public class Settings {
     public float wheelDiameter;
     public float[][] deadzones;
 
-    public Settings(){
+    private Settings(){
         maxVelocity = 1;
         ticksPerRevolutionWB = -1;
         wheelDiameter = -1;

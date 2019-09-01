@@ -4,24 +4,27 @@ import frc.lib.input.ControllerManager;
 import frc.lib.output.Motors;
 
 public class SimpleJoystick extends Subsystem {
-    protected int joystick, motorID, controller;
+    protected int joystick, controller;
+    protected int[] motorID;
     boolean reversed;
     public SimpleJoystick(int timing, boolean reversed, int joystick, int motorID){
         super(timing);
         this.joystick = joystick;
         this.controller = 0;
     }
-    public SimpleJoystick(int timing, boolean reversed, int joystick, int controller, int motorID){//todo make Subsystem have identical constructor
+    public SimpleJoystick(int timing, boolean reversed, int joystick[], int controller, int motorID[]){//todo make Subsystem have identical constructor
         super(timing);
-        this.joystick = joystick;
+        this.joystick = joystick[0];
         this.controller = controller;
     }
     public void teleopPeriodic(){
-        Motors.motors.get(motorID).setPercent(ControllerManager.controllers[controller].getAxis(joystick));
+        for(int i : motorID)
+            Motors.motors.get(i).setPercent(ControllerManager.controllers[controller].getAxis(joystick));
     }
 
     public void autonomousPeriodic(){
-        Motors.motors.get(motorID).setPercent(ControllerManager.controllers[controller].getAxis(joystick));
+        for(int i : motorID)
+            Motors.motors.get(i).setPercent(ControllerManager.controllers[controller].getAxis(joystick));
     }
 
     public void kill(){}

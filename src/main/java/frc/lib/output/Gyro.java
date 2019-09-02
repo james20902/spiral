@@ -8,7 +8,7 @@ import frc.lib.utility.Console;
 public class Gyro {
     private SerialPort.Port port;
     private AHRS navXInstance;
-
+//use AHRS.getFusedHeading instead of getYaw
     public Gyro(SerialPort.Port port){
         this.port = port;
         navXInstance = new AHRS(this.port);

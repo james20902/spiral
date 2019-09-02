@@ -2,6 +2,7 @@ package frc.lib.control.Subsystems;
 
 import frc.lib.input.ControllerManager;
 import frc.lib.output.Motors;
+import frc.lib.utility.Console;
 
 public class SimpleButtonHold extends Subsystem {
     protected int button, controller;
@@ -23,6 +24,13 @@ public class SimpleButtonHold extends Subsystem {
     public void teleopPeriodic(){
         for(int i : motorID)
             Motors.motors.get(i).setPercent(ControllerManager.controllers[controller].getButtonState(button).getSpeed());
+    }
+
+    public void init() {}
+
+    @Override
+    public void logSlowdown() {
+        Console.reportError("Slowdown in a SimpleButtonHold subsystem. Slow it down to avoid this.", -1); //TODO what are error codes
     }
 
     public void autonomousPeriodic(){

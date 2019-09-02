@@ -41,7 +41,7 @@ public class ControllerManager extends Task {
 
     @Override
     public void logSlowdown() {
-        Console.reportError("Slowdown on ControllerManager! Realistically this shouldn't happen so make an issue on the git repo.");
+        Console.reportError("Slowdown on ControllerManager! Realistically this shouldn't happen so make an issue on the git repo.", -1);//todo what tf are the error codes
     }
 
     public static void pollAllJoysticks(){

@@ -14,7 +14,9 @@ public class Motor {
     Encoder e;
     Method set, getRotations;
     int ticksPerRev;
-    public Motor(Object motor, int ticksPerRev){
+    boolean encReverse;
+    public Motor(Object motor, int ticksPerRev, boolean encReversed){
+        this.encReverse = encReversed;
         this.motor = motor;
         Motors.motors.add(this);
         try {
@@ -27,12 +29,11 @@ public class Motor {
         } catch(Exception e){
             ErrorHandler.report(e, "Please create an issue in the repository.", "Motors");
         }
-
         this.ticksPerRev = ticksPerRev;
     }
 
-    public Motor(Object motor, int encoderPosA, int encoderPosB, int ticksPerRev){
-        this(motor, ticksPerRev);
+    public Motor(Object motor, int encoderPosA, int encoderPosB, int ticksPerRev, boolean encReversed){
+        this(motor, ticksPerRev, encReversed);
         e = new Encoder(encoderPosA, encoderPosB);
     }
 
@@ -49,19 +50,20 @@ public class Motor {
     }
 
     public double getRotations() {
+        int ticks = -1;
         try {
             if (e != null) {
-                return e.get() / ticksPerRev;
+                ticks = e.get() / ticksPerRev;
             } else if (motor instanceof TalonSRX) {
-                return (int)getRotations.invoke(motor,0) / ticksPerRev;
+                ticks = (int)getRotations.invoke(motor,0) / ticksPerRev;
             } else if (motor instanceof CANSparkMax) {
-                return (int)getRotations.invoke(motor) / ticksPerRev;
+                ticks = (int)getRotations.invoke(motor) / ticksPerRev;
             }
         } catch(Exception e){
             ErrorHandler.report(e,"There was an error getting the encoder position for a motor/motors, please check cable connections and if using integrated encoder make sure it is either a Spark Max or TalonSRX. If you want more motor controllers with integrated encoders supported, create a feature request.", "Motors");
             return -1;
         }
-        ErrorHandler.report("There was an error getting the encoder position for a motor/motors, please check cable connections and if using integrated encoder make sure it is either a Spark Max or TalonSRX. If you want more motor controllers with integrated encoders supported, create a feature request.", "Motors");
-        return -1;
+        if(encReverse) return ticks*-1;
+        return ticks;
     }
 }

@@ -15,6 +15,7 @@ import java.util.List;
 public class MotorData {
     public enum Type{TALON, VICTOR, SPARK, BLINKIN, BLINKININD, EMPTY};
     boolean integratedEncoder = false;
+    boolean encReverse = false;
     int ticksPerRev = -1;
     int pdpPos = -1;
     int canPos = -1;
@@ -30,6 +31,7 @@ public class MotorData {
         canPos = -1;
         pwmPos = -1;
         drive = "";
+        encReverse = false;
         encPos = new ArrayList<Integer>();
         type = Type.EMPTY;
     }
@@ -44,21 +46,21 @@ public class MotorData {
                 switch(type){//could probably make it better but eh it'll work
                     case TALON:
                         TalonSRX tal = new TalonSRX(canPos);
-                        Motors.left.add(new Motor(tal, ticksPerRev));
+                        Motors.left.add(new Motor(tal, ticksPerRev, encReverse));
                     case VICTOR:
                         VictorSPX vic = new VictorSPX(canPos);
-                        Motors.left.add(new Motor(vic, ticksPerRev));
+                        Motors.left.add(new Motor(vic, ticksPerRev, encReverse));
                     case SPARK:
                         if(canPos != -1) {
                             CANSparkMax max = new CANSparkMax(canPos, CANSparkMaxLowLevel.MotorType.kBrushless);
-                            Motors.left.add(new Motor(max, ticksPerRev));
+                            Motors.left.add(new Motor(max, ticksPerRev, encReverse));
                         } else {
                             Spark sp = new Spark(pwmPos);
                             if(!encPos.isEmpty()) {
-                                Motors.left.add(new Motor(sp, encPos.get(0), encPos.get(1), ticksPerRev));
+                                Motors.left.add(new Motor(sp, encPos.get(0), encPos.get(1), ticksPerRev, encReverse));
                                 break;
                             }
-                            Motors.left.add(new Motor(sp, ticksPerRev));
+                            Motors.left.add(new Motor(sp, ticksPerRev, encReverse));
                         }
                     case BLINKIN:
                         Blinkin.initSpark(pwmPos, false);
@@ -69,21 +71,21 @@ public class MotorData {
                 switch(type){//could probably make it better but eh it'll work
                     case TALON:
                         TalonSRX tal = new TalonSRX(canPos);
-                        Motors.right.add(new Motor(tal, ticksPerRev));
+                        Motors.right.add(new Motor(tal, ticksPerRev, encReverse));
                     case VICTOR:
                         VictorSPX vic = new VictorSPX(canPos);
-                        Motors.right.add(new Motor(vic, ticksPerRev));
+                        Motors.right.add(new Motor(vic, ticksPerRev, encReverse));
                     case SPARK:
                         if(canPos != -1) {
                             CANSparkMax max = new CANSparkMax(canPos, CANSparkMaxLowLevel.MotorType.kBrushless);
-                            Motors.right.add(new Motor(max, ticksPerRev));
+                            Motors.right.add(new Motor(max, ticksPerRev, encReverse));
                         } else {
                             Spark sp = new Spark(pwmPos);
                             if(!encPos.isEmpty()) {
-                                Motors.right.add(new Motor(sp, encPos.get(0), encPos.get(1), ticksPerRev));
+                                Motors.right.add(new Motor(sp, encPos.get(0), encPos.get(1), ticksPerRev, encReverse));
                                 break;
                             }
-                            Motors.right.add(new Motor(sp, ticksPerRev));
+                            Motors.right.add(new Motor(sp, ticksPerRev, encReverse));
                         }
                     case BLINKIN:
                         Blinkin.initSpark(pwmPos, false);
@@ -94,21 +96,21 @@ public class MotorData {
                 switch(type){//could probably make it better but eh it'll work
                     case TALON:
                         TalonSRX tal = new TalonSRX(canPos);
-                        Motors.motors.add(new Motor(tal, ticksPerRev));
+                        Motors.motors.add(new Motor(tal, ticksPerRev, encReverse));
                     case VICTOR:
                         VictorSPX vic = new VictorSPX(canPos);
-                        Motors.motors.add(new Motor(vic, ticksPerRev));
+                        Motors.motors.add(new Motor(vic, ticksPerRev, encReverse));
                     case SPARK:
                         if(canPos != -1) {
                             CANSparkMax max = new CANSparkMax(canPos, CANSparkMaxLowLevel.MotorType.kBrushless);
-                            Motors.motors.add(new Motor(max, ticksPerRev));
+                            Motors.motors.add(new Motor(max, ticksPerRev, encReverse));
                         } else {
                             Spark sp = new Spark(pwmPos);
                             if(!encPos.isEmpty()) {
-                                Motors.motors.add(new Motor(sp, encPos.get(0), encPos.get(1), ticksPerRev));
+                                Motors.motors.add(new Motor(sp, encPos.get(0), encPos.get(1), ticksPerRev, encReverse));
                                 break;
                             }
-                            Motors.motors.add(new Motor(sp, ticksPerRev));
+                            Motors.motors.add(new Motor(sp, ticksPerRev, encReverse));
                         }
                     case BLINKIN:
                         Blinkin.initSpark(pwmPos, false);

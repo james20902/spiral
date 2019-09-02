@@ -37,13 +37,17 @@ public class MotorParser {
         }
     }
 
-    public void parse() {//todo need to add support for different encoders, right now its just whatever WPILib likes by default
+    public void parse() {
         Mode mode;
         MotorData data = new MotorData();
         for (String[] line : lines) {
             mode = Mode.ON;
             data.reset();
             for(int i = 1; i < line.length; i++) {//line[0] determines motor type, skip it
+                if(line[i].equals("reversed")) {
+                    data.encReverse = true;
+                    continue;
+                }
                 if(i == 1 && line[i].charAt(0) == 'd') {
                     data.drive = line[i];
                     continue;

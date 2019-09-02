@@ -9,12 +9,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SubsystemParser {
-    //todo allow grammar in robot.motors and subsystems, and just .replace it with "". also support subsystems without motors passed
-    enum Mode{INPUT, MOTOR};
+    enum Mode{INPUT, MOTOR, NONE};
     BufferedReader reader;
     List<String[]> lines;
     List<Class<?>> types;
-    Mode mode = Mode.MOTOR;
+    Mode mode = Mode.NONE;
     static SubsystemParser instance;
 
     public static SubsystemParser getInstance(){
@@ -47,8 +46,10 @@ public class SubsystemParser {
             for (int i = 3; i < line.length; i++) {//line[0-2] determines subsystem type, skip it
                 if(line[i].equals("input")) {
                     mode = Mode.INPUT;
+                    continue;
                 } else if(line[i].equals("motor")) {
                     mode = Mode.MOTOR;
+                    continue;
                 } else {
                     if(mode == Mode.INPUT){
                         temp = line[i].split(",");
@@ -60,12 +61,14 @@ public class SubsystemParser {
                         for(int j = 1; j < temp.length-1; j++) {
                             data.input[j] = Integer.parseInt(temp[j]);
                         }
+                        continue;
                     } else if(mode == Mode.MOTOR){
                         temp = line[i].split(",");
                         data.motors = new int[temp.length];
                         for(int j = 0; j < temp.length; j++) {
                             data.motors[j] = Integer.parseInt(temp[j]);
                         }
+                        continue;
                     }
                 }
             }

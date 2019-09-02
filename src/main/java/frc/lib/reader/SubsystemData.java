@@ -36,7 +36,15 @@ public class SubsystemData {
         for(int i = 0; i < classes.size(); i++) {
             if(classes.get(0).equals(type.toLowerCase())){
                 try {
-                    classes.get(i).getConstructor(long.class, boolean.class, int.class, int.class, int.class).newInstance(loopTime, reversed, input, controller, motors);
+                    if(motors != null) {
+                        if(input != null) {
+                            classes.get(i).getConstructor(long.class, boolean.class, int[].class, int.class, int[].class).newInstance(loopTime, reversed, input, controller, motors);
+                        } else {
+                            classes.get(i).getConstructor(long.class, boolean.class, int[].class).newInstance(loopTime, reversed, motors);
+                        }
+                    } else {
+                        classes.get(i).getConstructor(long.class).newInstance(loopTime);
+                    }
                 } catch(Exception e){
                     ErrorHandler.report(e, "Make sure your subsystem has a constructor that has the same params as Subsystem. If you have no clue whats going on create an issue on the git repository.", "Subsystem");
                 }

@@ -1,23 +1,29 @@
 package frc.lib.control.Subsystems;
 
 import edu.wpi.first.wpilibj.Watchdog;
+import frc.lib.control.SubsystemManager;
+import frc.lib.control.Task;
 import frc.lib.utility.SystemState;
 
-public abstract class Subsystem implements Runnable {
+public abstract class Subsystem extends Task {
     private String systemName = this.getClass().getSimpleName();
 
     private int timing = 0;
     private Watchdog watchdog;
 
     public Subsystem(){
-        this(0);
+        this(5);
     }
 
     public Subsystem(int timing){
         this.timing = timing;
-//        Robot.robotInstance.addTask(this, this.timing, TimeUnit.MILLISECONDS);
-        //todo redo this to run on its own scheduler
+        SubsystemManager.getInstance().addSubsystem(this);
         watchdog = new Watchdog(timing * Math.pow(10, -3), this::logSlowdown);
+    }
+
+    public Subsystem(int timing, String name){
+        this(timing);
+        this.systemName = name;
     }
 
     @Override
@@ -63,8 +69,5 @@ public abstract class Subsystem implements Runnable {
         return systemName;
     }
 
-    public void logSlowdown(){
-        watchdog.printEpochs();
-    }
-
+    public abstract void logSlowdown();
 }

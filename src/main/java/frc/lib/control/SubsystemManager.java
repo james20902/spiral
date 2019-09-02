@@ -10,6 +10,7 @@ import java.util.concurrent.ScheduledThreadPoolExecutor;
 
 public class SubsystemManager {
     private Map<String, Subsystem> systems;
+    private ScheduledThreadPoolExecutor executor;
 
     private static SubsystemManager instance;
 
@@ -21,7 +22,8 @@ public class SubsystemManager {
     }
 
     private SubsystemManager(){
-        systems = new HashMap<>();
+        systems = new HashMap<String, Subsystem>();
+        executor = new ScheduledThreadPoolExecutor(10);
     }
 
     public void addSubsystem(Subsystem system){
@@ -32,6 +34,16 @@ public class SubsystemManager {
         for(Subsystem system : list){
             addSubsystem(system);
         }
+    }
+
+    public Subsystem getSystem(String name){
+        try{
+            Subsystem s = systems.get(name);
+            return s;
+        } catch (NullPointerException e){
+            System.out.println("No subsystem with the name " + name + "!");
+        }
+        return null;
     }
 
     public void stopSystem(String name){

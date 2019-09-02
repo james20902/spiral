@@ -19,13 +19,14 @@ public class Pathfollowing {//todo make sure motors don't fight eachother while 
         leftFoll = new EncoderFollower(leftTrajectory);
         rightFoll = new EncoderFollower(rightTrajectory);
 
-        leftFoll.configureEncoder((int)Motors.left.get(0).getRotations(), (int) Settings.ticksPerRevolution, Settings.wheelDiameter);
-        leftFoll.configurePIDVA(1, 0, 0, 1/Settings.maxVelocity, 0);//todo auto tuning
+        Settings sI = Settings.getInstance();
+        leftFoll.configureEncoder((int)Motors.left.get(0).getRotations(), (int) sI.ticksPerRevolutionWB, sI.wheelDiameter);
+        leftFoll.configurePIDVA(1, 0, 0, 1/sI.maxVelocity, 0);//todo auto tuning
 
-        rightFoll.configureEncoder((int)Motors.right.get(0).getRotations(), (int)Settings.ticksPerRevolution, Settings.wheelDiameter);
-        rightFoll.configurePIDVA(1, 0, 0, 1/Settings.maxVelocity, 0);
+        rightFoll.configureEncoder((int)Motors.right.get(0).getRotations(), (int)sI.ticksPerRevolutionWB, sI.wheelDiameter);
+        rightFoll.configurePIDVA(1, 0, 0, 1/sI.maxVelocity, 0);
 
-        notifier = new Notifier(this::followPath);//todo i think notifiers needed a rewrite???
+        notifier = new Notifier(this::followPath);
         notifier.startPeriodic(leftTrajectory.get(0).dt);
     }
 

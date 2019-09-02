@@ -10,9 +10,16 @@ import frc.lib.reader.MotorData.Type;
 public class MotorParser {
     enum Mode{ON, ENCODER}
 
-    static BufferedReader reader;
-    static List<String[]> lines;
-    public static void init() {
+    static MotorParser instance;
+    BufferedReader reader;
+    List<String[]> lines;
+
+    public static MotorParser getInstance() {
+        if(instance == null) instance = new MotorParser();
+        return instance;
+    }
+
+    private MotorParser() {
         try {
             reader = new BufferedReader(new FileReader(Filesystem.getDeployDirectory().getAbsolutePath()+"/robot.motors"));
         } catch(Exception e) {
@@ -30,7 +37,7 @@ public class MotorParser {
         }
     }
 
-    public static void parse() {//todo need to add support for different encoders, right now its just whatever WPILib likes by default
+    public void parse() {//todo need to add support for different encoders, right now its just whatever WPILib likes by default
         Mode mode;
         MotorData data = new MotorData();
         for (String[] line : lines) {

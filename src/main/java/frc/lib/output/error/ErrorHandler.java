@@ -1,6 +1,7 @@
 package frc.lib.output.error;
 
 import frc.lib.control.Task;
+import frc.lib.utility.Console;
 import frc.team5115.frc2020.Robot;
 
 import java.util.ArrayList;
@@ -55,5 +56,10 @@ public class ErrorHandler extends Task {
             message += "End of errors. Good luck debugging! Remember that the top error could cause the others, so take care of that first!";
             System.out.println(message);
         }
+    }
+
+    @Override
+    public void logSlowdown() {
+        Console.reportError("Slowdown on ErrorHandler. This likely means that some crazy thread stuff happened that shouldn't have. Please make an issue on the git repository.");
     }
 }

@@ -27,25 +27,25 @@ public class Console {
         System.out.println(message);
     }
 
-    public synchronized static void reportError(String error) {
-        HALErrorReport(true, error, null);
+    public synchronized static void reportError(String error, int errorCode) {
+        HALErrorReport(true, errorCode, error, null);
     }
 
-    public synchronized static void reportError(String error, StackTraceElement[] stackTrace) {
-        HALErrorReport(true, error, stackTrace);
+    public synchronized static void reportError(String error, int errorCode, StackTraceElement[] stackTrace) {
+        HALErrorReport(true, errorCode, error, stackTrace);
     }
 
     public synchronized static void reportWarning(String error) {
-        HALErrorReport(false, error, null);
+        HALErrorReport(false, 0, error, null);
     }
 
     public synchronized static void reportWarning(String error, StackTraceElement[] stackTrace) {
-        HALErrorReport(false, error, stackTrace);
+        HALErrorReport(false, 0, error, stackTrace);
     }
 
-    private synchronized static void HALErrorReport(boolean error, String message, StackTraceElement[] stackTrace){
+    private synchronized static void HALErrorReport(boolean error, int errorCode, String message, StackTraceElement[] stackTrace){
         if(stackTrace == null){
-            HAL.sendError(error, 1 ,false, message, "", "", false);
+            HAL.sendError(error, errorCode ,false, message, "", "", false);
             return;
         }
         String locString;
@@ -65,6 +65,6 @@ public class Console {
                 haveLoc = true;
             }
         }
-        HAL.sendError(error, 1, false, message, locString, traceString.toString(), false);
+        HAL.sendError(error, errorCode, false, message, locString, traceString.toString(), false);
     }
 }

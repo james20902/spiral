@@ -1,7 +1,6 @@
 # spiral
 ## a robust robot framework... probably
-### My framework is the one that will pierce the heavens! 
-red_framework didn't really work out, lost motivation and ideas were convoluted. Programming style follows [this doc.](https://google.github.io/styleguide/javaguide.html)
+### A collaboration between 5115 and 3793
 
 ### Goals
 1. simplicity

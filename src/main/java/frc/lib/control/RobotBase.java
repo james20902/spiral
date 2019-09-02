@@ -11,8 +11,6 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
-import java.nio.file.Path;
-import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Supplier;
 
@@ -24,16 +22,11 @@ import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.util.WPILibVersion;
-import frc.lib.input.Controller;
 import frc.lib.input.ControllerManager;
-import frc.lib.output.Pathfollowing;
 import frc.lib.output.error.ErrorHandler;
 import frc.lib.reader.MotorParser;
 import frc.lib.reader.SubsystemParser;
-import frc.lib.utility.Console;
-import frc.lib.utility.MatchInfo;
-import frc.lib.utility.Settings;
-import frc.lib.utility.SystemState;
+import frc.lib.utility.*;
 
 /**
  * Implement a Robot Program framework. The RobotBase class is intended to be subclassed by a user
@@ -47,7 +40,6 @@ public abstract class RobotBase implements AutoCloseable {
      * The ID of the main Java thread.
      */
     private final TaskManager manager;
-    protected final MatchInfo matchInfo;
     private final SystemState systemState;
     /**
      * Constructor for a generic robot program. User code should be placed in the constructor that
@@ -59,6 +51,8 @@ public abstract class RobotBase implements AutoCloseable {
      * to put this code into it's own task that loads on boot so ensure that it runs.
      */
     protected RobotBase() {
+        Runtime.getRuntime().addShutdownHook(new ShutdownHook());
+
         NetworkTableInstance inst = NetworkTableInstance.getDefault();
         inst.setNetworkIdentity("Robot");
         inst.startServer("/home/lvuser/networktables.ini");
@@ -73,31 +67,31 @@ public abstract class RobotBase implements AutoCloseable {
 //        MotorParser.getInstance().parse();
 //        SubsystemParser.getInstance().parse();
         manager.schedulePeriodicTask(ErrorHandler.getInstance(), 100);
-        manager.schedulePeriodicTask(ControllerManager.getInstance(), 1);
+        manager.schedulePeriodicTask(ControllerManager.getInstance(), 25);
     }
 
     @Override
     public void close() {
     }
 
-
-
     public abstract void start();
 
     public abstract void loop();
 
     public void startCompetition(){
-        while(!systemState.DSPresent()){
-            systemState.updateSystemState();
-        }
-        System.out.println("DriverStation connected, initializing");
+        double checkpoint = 0;
+        Console.reportWarning("Waiting for DS connection");
+        HAL.waitForDSData();
+        Console.reportWarning("DriverStation connected, initializing");
 
         start();
         HAL.observeUserProgramStarting();
 
         while(!systemState.emergencyStopped()){
-            systemState.updateSystemState();
-            loop();
+            if(SystemClock.getSystemTime() > checkpoint + 20){
+                loop();
+                checkpoint = SystemClock.getSystemTime();
+            }
         }
     }
 
@@ -129,9 +123,9 @@ public abstract class RobotBase implements AutoCloseable {
                 robotName = elements[0].getClassName();
             }
             Console.reportError("Unhandled exception instantiating robot " + robotName + " "
-                    + throwable.toString(), elements);
+                    + throwable.toString(), 1, elements);
             Console.reportWarning("Robots should not quit, but yours did!");
-            Console.reportError("Could not instantiate robot " + robotName + "!");
+            Console.reportError("Could not instantiate robot " + robotName + "!", 1);
             System.exit(1);
             return;
         }
@@ -152,7 +146,7 @@ public abstract class RobotBase implements AutoCloseable {
                 }
 
             } catch (IOException ex) {
-                Console.reportError("Could not write FRC_Lib_Version.ini: " + ex.toString(),
+                Console.reportError("Could not write FRC_Lib_Version.ini: " + ex.toString(), 1,
                         ex.getStackTrace());
             }
         }
@@ -166,7 +160,7 @@ public abstract class RobotBase implements AutoCloseable {
                 throwable = cause;
             }
             Console.reportError("Unhandled exception: " + throwable.toString(),
-                    throwable.getStackTrace());
+                    1, throwable.getStackTrace());
             errorOnExit = true;
         } finally {
             // startCompetition never returns unless exception occurs....
@@ -174,9 +168,9 @@ public abstract class RobotBase implements AutoCloseable {
             if (errorOnExit) {
                 Console.reportError(
                         "The startCompetition() method (or methods called by it) should have "
-                                + "handled the exception above.");
+                                + "handled the exception above.", 1);
             } else {
-                Console.reportError("Unexpected return from startCompetition() method.");
+                Console.reportError("Unexpected return from startCompetition() method.", 1);
             }
         }
         System.exit(1);

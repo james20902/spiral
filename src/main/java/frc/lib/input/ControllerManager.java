@@ -45,6 +45,7 @@ public class ControllerManager extends Task {
     }
 
     public static void pollAllJoysticks(){
+        HAL.waitForDSDataTimeout(25);
         for(Controller instance : controllers){
             byte port = instance.getPort();
             instance.updateData(

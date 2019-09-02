@@ -6,7 +6,7 @@ import edu.wpi.first.wpilibj.Watchdog;
 public abstract class Task implements Runnable {
 
     //todo, make this class hold more data about the task. Init never gets run
-    Watchdog thog;
+    protected Watchdog thog;
 
     public Task(){
         init();

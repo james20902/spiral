@@ -9,7 +9,6 @@ public abstract class Subsystem extends Task {
     private String systemName = this.getClass().getSimpleName();
 
     private int timing = 0;
-    private Watchdog watchdog;
 
     public Subsystem(){
         this(5);
@@ -18,7 +17,6 @@ public abstract class Subsystem extends Task {
     public Subsystem(int timing){
         this.timing = timing;
         SubsystemManager.getInstance().addSubsystem(this);
-        watchdog = new Watchdog(timing * Math.pow(10, -3), this::logSlowdown);
     }
 
     public Subsystem(int timing, String name){
@@ -28,22 +26,22 @@ public abstract class Subsystem extends Task {
 
     @Override
     public void run() {
-        watchdog.reset();
+        thog.reset();
         switch (SystemState.getInstance().getState()) {
             case SystemState.DISABLED:
-                watchdog.addEpoch("Disabled Loop");
+                thog.addEpoch("Disabled Loop");
                 disabledPeriodic();
                 break;
             case SystemState.AUTONOMOUS:
-                watchdog.addEpoch("Autonomous Loop");
+                thog.addEpoch("Autonomous Loop");
                 autonomousPeriodic();
                 break;
             case SystemState.OPERATOR:
-                watchdog.addEpoch("Teleop Loop");
+                thog.addEpoch("Teleop Loop");
                 teleopPeriodic();
                 break;
             case SystemState.TEST:
-                watchdog.addEpoch("Test Loop");
+                thog.addEpoch("Test Loop");
                 testPeriodic();
                 break;
             default:
@@ -54,16 +52,16 @@ public abstract class Subsystem extends Task {
     public void kill(){
         System.out.println(getSystemName() + " system shutting down");
         kill();
-        watchdog.disable();
+        thog.disable();
     }
 
-    public void disabledPeriodic(){}
+    public abstract void disabledPeriodic();
 
-    public void autonomousPeriodic(){}
+    public abstract void autonomousPeriodic();
 
-    public void teleopPeriodic(){}
+    public abstract void teleopPeriodic();
 
-    public void testPeriodic(){}
+    public abstract void testPeriodic();
 
     public String getSystemName(){
         return systemName;

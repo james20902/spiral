@@ -60,6 +60,6 @@ public class ErrorHandler extends Task {
 
     @Override
     public void logSlowdown() {
-        Console.reportError("Slowdown on ErrorHandler. This likely means that some crazy thread stuff happened that shouldn't have. Please make an issue on the git repository.");
+        Console.reportError("Slowdown on ErrorHandler. This likely means that some crazy thread stuff happened that shouldn't have. Please make an issue on the git repository.", 1);
     }
 }

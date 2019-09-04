@@ -9,9 +9,7 @@ import frc.lib.output.Motors;
 * the only changes were spelling fixes and return statement, it fit right in
 * https://github.com/Team254/FRC-2018-Public/blob/master/src/main/java/com/team254/lib/util/CheesyDriveHelper.java
  */
-public class CheesyDrive extends Subsystem {//todo figure out joystick stuff so inputs can be done
-
-    public void kill(){}
+public class CheesyDrive extends Drivebase {//todo figure out joystick stuff so inputs can be done
 
     private static final double kThrottleDeadband = 0.02;
     private static final double kWheelDeadband = 0.02;

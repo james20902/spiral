@@ -12,8 +12,8 @@
       <entry name="!?*.java" />
     </wildcardResourcePatterns>
     <bytecodeTargetLevel target="11">
-      <module name="spiral.main" target="12" />
-      <module name="spiral.test" target="12" />
+      <module name="spiral.main" target="11" />
+      <module name="spiral.test" target="11" />
     </bytecodeTargetLevel>
   </component>
   <component name="CopyrightManager" default="" />
@@ -30,7 +30,7 @@
         <option name="distributionType" value="WRAPPED" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="gradleHome" value="C:/Program Files/Gradle/gradle-4.7" />
-        <option name="gradleJvm" value="12" />
+        <option name="gradleJvm" value="#JAVA_HOME" />
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
@@ -185,7 +185,7 @@
       <module fileurl="file://$PROJECT_DIR$/spiral.test.iml" filepath="$PROJECT_DIR$/spiral.test.iml" />
     </modules>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_12" project-jdk-name="12" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />
   </component>
   <component name="SvnBranchConfigurationManager">
@@ -349,6 +349,11 @@
       <SOURCES>
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.yaml/snakeyaml/1.25/45379604b7a254120101009ba09537737daed6f/snakeyaml-1.25-sources.jar!/" />
       </SOURCES>
+    </library>
+    <library name="R User Library">
+      <CLASSES />
+      <JAVADOC />
+      <SOURCES />
     </library>
   </component>
   <component name="masterDetails">

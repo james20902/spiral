@@ -51,7 +51,7 @@ public abstract class Subsystem extends Task {
 
     public void kill(){
         System.out.println(getSystemName() + " system shutting down");
-        kill();
+        this.kill();
         thog.disable();
     }
 

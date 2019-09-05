@@ -41,6 +41,7 @@ public abstract class RobotBase implements AutoCloseable {
      */
     private final TaskManager manager;
     private final SystemState systemState;
+    private final MatchInfo matchInfo;
     /**
      * Constructor for a generic robot program. User code should be placed in the constructor that
      * runs before the Autonomous or Operator Control period starts. The constructor will run to

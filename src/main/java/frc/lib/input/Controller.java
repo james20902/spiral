@@ -2,15 +2,19 @@ package frc.lib.input;
 
 public class Controller {
 
-    byte buttonCount;
-    byte axesCount;
-    byte POVcount;
+    private byte buttonCount;
+    private byte axesCount;
+    private byte POVcount;
 
     private int buttonStates;
     private int buttonStatesCache = 0;
     private float[] axesOutput;
     private float[] deadbands;
     private short[] POV;
+
+    private int xAxis = 0;
+    private int yAxis = 1;
+    private int zAxis = 2;
 
     private byte port;
 

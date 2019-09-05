@@ -1,6 +1,5 @@
 package frc.lib.control;
 
-
 import edu.wpi.first.wpilibj.Watchdog;
 
 public abstract class Task implements Runnable {

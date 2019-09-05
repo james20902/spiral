@@ -5,10 +5,6 @@ import edu.wpi.first.hal.HALUtil;
 
 public class SystemClock {
 
-    //todo, self implementation of TimeUnit using a LUT or something
-    //this class is very very broken right now, the conversions are wrong
-
-    //micro
     public static double getSystemTime(Units unit){
         return Units.MICRO.convert(HALUtil.getFPGATime(), unit);
     }

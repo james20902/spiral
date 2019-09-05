@@ -38,6 +38,10 @@ public class SystemState extends Task {
         translateState();
     }
 
+    public void logSlowdown() {
+        Console.reportError("SystemState slowing down, HAL control word throttle?", 1);
+    }
+
     public int getState(){ return translatedState.get(); }
 
     public void translateState(){

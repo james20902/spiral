@@ -18,6 +18,8 @@ public enum Units {
         this.multiplier = multiplier;
     }
 
+    //todo the class becomes useless if we get too precise, at a certain point it should be outputting a long instead
+    //of a double
     public double convert(double measure, Units unit){
         int difference = Math.abs(this.multiplier - unit.multiplier);
         if(this.multiplier > unit.multiplier){

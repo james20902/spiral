@@ -3,7 +3,7 @@ package frc.lib.utility;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Watchdog {
+public class Heartbeat {
     //todo reimplementation of WPI's watchdog class
 
         private long m_startTime; // us
@@ -16,7 +16,7 @@ public class Watchdog {
 
         boolean m_suppressTimeoutMessage;
 
-        public Watchdog(double timeout, Runnable callback) {
+        public Heartbeat(double timeout, Runnable callback) {
             timeout = (long) (timeout * 1.0e6);
             m_callback = callback;
         }

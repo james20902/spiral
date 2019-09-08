@@ -26,6 +26,11 @@ public class SimpleButtonHold extends Subsystem {
             Motors.motors.get(i).setPercent(ControllerManager.controllers[controller].getButtonState(button).getSpeed());
     }
 
+    @Override
+    public void testPeriodic() {
+
+    }
+
     public void init() {}
 
     @Override
@@ -39,4 +44,9 @@ public class SimpleButtonHold extends Subsystem {
     }
 
     public void kill(){ }
+
+    @Override
+    public void disabledPeriodic() {
+
+    }
 }

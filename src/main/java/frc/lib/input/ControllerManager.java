@@ -33,7 +33,7 @@ public class ControllerManager extends Task {
     }
 
     public void run() {
-        if(lock.get()) Thread.currentThread().interrupt();
+        if(lock.get()) return;
         lock.set(true);
         pollAllJoysticks();
         lock.set(false);

@@ -3,18 +3,20 @@
   <component name="ChangeListManager">
     <list default="true" id="2737c509-dbf5-4cc9-86bb-ab70412f3b43" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/spiral.iml" beforeDir="false" afterPath="$PROJECT_DIR$/spiral.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spiral.ipr" beforeDir="false" afterPath="$PROJECT_DIR$/spiral.ipr" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/spiral.iws" beforeDir="false" afterPath="$PROJECT_DIR$/spiral.iws" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/spiral.main.iml" beforeDir="false" afterPath="$PROJECT_DIR$/spiral.main.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/spiral.test.iml" beforeDir="false" afterPath="$PROJECT_DIR$/spiral.test.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/frc/lib/control/RobotBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/lib/control/RobotBase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/lib/input/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/lib/input/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/frc/lib/control/SubsystemManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/lib/control/SubsystemManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/frc/lib/control/Subsystems/SimpleButtonHold.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/lib/control/Subsystems/SimpleButtonHold.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/frc/lib/control/Subsystems/SimpleJoystick.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/lib/control/Subsystems/SimpleJoystick.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/frc/lib/control/Subsystems/Subsystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/lib/control/Subsystems/Subsystem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/frc/lib/control/TaskManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/lib/control/TaskManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/frc/lib/input/ControllerManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/lib/input/ControllerManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/frc/lib/output/drivebase/CheesyDrive.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/lib/output/drivebase/CheesyDrive.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/lib/output/drivebase/Drivebase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/lib/output/drivebase/DriveBase.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/frc/lib/output/drivebase/TankDrive.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/lib/output/drivebase/TankDrive.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/frc/lib/output/drivebase/VelocityDrive.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/lib/output/drivebase/VelocityDrive.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/lib/utility/SystemClock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/lib/utility/SystemClock.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/lib/utility/SystemState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/lib/utility/SystemState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/frc/team5115/frc2020/TestSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/team5115/frc2020/TestSystem.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -193,19 +195,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Gradle.spiral [simulateJava]">
-    <configuration default="true" type="JUnit" factoryName="JUnit">
-      <option name="TEST_OBJECT" value="class" />
-      <option name="VM_PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="moduleWithDependencies" />
-      </option>
-      <method v="2">
-        <option name="BuildArtifacts" enabled="false" />
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="Gradle.spiral [deploy]">
     <configuration name="&lt;template&gt;" type="WebApp" default="true" selected="false">
       <Host>localhost</Host>
       <Port>5050</Port>
@@ -299,6 +289,18 @@
       </ExternalSystemSettings>
       <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>
       <method v="2" />
+    </configuration>
+    <configuration default="true" type="JUnit" factoryName="JUnit">
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <method v="2">
+        <option name="BuildArtifacts" enabled="false" />
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
     <configuration default="true" type="Remote">
       <option name="USE_SOCKET_TRANSPORT" value="true" />

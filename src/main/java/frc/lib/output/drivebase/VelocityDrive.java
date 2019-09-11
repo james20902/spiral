@@ -1,5 +1,7 @@
 package frc.lib.output.drivebase;
 
+import frc.lib.input.Controller;
+
 /*
 * this is based off of something i saw from 4456
 * it sets speed as a percentage of the maximum wheel velocity, simply a more stable arcade
@@ -7,4 +9,19 @@ package frc.lib.output.drivebase;
  */
 public class VelocityDrive extends DriveBase {
 
+    public VelocityDrive(Controller instance) {
+        super(instance);
+    }
+
+    public DriveSignal math() {
+        return null;
+    }
+
+    public void init() {
+
+    }
+
+    public void logSlowdown() {
+
+    }
 }

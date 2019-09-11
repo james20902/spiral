@@ -99,7 +99,7 @@ public class ControllerManager extends Task {
         }
         controllers = storage.toArray(new Controller[storage.size()]);
         if (controllers.length == 0){
-            throw new NullPointerException("no joysticks present!");//todo we shouldn't do these because they will crash the whole robot program
+            throw new NullPointerException("no joysticks present!"); //todo we shouldn't do these because they will crash the whole robot program
         }
         for(Controller stick : controllers){
             byte port = stick.getPort();

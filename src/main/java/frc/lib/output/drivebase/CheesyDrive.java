@@ -1,5 +1,6 @@
 package frc.lib.output.drivebase;
 
+import frc.lib.input.Controller;
 import frc.lib.output.Motors;
 
 /*
@@ -33,6 +34,10 @@ public class CheesyDrive extends DriveBase {//todo figure out joystick stuff so 
     private static double mOldWheel = 0.0;
     private static double mQuickStopAccumulator = 0.0;
     private static double mNegInertiaAccumulator = 0.0;
+
+    public CheesyDrive(Controller instance) {
+        super(instance);
+    }
 
     public static void cheesyDrive(double throttle, double wheel, boolean isQuickTurn,
                                    boolean isHighGear) {
@@ -141,5 +146,17 @@ public class CheesyDrive extends DriveBase {//todo figure out joystick stuff so 
 
     public static double handleDeadband(double val, double deadband) {
         return (Math.abs(val) > Math.abs(deadband)) ? val : 0.0;
+    }
+
+    public DriveSignal math() {
+        return null;
+    }
+
+    public void init() {
+
+    }
+
+    public void logSlowdown() {
+
     }
 }

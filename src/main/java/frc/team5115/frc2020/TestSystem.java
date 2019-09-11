@@ -6,28 +6,31 @@ public class TestSystem extends Subsystem {
 
 
     public TestSystem(){
-        super(20);
+
     }
+
+    public void init() { }
 
     public void kill(){ }
 
-    @Override
     public void teleopPeriodic(){
         System.out.println("running");
 //        testloop.execute();
     }
 
-    @Override
     public void autonomousPeriodic(){
         System.out.println("running blindfolded");
     }
 
-    @Override
     public void disabledPeriodic(){
         System.out.println("running quietly");
     }
 
-    public void oneMsLoop(){
+    public void testPeriodic(){
+        System.out.println("running with bugs");
+    }
+
+    public void logSlowdown(){
         System.out.println("test");
     }
 }

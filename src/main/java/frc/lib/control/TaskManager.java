@@ -17,7 +17,7 @@ public class TaskManager {
     private final ScheduledThreadPoolExecutor executor;
 
     private TaskManager(){
-        executor = new ScheduledThreadPoolExecutor(10);
+        executor = new ScheduledThreadPoolExecutor(2);
         executor.setKeepAliveTime(2, TimeUnit.MILLISECONDS);
     }
 
@@ -47,6 +47,11 @@ public class TaskManager {
 
     public void shutdown(){
         executor.shutdownNow();
+    }
+
+    @Override
+    public String toString(){
+        return executor.getQueue().toString();
     }
 
 }

@@ -49,7 +49,6 @@ public class SubsystemManager {
     public void stopSystem(String name){
         try{
             Subsystem s = systems.get(name);
-            s.kill();
         } catch (NullPointerException e){
             System.out.println("No subsystem with the name " + name + "!");
         }

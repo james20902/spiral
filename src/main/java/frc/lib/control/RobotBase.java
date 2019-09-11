@@ -11,7 +11,6 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
-import java.util.concurrent.TimeUnit;
 import java.util.function.Supplier;
 
 import edu.wpi.first.hal.FRCNetComm.tInstances;
@@ -60,7 +59,7 @@ public abstract class RobotBase implements AutoCloseable {
         matchInfo = MatchInfo.currentInfo();
         systemState = SystemState.getInstance();
         manager = TaskManager.getInstance();
-        Settings.getInstance().load();
+//        Settings.getInstance().load();
         inst.getTable("LiveWindow").getSubTable(".status").getEntry("LW Enabled").setBoolean(false);
 
         LiveWindow.setEnabled(false);
@@ -88,8 +87,9 @@ public abstract class RobotBase implements AutoCloseable {
         start();
         HAL.observeUserProgramStarting();
 
-        while(!systemState.emergencyStopped()){
+        while(!systemState.emergencyStopped() || !Thread.currentThread().isInterrupted()){
             if(SystemClock.getSystemTime() > checkpoint + 20){
+//                System.out.println(manager);
                 loop();
                 checkpoint = SystemClock.getSystemTime();
             }

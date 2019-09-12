@@ -4,6 +4,7 @@ import frc.lib.control.RobotBase;
 import frc.lib.control.SubsystemManager;
 import frc.lib.output.Pathfollowing;
 import frc.lib.output.error.ErrorHandler;
+import frc.lib.utility.Console;
 
 public class Robot extends RobotBase {
 
@@ -19,6 +20,6 @@ public class Robot extends RobotBase {
   }
 
   public void loop() {
-//    System.out.println("hello world");
+    Console.print("loopy");
   }
 }

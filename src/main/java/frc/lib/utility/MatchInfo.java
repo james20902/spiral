@@ -2,8 +2,24 @@ package frc.lib.utility;
 
 import edu.wpi.first.hal.HAL;
 import edu.wpi.first.hal.MatchInfoData;
+import frc.lib.control.Task;
 
-public class MatchInfo {
+public class MatchInfo extends Task {
+
+    @Override
+    public void init() {
+        currentMatch = new MatchInfoData();
+    }
+
+    @Override
+    public void run() {
+        fetchMatchInfo();
+    }
+
+    @Override
+    public void logSlowdown() {
+
+    }
 
     public enum Alliance{ RED, BLUE }
 
@@ -15,7 +31,7 @@ public class MatchInfo {
 
     private static MatchInfo instance;
 
-    public static MatchInfo currentInfo(){
+    public static MatchInfo getInstance(){
         if(instance == null){
             instance = new MatchInfo();
         }

@@ -1,30 +1,36 @@
 package frc.lib.utility;
 
 import edu.wpi.first.hal.HAL;
-import edu.wpi.first.wpilibj.Watchdog;
+import frc.lib.control.Task;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Stack;
 
-public class Console {
-    static Watchdog w = new Watchdog(1000, Console::send);
-    private static List<String> messages = new ArrayList<String>();
+public class Console extends Task {
+    private static Stack<String> messages = new Stack<>();
+    private static Console instance;
     //todo watchdog
     /*
     * Adds messages to a queue that is printed every 10ms
     * This reduces lag caused by many print messages
      */
-    public static void print(String m){
-        messages.add(m);
+
+    public static Console getInstance(){
+        if(instance == null){
+            instance = new Console();
+        }
+        return instance;
+    }
+    public static void print(Object m){
+        messages.push(m.toString());
     }
 
-    private static void send() {
+    public void run() {
         String message = "";
-        for (String m : messages) {
-            message += m;
+        while(!messages.isEmpty()){
+            message += messages.pop();
             message += "\n";
         }
-        System.out.println(message);
+        System.out.print(message);
     }
 
     public synchronized static void reportError(String error, int errorCode) {
@@ -66,5 +72,15 @@ public class Console {
             }
         }
         HAL.sendError(error, errorCode, false, message, locString, traceString.toString(), false);
+    }
+
+    @Override
+    public void init() {
+
+    }
+
+    @Override
+    public void logSlowdown() {
+
     }
 }

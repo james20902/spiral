@@ -33,6 +33,10 @@ public class TaskManager {
         executor.schedule(task, delay, unit);
     }
 
+    public void schedulePeriodicTask(Task task){
+        schedulePeriodicTask(task, 20);
+    }
+
     public void schedulePeriodicTask(Task task, int executionTime){
         schedulePeriodicTask(task, executionTime, TimeUnit.MILLISECONDS);
     }

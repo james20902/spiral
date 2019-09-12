@@ -39,8 +39,6 @@ public abstract class RobotBase implements AutoCloseable {
      * The ID of the main Java thread.
      */
     private final TaskManager manager;
-    private final SystemState systemState;
-    private final MatchInfo matchInfo;
     /**
      * Constructor for a generic robot program. User code should be placed in the constructor that
      * runs before the Autonomous or Operator Control period starts. The constructor will run to
@@ -56,8 +54,6 @@ public abstract class RobotBase implements AutoCloseable {
         NetworkTableInstance inst = NetworkTableInstance.getDefault();
         inst.setNetworkIdentity("Robot");
         inst.startServer("/home/lvuser/networktables.ini");
-        matchInfo = MatchInfo.currentInfo();
-        systemState = SystemState.getInstance();
         manager = TaskManager.getInstance();
 //        Settings.getInstance().load();
         inst.getTable("LiveWindow").getSubTable(".status").getEntry("LW Enabled").setBoolean(false);
@@ -66,8 +62,7 @@ public abstract class RobotBase implements AutoCloseable {
         Shuffleboard.disableActuatorWidgets();
 //        MotorParser.getInstance().parse();
 //        SubsystemParser.getInstance().parse();
-        manager.schedulePeriodicTask(ErrorHandler.getInstance(), 100);
-        manager.schedulePeriodicTask(ControllerManager.getInstance(), 25);
+
     }
 
     @Override
@@ -84,12 +79,17 @@ public abstract class RobotBase implements AutoCloseable {
         HAL.waitForDSData();
         Console.reportWarning("DriverStation connected, initializing");
 
+        manager.executeTask(MatchInfo.getInstance());
+        manager.schedulePeriodicTask(ErrorHandler.getInstance(), 100);
+        manager.schedulePeriodicTask(ControllerManager.getInstance());
+        manager.schedulePeriodicTask(SystemState.getInstance());
+        manager.schedulePeriodicTask(Console.getInstance());
+
         start();
         HAL.observeUserProgramStarting();
 
-        while(!systemState.emergencyStopped() || !Thread.currentThread().isInterrupted()){
+        while(!SystemState.getInstance().emergencyStopped() || !Thread.currentThread().isInterrupted()){
             if(SystemClock.getSystemTime() > checkpoint + 20){
-//                System.out.println(manager);
                 loop();
                 checkpoint = SystemClock.getSystemTime();
             }

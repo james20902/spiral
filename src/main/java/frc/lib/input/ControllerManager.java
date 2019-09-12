@@ -45,7 +45,6 @@ public class ControllerManager extends Task {
     }
 
     public static void pollAllJoysticks(){
-        HAL.waitForDSDataTimeout(25);
         for(Controller instance : controllers){
             byte port = instance.getPort();
             instance.updateData(
@@ -99,7 +98,7 @@ public class ControllerManager extends Task {
         }
         controllers = storage.toArray(new Controller[storage.size()]);
         if (controllers.length == 0){
-            throw new NullPointerException("no joysticks present!"); //todo we shouldn't do these because they will crash the whole robot program
+            Console.reportWarning("controllers not detected"); //todo we shouldn't do these because they will crash the whole robot program
         }
         for(Controller stick : controllers){
             byte port = stick.getPort();

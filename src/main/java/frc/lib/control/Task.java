@@ -11,9 +11,9 @@ public abstract class Task implements Runnable {
         init();
     }
 
-    public abstract void init();
+    public void init(){};
 
     public abstract void run();
 
-    public abstract void logSlowdown();
+    public void logSlowdown(){};
 }

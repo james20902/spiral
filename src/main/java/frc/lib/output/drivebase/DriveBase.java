@@ -1,6 +1,6 @@
 package frc.lib.output.drivebase;
 
-import frc.lib.control.Subsystems.Subsystem;
+import frc.lib.control.Subsystem;
 import frc.lib.input.Controller;
 
 public abstract class DriveBase extends Subsystem {

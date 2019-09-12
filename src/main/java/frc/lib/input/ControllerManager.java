@@ -8,12 +8,12 @@ import frc.lib.utility.Settings;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.locks.ReentrantLock;
 
 public class ControllerManager extends Task {
 
     private static ControllerManager instance;
-    AtomicBoolean lock;
+    private ReentrantLock update = new ReentrantLock();
 
     public static ControllerManager getInstance(){
         if(instance == null){
@@ -29,14 +29,15 @@ public class ControllerManager extends Task {
     public void init(){
         deadzones = Settings.getInstance().deadzones;
         findJoysticks();
-        lock = new AtomicBoolean(false);
     }
 
     public void run() {
-        if(lock.get()) return;
-        lock.set(true);
-        pollAllJoysticks();
-        lock.set(false);
+        update.lock();
+        try {
+            pollAllJoysticks();
+        } finally {
+            update.unlock();
+        }
     }
 
     @Override
@@ -90,16 +91,22 @@ public class ControllerManager extends Task {
     }
 
     public static void findJoysticks(){
+        boolean warningRun = false;
         List<Controller> storage = new ArrayList<>();
-        for(byte i = 0; i < MAX_JOYSTICKS; i++){
-            if(buttonCount(i) > 0){
-                storage.add(new Controller(i));
+        while(storage.size() == 0){
+            for(byte i = 0; i < MAX_JOYSTICKS; i++){
+                if(buttonCount(i) > 0){
+                    storage.add(new Controller(i));
+                }
+            }
+            if(!warningRun){
+                Console.reportWarning("Controller(s) not detected!");
+                warningRun = true;
             }
         }
+        Console.reportWarning("Controller(s) detected!");
         controllers = storage.toArray(new Controller[storage.size()]);
-        if (controllers.length == 0){
-            Console.reportWarning("controllers not detected"); //todo we shouldn't do these because they will crash the whole robot program
-        }
+
         for(Controller stick : controllers){
             byte port = stick.getPort();
             stick.initialize(buttonCount(port), axesCount(port), POVCount(port));

@@ -1,14 +1,18 @@
-package frc.lib.control.Subsystems;
+package frc.lib.control;
 
 import frc.lib.utility.SystemState;
 
 public abstract class Subsystem implements Runnable {
-    private String systemName = this.getClass().getSimpleName();
 
+    private boolean overridden = false;
+    private int internalState;
 
     @Override
     public void run() {
-        switch (SystemState.getInstance().getState()) {
+        if(!overridden){
+            internalState = SystemState.getInstance().getState();
+        }
+        switch (internalState){
             case SystemState.DISABLED:
                 disabledPeriodic();
                 break;
@@ -22,7 +26,7 @@ public abstract class Subsystem implements Runnable {
                 testPeriodic();
                 break;
             default:
-                throw new IllegalStateException("If you got here somehow you've really messed up");
+                throw new IllegalStateException("The requested override state doesn't exist!");
         }
     }
 
@@ -34,9 +38,8 @@ public abstract class Subsystem implements Runnable {
 
     public void testPeriodic(){}
 
-    public String getSystemName(){
-        return systemName;
+    public void overrideState(int state){
+        internalState = state;
     }
 
-    public abstract void logSlowdown();
 }

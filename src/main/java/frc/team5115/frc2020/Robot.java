@@ -5,6 +5,7 @@ import frc.lib.control.SubsystemManager;
 import frc.lib.output.Pathfollowing;
 import frc.lib.output.error.ErrorHandler;
 import frc.lib.utility.Console;
+import frc.lib.utility.SystemClock;
 
 public class Robot extends RobotBase {
 
@@ -16,10 +17,9 @@ public class Robot extends RobotBase {
     } catch(Exception e){
       ErrorHandler.report(e, "Error initializing pathfinder. Ignore if not using.", "Pathfinding");
     }
-    SubsystemManager.getInstance().addSubsystem(new TestSystem());
   }
 
   public void loop() {
-    Console.print("loopy");
+    Console.print(SystemClock.getSystemTime());
   }
 }

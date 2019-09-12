@@ -1,6 +1,6 @@
 package frc.lib.reader;
 
-import frc.lib.control.Subsystems.Subsystem;
+import frc.lib.control.Subsystem;
 import frc.lib.output.error.ErrorHandler;
 
 import java.io.File;

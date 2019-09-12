@@ -1,28 +1,32 @@
 package frc.lib.utility;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class Heartbeat {
-    //todo reimplementation of WPI's watchdog class
 
-        private long m_startTime; // us
-        private long timeout; // us
-        private long m_expirationTime; // us
-        private final Runnable m_callback;
+        private double benchmark;
+        private double checkpoint;
+        private double difference;
 
-        private final Map<String, Long> epochs = new HashMap<>();
-        private boolean isExpired;
+        private Runnable callback;
 
-        boolean m_suppressTimeoutMessage;
-
-        public Heartbeat(double timeout, Runnable callback) {
-            timeout = (long) (timeout * 1.0e6);
-            m_callback = callback;
+        public Heartbeat(Runnable callback){
+                this(callback, 20);
         }
 
-        public void addEpoch(String name){
-
+        public Heartbeat(Runnable callback, double benchmark){
+                this.callback = callback;
+                this.benchmark = benchmark;
         }
 
+        public void start(){
+                checkpoint = SystemClock.getSystemTime();
+        }
+        public void check(){
+                difference = SystemClock.getSystemTime() - checkpoint;
+                if(difference > benchmark){
+                        callback.run();
+                }
+        }
+        public double getDifference(){
+                return difference;
+        }
 }

@@ -22,9 +22,9 @@ public class ControllerManager extends Task {
         return instance;
     }
 
-    public static final byte MAX_JOYSTICKS = 6;
-    public static Controller[] controllers;
-    public static float[][] deadzones = new float[1][1];
+    private static final byte MAX_JOYSTICKS = 6;
+    private static Controller[] controllers;
+    private float[][] deadzones = new float[1][1];
 
     public void init(){
         deadzones = Settings.getInstance().deadzones;
@@ -45,7 +45,7 @@ public class ControllerManager extends Task {
         Console.reportError("Slowdown on ControllerManager! Realistically this shouldn't happen so make an issue on the git repo.", -1);//todo what tf are the error codes
     }
 
-    public static void pollAllJoysticks(){
+    private void pollAllJoysticks(){
         for(Controller instance : controllers){
             byte port = instance.getPort();
             instance.updateData(
@@ -60,48 +60,41 @@ public class ControllerManager extends Task {
         return controllers[port];
     }
 
-    private static int pollButtons(byte port){
+    private int pollButtons(byte port){
         return HAL.getJoystickButtons(port, ByteBuffer.allocateDirect(1));
     }
 
-    private static float[] pollAxes(byte port, byte count){
+    private float[] pollAxes(byte port, byte count){
         float[] axesOutput = new float[count];
         HAL.getJoystickAxes(port, axesOutput);
         return axesOutput;
     }
 
-    private static short[] pollPOV(byte port, byte count){
+    private short[] pollPOV(byte port, byte count){
         short[] POVOutput = new short[count];
         HAL.getJoystickPOVs(port, POVOutput);
         return POVOutput;
     }
 
-    public static byte buttonCount(byte port){
+    private byte buttonCount(byte port){
         ByteBuffer count = ByteBuffer.allocateDirect(1);
         HAL.getJoystickButtons(port, count);
         return count.get(0);
     }
 
-    public static byte axesCount(byte port){
+    private byte axesCount(byte port){
         return (byte)HAL.getJoystickAxes(port, new float[12]);
     }
 
-    public static byte POVCount(byte port){
+    private byte POVCount(byte port){
         return (byte)HAL.getJoystickPOVs(port, new short[12]);
     }
 
-    public static void findJoysticks(){
-        boolean warningRun = false;
+    private void findJoysticks(){
         List<Controller> storage = new ArrayList<>();
-        while(storage.size() == 0){
-            for(byte i = 0; i < MAX_JOYSTICKS; i++){
-                if(buttonCount(i) > 0){
-                    storage.add(new Controller(i));
-                }
-            }
-            if(!warningRun){
-                Console.reportWarning("Controller(s) not detected!");
-                warningRun = true;
+        for(byte i = 0; i < MAX_JOYSTICKS; i++){
+            if(buttonCount(i) > 0){
+                storage.add(new Controller(i));
             }
         }
         Console.reportWarning("Controller(s) detected!");

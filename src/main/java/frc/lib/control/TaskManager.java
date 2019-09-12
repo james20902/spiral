@@ -17,7 +17,7 @@ public class TaskManager {
     private final ScheduledThreadPoolExecutor executor;
 
     private TaskManager(){
-        executor = new ScheduledThreadPoolExecutor(2);
+        executor = new ScheduledThreadPoolExecutor(8);
         executor.setKeepAliveTime(2, TimeUnit.MILLISECONDS);
     }
 

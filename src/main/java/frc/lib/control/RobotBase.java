@@ -109,6 +109,7 @@ public abstract class RobotBase implements AutoCloseable {
         HAL.report(tResourceType.kResourceType_Language, tInstances.kLanguage_Java);
 
         System.out.println("********** Spiral starting **********");
+        Console.reportWarning("Gooooooooood morning... GAMERS!");
 
         T robot;
         try {

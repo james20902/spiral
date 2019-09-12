@@ -8,8 +8,8 @@ public class Controller {
 
     private int buttonStates;
     private int buttonStatesCache = 0;
+
     private float[] axesOutput;
-    private float[] deadbands;
     private short[] POV;
 
     private int xAxis = 0;
@@ -29,6 +29,11 @@ public class Controller {
         }
     }
 
+    public Controller(){
+        this.port = -1;
+        initialize((byte)12, (byte)12, (byte)12);
+    }
+
     public Controller(byte port){
         this.port = port;
     }
@@ -43,7 +48,6 @@ public class Controller {
         this.POVcount = POVcount;
 
         axesOutput = new float[axesCount];
-        deadbands = new float[axesCount];
         POV = new short[POVcount];
     }
 
@@ -61,7 +65,7 @@ public class Controller {
         return (buttonStates & 1 << (ID - 1)) != 0;
     }
 
-    public boolean rawCacheState(int ID){
+    private boolean rawCacheState(int ID){
         return (buttonStatesCache & 1 << (ID - 1)) != 0;
     }
 
@@ -82,10 +86,6 @@ public class Controller {
         }
     }
 
-    public void setDeadband(int ID, float deadband){
-        deadbands[ID] = deadband;
-    }
-
     public float getAxis(int ID){
         return axesOutput[ID];
     }
@@ -99,14 +99,5 @@ public class Controller {
         this.buttonStates = buttonStates;
         this.axesOutput = axesOutput;
         this.POV = POV;
-
-        if(ControllerManager.deadzones.length < port) {
-            for(int i = 0; i < axesOutput.length && i < ControllerManager.deadzones[port].length; i++) {
-                if (axesOutput[i] < ControllerManager.deadzones[port][i]) {
-                    axesOutput[i] = 0;
-                }else axesOutput[i] = (axesOutput[i] - ControllerManager.deadzones[port][i]) / (1 - ControllerManager.deadzones[port][i]);
-            }
-        }
-
     }
 }

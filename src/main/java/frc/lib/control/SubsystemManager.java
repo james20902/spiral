@@ -4,6 +4,6 @@ import java.util.concurrent.ScheduledThreadPoolExecutor;
 
 public class SubsystemManager{
 
-    private ScheduledThreadPoolExecutor systemExecutor = new ScheduledThreadPoolExecutor(2);
+    private ScheduledThreadPoolExecutor systemExecutor = new ScheduledThreadPoolExecutor(8);
 
 }

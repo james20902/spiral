@@ -4,8 +4,24 @@ import frc.lib.utility.SystemState;
 
 public abstract class Subsystem implements Runnable {
 
+    private String systemName;
+    private int timing;
     private boolean overridden = false;
     private int internalState;
+
+    public Subsystem(){
+        this(5);
+    }
+
+    public Subsystem(int timing){
+        this.timing = timing;
+        this.systemName = this.getClass().getSimpleName();
+    }
+
+    public Subsystem(int timing, String name){
+        this.systemName = name;
+        this.timing = timing;
+    }
 
     @Override
     public void run() {
@@ -28,6 +44,14 @@ public abstract class Subsystem implements Runnable {
             default:
                 throw new IllegalStateException("The requested override state doesn't exist!");
         }
+    }
+
+    public String getSystemName(){
+        return systemName;
+    }
+
+    public int getTiming() {
+        return timing;
     }
 
     public void disabledPeriodic(){}

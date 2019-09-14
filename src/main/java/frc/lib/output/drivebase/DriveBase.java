@@ -21,9 +21,7 @@ public abstract class DriveBase extends Subsystem {
     public void disabledPeriodic(){
         setSignal(new DriveSignal(0, 0));
     }
-    public void autonomousPeriodic(){}
     public void teleopPeriodic(){
         setSignal(math());
     }
-    public void testPeriodic(){}
 }

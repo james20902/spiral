@@ -50,6 +50,10 @@ public class ControllerManager extends Task {
         }
     }
 
+    public static Controller getJoystick(){
+        return getJoystick(0);
+    }
+
     public static Controller getJoystick(int port){
         return controllers[port];
     }

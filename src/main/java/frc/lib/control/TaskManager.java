@@ -18,11 +18,11 @@ public class TaskManager {
 
     private TaskManager(){
         executor = new ScheduledThreadPoolExecutor(8);
-        executor.setKeepAliveTime(2, TimeUnit.MILLISECONDS);
+        executor.setKeepAliveTime(10, TimeUnit.SECONDS);
     }
 
     public void executeTask(Task task){
-        scheduleTask(task, 0);
+        scheduleTask(task, 1);
     }
 
     public void scheduleTask(Task task, int delay){

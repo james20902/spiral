@@ -29,11 +29,6 @@ public class Controller {
         }
     }
 
-    public Controller(){
-        this.port = -1;
-        initialize((byte)12, (byte)12, (byte)12);
-    }
-
     public Controller(byte port){
         this.port = port;
     }

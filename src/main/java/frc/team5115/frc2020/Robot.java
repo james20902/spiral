@@ -1,30 +1,27 @@
 package frc.team5115.frc2020;
 
+import edu.wpi.first.networktables.NetworkTable;
+import edu.wpi.first.networktables.NetworkTableInstance;
 import frc.lib.control.RobotBase;
-import frc.lib.control.SubsystemManager;
 import frc.lib.input.Controller;
 import frc.lib.input.ControllerManager;
-import frc.lib.output.Pathfollowing;
-import frc.lib.output.error.ErrorHandler;
+
 import frc.lib.utility.Console;
-import frc.lib.utility.SystemClock;
 
 public class Robot extends RobotBase {
 
-  Pathfollowing pathfollower;
   Controller stick;
 
   public void start() {
-    try {
-      pathfollower = new Pathfollowing("Insert Path Name");
-    } catch(Exception e){ //SHALOM!
-      ErrorHandler.report(e, "Error initializing pathfinder. Ignore if not using.", "Pathfinding");
-    }
-    Console.print(Runtime.getRuntime().availableProcessors());
     stick = ControllerManager.getJoystick(0);
+    NetworkTable limelight = NetworkTableInstance.getDefault().getTable("limelight");
+    limelight.getEntry("ledMode").setNumber(1);
+    limelight.getEntry("camMode").setNumber(1);
   }
 
   public void loop() {
-    Console.print(stick.getButtonState(1));
+    Console.print("axis " + stick.getAxis(1));
+    Console.print("pov" + stick.getPOV());
+    Console.print("button " + stick.getButtonState(1));
   }
 }

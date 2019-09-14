@@ -8,12 +8,10 @@ import frc.lib.utility.Settings;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.locks.ReentrantLock;
 
 public class ControllerManager extends Task {
 
     private static ControllerManager instance;
-    private ReentrantLock update = new ReentrantLock();
 
     public static ControllerManager getInstance(){
         if(instance == null){
@@ -25,6 +23,7 @@ public class ControllerManager extends Task {
     private static final byte MAX_JOYSTICKS = 6;
     private static Controller[] controllers;
     private float[][] deadzones = new float[1][1];
+    private final ByteBuffer countStorage = ByteBuffer.allocateDirect(1);
 
     public void init(){
         deadzones = Settings.getInstance().deadzones;
@@ -32,12 +31,7 @@ public class ControllerManager extends Task {
     }
 
     public void run() {
-        update.lock();
-        try {
-            pollAllJoysticks();
-        } finally {
-            update.unlock();
-        }
+        pollAllJoysticks();
     }
 
     @Override
@@ -61,7 +55,7 @@ public class ControllerManager extends Task {
     }
 
     private int pollButtons(byte port){
-        return HAL.getJoystickButtons(port, ByteBuffer.allocateDirect(1));
+        return HAL.getJoystickButtons(port, countStorage);
     }
 
     private float[] pollAxes(byte port, byte count){
@@ -77,9 +71,9 @@ public class ControllerManager extends Task {
     }
 
     private byte buttonCount(byte port){
-        ByteBuffer count = ByteBuffer.allocateDirect(1);
-        HAL.getJoystickButtons(port, count);
-        return count.get(0);
+        ByteBuffer temp = ByteBuffer.allocateDirect(1);
+        HAL.getJoystickButtons(port, temp);
+        return temp.get(0);
     }
 
     private byte axesCount(byte port){
@@ -92,9 +86,11 @@ public class ControllerManager extends Task {
 
     private void findJoysticks(){
         List<Controller> storage = new ArrayList<>();
-        for(byte i = 0; i < MAX_JOYSTICKS; i++){
-            if(buttonCount(i) > 0){
-                storage.add(new Controller(i));
+        while(storage.isEmpty()){
+            for(byte i = 0; i < MAX_JOYSTICKS; i++){
+                if(buttonCount(i) > 0){
+                    storage.add(new Controller(i));
+                }
             }
         }
         Console.reportWarning("Controller(s) detected!");

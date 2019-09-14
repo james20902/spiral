@@ -3,12 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="2737c509-dbf5-4cc9-86bb-ab70412f3b43" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/spiral.iws" beforeDir="false" afterPath="$PROJECT_DIR$/spiral.iws" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/lib/control/RobotBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/lib/control/RobotBase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/lib/control/SubsystemManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/lib/control/SubsystemManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/lib/control/TaskManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/lib/control/TaskManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/lib/input/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/lib/input/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/lib/input/ControllerManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/lib/input/ControllerManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/team5115/frc2020/Robot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/team5115/frc2020/Robot.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -156,7 +150,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Downloads/SPARK-MAX-SDK-v1.4.0/maven/com/revrobotics/frc/SparkMax-java/1.4.0/SparkMax-java-1.4.0.jar!/com" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../2019DeepSpace-" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />

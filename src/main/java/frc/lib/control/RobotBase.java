@@ -56,7 +56,6 @@ public abstract class RobotBase implements AutoCloseable {
         inst.startServer("/home/lvuser/networktables.ini");
         manager = TaskManager.getInstance();
 //        Settings.getInstance().load();
-        inst.getTable("LiveWindow").getSubTable(".status").getEntry("LW Enabled").setBoolean(false);
 
         LiveWindow.setEnabled(false);
         Shuffleboard.disableActuatorWidgets();

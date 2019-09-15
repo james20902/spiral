@@ -13,8 +13,12 @@ public class Heartbeat {
         }
 
         public Heartbeat(Runnable callback, double benchmark){
+                this(callback, benchmark, 5);
+        }
+
+        public Heartbeat(Runnable callback, double benchmark, double tolerance){
                 this.callback = callback;
-                this.benchmark = benchmark;
+                this.benchmark = benchmark + tolerance;
         }
 
         public void start(){
@@ -25,6 +29,7 @@ public class Heartbeat {
                 if(difference > benchmark){
                         callback.run();
                 }
+                checkpoint = SystemClock.getSystemTime();
         }
         public double getDifference(){
                 return difference;

@@ -21,10 +21,14 @@ public class Console extends Task {
         return instance;
     }
     public static void print(Object m){
+        if(SystemState.getInstance().FMSPresent())
+            return;
         messages.push(m.toString());
     }
 
+    @Override
     public void run() {
+        super.run();
         String message = "";
         while(!messages.isEmpty()){
             message += messages.pop();

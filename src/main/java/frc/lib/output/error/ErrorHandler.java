@@ -21,7 +21,13 @@ public class ErrorHandler extends Task {
 
     private static List<Error> errors;
 
+    public ErrorHandler(){
+        super(100);
+    }
+
+    @Override
     public void init(){
+        super.init();
         errors = new ArrayList<Error>();
     }
 
@@ -45,7 +51,9 @@ public class ErrorHandler extends Task {
         }
     }
 
+    @Override
     public void run() {
+        super.run();
         if(errors.size() > 0){
             String message = "";
             message += "Error in Spiral. Details below. \n";
@@ -56,10 +64,5 @@ public class ErrorHandler extends Task {
             message += "End of errors. Good luck debugging! Remember that the top error could cause the others, so take care of that first!";
             System.out.println(message);
         }
-    }
-
-    @Override
-    public void logSlowdown() {
-        Console.reportError("Slowdown on ErrorHandler. This likely means that some crazy thread stuff happened that shouldn't have. Please make an issue on the git repository.", 1);
     }
 }

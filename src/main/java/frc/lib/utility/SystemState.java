@@ -25,21 +25,21 @@ public class SystemState extends Task {
     private ControlWord globalState = new ControlWord();
     private AtomicInteger translatedState = new AtomicInteger();
 
+    @Override
     public void init(){
+        super.init();
         globalState = new ControlWord();
         translatedState = new AtomicInteger();
     }
 
+    @Override
     public void run(){
+        super.run();
         if(!HAL.isNewControlData()){
             return;
         }
         HAL.getControlWord(globalState);
         translateState();
-    }
-
-    public void logSlowdown() {
-        Console.reportError("SystemState slowing down, HAL control word throttle?", 1);
     }
 
     public int getState(){ return translatedState.get(); }

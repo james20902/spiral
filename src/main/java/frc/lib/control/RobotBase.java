@@ -23,8 +23,7 @@ import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.util.WPILibVersion;
 import frc.lib.input.ControllerManager;
 import frc.lib.output.error.ErrorHandler;
-import frc.lib.reader.MotorParser;
-import frc.lib.reader.SubsystemParser;
+import frc.lib.utility.SystemState;
 import frc.lib.utility.*;
 
 /**
@@ -74,12 +73,11 @@ public abstract class RobotBase implements AutoCloseable {
 
     public void startCompetition(){
         double checkpoint = 0;
-        Console.reportWarning("Waiting for DS connection");
+        Console.reportWarning("Waiting for DriverStation connection");
         HAL.waitForDSData();
-        Console.reportWarning("DriverStation connected, initializing");
+        Console.reportWarning("DriverStation connected");
 
-        manager.executeTask(MatchInfo.getInstance());
-        manager.schedulePeriodicTask(ErrorHandler.getInstance(), 100);
+        manager.schedulePeriodicTask(ErrorHandler.getInstance());
         manager.schedulePeriodicTask(ControllerManager.getInstance());
         manager.schedulePeriodicTask(SystemState.getInstance());
         manager.schedulePeriodicTask(Console.getInstance());

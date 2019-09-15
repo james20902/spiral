@@ -21,7 +21,7 @@ public class SubsystemManager {
     private Map<String, Subsystem> systems;
 
     public SubsystemManager(){
-        systemExecutor = new ScheduledThreadPoolExecutor(8);
+        systemExecutor = new ScheduledThreadPoolExecutor(4);
         systems = new HashMap<>();
     }
 

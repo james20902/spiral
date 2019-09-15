@@ -22,7 +22,7 @@ public class TaskManager {
     }
 
     public void executeTask(Task task){
-        scheduleTask(task, 1);
+        scheduleTask(task, 0);
     }
 
     public void scheduleTask(Task task, int delay){
@@ -34,7 +34,7 @@ public class TaskManager {
     }
 
     public void schedulePeriodicTask(Task task){
-        schedulePeriodicTask(task, 20);
+        schedulePeriodicTask(task, task.getTiming());
     }
 
     public void schedulePeriodicTask(Task task, int executionTime){

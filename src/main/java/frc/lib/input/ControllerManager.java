@@ -25,18 +25,18 @@ public class ControllerManager extends Task {
     private float[][] deadzones = new float[1][1];
     private final ByteBuffer countStorage = ByteBuffer.allocateDirect(1);
 
+    @Override
     public void init(){
         deadzones = Settings.getInstance().deadzones;
+        Console.reportWarning("Waiting for controller(s)...");
         findJoysticks();
-    }
-
-    public void run() {
-        pollAllJoysticks();
+        super.init();
     }
 
     @Override
-    public void logSlowdown() {
-        Console.reportError("Slowdown on ControllerManager! Realistically this shouldn't happen so make an issue on the git repo.", -1);//todo what tf are the error codes
+    public void run() {
+        super.run();
+        pollAllJoysticks();
     }
 
     private void pollAllJoysticks(){

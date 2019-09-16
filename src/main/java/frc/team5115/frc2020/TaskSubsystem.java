@@ -5,8 +5,7 @@ import frc.lib.utility.SystemState;
 
 public class TaskSubsystem extends Task {
 
-    @Override
-    public void run() {
+    public void standardExecution(){
         switch (SystemState.getInstance().getState()){
             case SystemState.DISABLED:
                 disabledPeriodic();

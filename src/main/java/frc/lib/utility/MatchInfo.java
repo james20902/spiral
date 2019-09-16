@@ -6,21 +6,6 @@ import frc.lib.control.Task;
 
 public class MatchInfo extends Task {
 
-    @Override
-    public void init() {
-        currentMatch = new MatchInfoData();
-    }
-
-    @Override
-    public void run() {
-        fetchMatchInfo();
-    }
-
-    @Override
-    public void logSlowdown() {
-
-    }
-
     public enum Alliance{ RED, BLUE }
 
     public enum Position{ RIGHT, CENTER, LEFT }
@@ -36,6 +21,20 @@ public class MatchInfo extends Task {
             instance = new MatchInfo();
         }
         return instance;
+    }
+
+    @Override
+    public void init() {
+        currentMatch = new MatchInfoData();
+    }
+
+    public void standardExecution(){
+        fetchMatchInfo();
+    }
+
+    @Override
+    public void logSlowdown() {
+
     }
 
     public String getEventName(){

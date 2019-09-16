@@ -32,9 +32,7 @@ public class SystemState extends Task {
         translatedState = new AtomicInteger();
     }
 
-    @Override
-    public void run(){
-        super.run();
+    public void standardExecution(){
         if(!HAL.isNewControlData()){
             return;
         }
@@ -76,8 +74,6 @@ public class SystemState extends Task {
         return globalState.getEStop();
     }
 
-    //todo, if fms present assume we are in competiton
-    //and rather than stopping the whole robot just stop the subsystem affected by a theoretical problem
     public boolean FMSPresent(){
         return globalState.getFMSAttached();
     }

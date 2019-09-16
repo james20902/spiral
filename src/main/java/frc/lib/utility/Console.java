@@ -21,14 +21,10 @@ public class Console extends Task {
         return instance;
     }
     public static void print(Object m){
-        if(SystemState.getInstance().FMSPresent())
-            return;
         messages.push(m.toString());
     }
 
-    @Override
-    public void run() {
-        super.run();
+    public void standardExecution() {
         String message = "";
         while(!messages.isEmpty()){
             message += messages.pop();
@@ -36,6 +32,8 @@ public class Console extends Task {
         }
         System.out.print(message);
     }
+
+    public void competitionExecution(){}
 
     public synchronized static void reportError(String error, int errorCode) {
         HALErrorReport(true, errorCode, error, null);

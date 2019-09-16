@@ -2,11 +2,9 @@ package frc.lib.output.error;
 
 import frc.lib.control.Task;
 import frc.lib.utility.Console;
-import frc.team5115.frc2020.Robot;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 public class ErrorHandler extends Task {
 
@@ -51,9 +49,7 @@ public class ErrorHandler extends Task {
         }
     }
 
-    @Override
-    public void run() {
-        super.run();
+    public void standardExecution() {
         if(errors.size() > 0){
             String message = "";
             message += "Error in Spiral. Details below. \n";

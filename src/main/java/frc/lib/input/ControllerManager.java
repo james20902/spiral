@@ -4,6 +4,7 @@ import edu.wpi.first.hal.HAL;
 import frc.lib.control.Task;
 import frc.lib.utility.Console;
 import frc.lib.utility.Settings;
+import frc.lib.utility.SystemState;
 
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
@@ -21,21 +22,35 @@ public class ControllerManager extends Task {
     }
 
     private static final byte MAX_JOYSTICKS = 6;
+
     private static Controller[] controllers;
+
     private float[][] deadzones = new float[1][1];
+
     private final ByteBuffer countStorage = ByteBuffer.allocateDirect(1);
+
+    private boolean controllerLock = false;
 
     @Override
     public void init(){
-        deadzones = Settings.getInstance().deadzones;
-        Console.reportWarning("Waiting for controller(s)...");
-        findJoysticks();
         super.init();
+        deadzones = Settings.getInstance().deadzones;
+        findJoysticks();
     }
 
-    @Override
-    public void run() {
-        super.run();
+    public void standardExecution(){
+        //fixed array, lock, poll all 6 objects (like old driver station did)
+        Console.print(heartbeat.getDifference());
+        pollAllJoysticks();
+    }
+
+    public void competitionExecution(){
+        //this assumes a controller is plugged in
+        //need a way to keep checking for controllers if its unplugged
+        if(SystemState.getInstance().isEnabled() && !controllerLock){
+            finalizeControllers();
+            controllerLock = true;
+        }
         pollAllJoysticks();
     }
 
@@ -88,13 +103,36 @@ public class ControllerManager extends Task {
         return (byte)HAL.getJoystickPOVs(port, new short[12]);
     }
 
+    public void finalizeControllers(){
+        List<Controller> storage = new ArrayList<>();
+        for(byte i = 0; i < MAX_JOYSTICKS; i++){
+            if(buttonCount(i) > 0){
+                storage.add(new Controller(i));
+            }
+        }
+        Console.reportWarning("Controller(s) detected!");
+        controllers = storage.toArray(new Controller[storage.size()]);
+
+        for(Controller stick : controllers){
+            byte port = stick.getPort();
+            stick.initialize(buttonCount(port), axesCount(port), POVCount(port));
+        }
+    }
+
     private void findJoysticks(){
         List<Controller> storage = new ArrayList<>();
-        while(storage.isEmpty()){
+        boolean joystickDetected = false;
+        while(!joystickDetected){
             for(byte i = 0; i < MAX_JOYSTICKS; i++){
                 if(buttonCount(i) > 0){
-                    storage.add(new Controller(i));
+                    joystickDetected = true;
+                    break;
                 }
+            }
+        }
+        for(byte i = 0; i < MAX_JOYSTICKS; i++){
+            if(buttonCount(i) > 0){
+                storage.add(new Controller(i));
             }
         }
         Console.reportWarning("Controller(s) detected!");

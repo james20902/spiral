@@ -2,10 +2,12 @@ package frc.lib.control;
 
 import frc.lib.utility.Console;
 import frc.lib.utility.Heartbeat;
+import frc.lib.utility.SystemClock;
+import frc.lib.utility.SystemState;
 
 public abstract class Task implements Runnable {
 
-    private Heartbeat heartbeat;
+    public Heartbeat heartbeat;
     private int timing;
     private String name;
 
@@ -44,8 +46,19 @@ public abstract class Task implements Runnable {
         heartbeat.start();
     }
 
+    public abstract void standardExecution();
+
+    public void competitionExecution(){
+        standardExecution();
+    }
+
     public void run(){
         heartbeat.check();
+        if(SystemState.getInstance().FMSPresent()){
+            competitionExecution();
+        } else {
+            standardExecution();
+        }
     }
 
     public void logSlowdown(){

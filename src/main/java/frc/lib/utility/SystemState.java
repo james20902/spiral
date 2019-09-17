@@ -27,7 +27,6 @@ public class SystemState extends Task {
 
     @Override
     public void init(){
-        super.init();
         globalState = new ControlWord();
         translatedState = new AtomicInteger();
     }

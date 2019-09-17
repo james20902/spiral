@@ -33,14 +33,16 @@ public class ControllerManager extends Task {
 
     @Override
     public void init(){
-        super.init();
         deadzones = Settings.getInstance().deadzones;
         findJoysticks();
     }
 
     public void standardExecution(){
         //fixed array, lock, poll all 6 objects (like old driver station did)
-        Console.print(heartbeat.getDifference());
+//        if(!controllerLock){
+//            findJoysticks();
+//            controllerLock = true;
+//        }
         pollAllJoysticks();
     }
 
@@ -120,6 +122,7 @@ public class ControllerManager extends Task {
     }
 
     private void findJoysticks(){
+        Console.reportWarning("Waiting for controller");
         List<Controller> storage = new ArrayList<>();
         boolean joystickDetected = false;
         while(!joystickDetected){

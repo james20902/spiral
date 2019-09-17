@@ -1,7 +1,6 @@
 package frc.lib.output.error;
 
 import frc.lib.control.Task;
-import frc.lib.utility.Console;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +24,6 @@ public class ErrorHandler extends Task {
 
     @Override
     public void init(){
-        super.init();
         errors = new ArrayList<Error>();
     }
 

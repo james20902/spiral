@@ -6,13 +6,9 @@ import frc.lib.control.Task;
 import java.util.Stack;
 
 public class Console extends Task {
-    private static Stack<String> messages = new Stack<>();
+    private static Stack<String> messages;
+    private StringBuilder concat;
     private static Console instance;
-    //todo watchdog
-    /*
-    * Adds messages to a queue that is printed every 10ms
-    * This reduces lag caused by many print messages
-     */
 
     public static Console getInstance(){
         if(instance == null){
@@ -20,6 +16,13 @@ public class Console extends Task {
         }
         return instance;
     }
+
+    @Override
+    public void init(){
+        messages = new Stack<>();
+        concat = new StringBuilder();
+    }
+
     public static void print(Object m){
         messages.push(m.toString());
     }
@@ -74,15 +77,5 @@ public class Console extends Task {
             }
         }
         HAL.sendError(error, errorCode, false, message, locString, traceString.toString(), false);
-    }
-
-    @Override
-    public void init() {
-
-    }
-
-    @Override
-    public void logSlowdown() {
-
     }
 }

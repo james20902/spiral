@@ -11,12 +11,10 @@ public class Robot extends RobotBase {
     NetworkTable limelight = NetworkTableInstance.getDefault().getTable("limelight");
     limelight.getEntry("ledMode").setNumber(1);
     limelight.getEntry("camMode").setNumber(1);
-//    TaskManager.getInstance().schedulePeriodicTask(new TestSystem(), 5);
+    TaskManager.getInstance().schedulePeriodicTask(new TestSystem(), 5);
   }
 
   public void loop() {
-//    Console.print("axis " + stick.getAxis(1));
-//    Console.print("pov" + stick.getPOV());
-//    Console.print("button " + stick.getButtonState(1));
+
   }
 }

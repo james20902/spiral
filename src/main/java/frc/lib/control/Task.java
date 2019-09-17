@@ -2,7 +2,6 @@ package frc.lib.control;
 
 import frc.lib.utility.Console;
 import frc.lib.utility.Heartbeat;
-import frc.lib.utility.SystemClock;
 import frc.lib.utility.SystemState;
 
 public abstract class Task implements Runnable {
@@ -31,6 +30,7 @@ public abstract class Task implements Runnable {
             this.name = name;
         }
         heartbeat = new Heartbeat(this::logSlowdown, getTiming());
+        heartbeat.start();
         init();
     }
 
@@ -42,9 +42,7 @@ public abstract class Task implements Runnable {
         return name;
     }
 
-    public void init(){
-        heartbeat.start();
-    }
+    public void init(){}
 
     public abstract void standardExecution();
 

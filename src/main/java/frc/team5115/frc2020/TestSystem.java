@@ -3,11 +3,11 @@ package frc.team5115.frc2020;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import frc.lib.control.Subsystem;
 import frc.lib.input.Controller;
 import frc.lib.input.ControllerManager;
-import frc.lib.utility.Console;
 
-public class TestSystem extends TaskSubsystem {
+public class TestSystem extends Subsystem {
 
     Controller stick = ControllerManager.getJoystick();
 

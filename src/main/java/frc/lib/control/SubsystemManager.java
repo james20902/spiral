@@ -26,7 +26,7 @@ public class SubsystemManager {
     }
 
     public void addSubsystem(Subsystem system){
-        systems.put(system.getSystemName(), system);
+        systems.put(system.getName(), system);
     }
 
     public void addSubsystems(List<Subsystem> list){

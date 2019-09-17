@@ -13,7 +13,7 @@ public class Heartbeat {
         }
 
         public Heartbeat(Runnable callback, double benchmark){
-                this(callback, benchmark, 10);
+                this(callback, benchmark, 5);
         }
 
         public Heartbeat(Runnable callback, double benchmark, double tolerance){

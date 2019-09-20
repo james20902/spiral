@@ -72,7 +72,10 @@ public class ControllerManager extends Task {
     }
 
     public static Controller getJoystick(int port){
+        if(controllers != null)
         return controllers[port];
+        Console.reportWarning("Controller Manager not initialized. getJoystick will return null.");
+        return DummyController.getInstance();
     }
 
     private int pollButtons(byte port){

@@ -2,9 +2,9 @@ package frc.lib.input;
 
 public class Controller {
 
-    private byte buttonCount;
-    private byte axesCount;
-    private byte POVcount;
+    protected byte buttonCount;
+    protected byte axesCount;
+    protected byte POVcount;
 
     private int buttonStates;
     private int buttonStatesCache = 0;
@@ -16,7 +16,7 @@ public class Controller {
     private int yAxis = 1;
     private int zAxis = 2;
 
-    private byte port;
+    protected byte port;
 
     public enum ButtonState{
         NEUTRAL(0), PRESSED(0), HELD(1), RELEASED(1);

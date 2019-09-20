@@ -7,8 +7,7 @@
 
 package frc.team5115;
 
-import frc.lib.control.RobotBase;
-import frc.team5115.frc2020.Robot;
+import frc.lib.utility.StartRobot;
 
 /**
  * Do NOT add any static variables to this class, or any initialization at all.
@@ -24,6 +23,6 @@ public final class Main {
    * <p>If you change your main robot class, change the parameter type.
    */
   public static void main(String... args) {
-    RobotBase.startRobot(Robot::new);
+    StartRobot.start();
   }
 }

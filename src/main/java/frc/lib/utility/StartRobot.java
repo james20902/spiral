@@ -3,17 +3,12 @@ package frc.lib.utility;
 import edu.wpi.first.hal.FRCNetComm;
 import edu.wpi.first.hal.HAL;
 import edu.wpi.first.hal.HALUtil;
-import edu.wpi.first.networktables.NetworkTable;
-import edu.wpi.first.networktables.NetworkTableInstance;
-import edu.wpi.first.wpilibj.livewindow.LiveWindow;
-import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.util.WPILibVersion;
 import frc.lib.control.ShutdownHook;
-import frc.lib.control.Task;
 import frc.lib.control.TaskManager;
 import frc.lib.input.ControllerManager;
 import frc.lib.output.error.ErrorHandler;
-import frc.team5115.frc2020.TestSystem;
+import frc.team5115.frc2020.Robot;
 
 import java.io.File;
 import java.io.IOException;
@@ -25,7 +20,9 @@ public class StartRobot {
     private final static TaskManager manager = TaskManager.getInstance();
 
     public static void start(){
-        init();
+        Runtime.getRuntime().addShutdownHook(new ShutdownHook());
+        Thread.setDefaultUncaughtExceptionHandler(ErrorHandler.getInstance());
+
         if (!HAL.initialize(500, 0)) {
             throw new IllegalStateException("Failed to initialize HAL. Terminating");
         }
@@ -55,67 +52,14 @@ public class StartRobot {
                         ex.getStackTrace());
             }
         }
-
-        boolean errorOnExit = false;
-        try {
-            startCompetition();
-        } catch (Throwable throwable) {
-            Throwable cause = throwable.getCause();
-            if (cause != null) {
-                throwable = cause;
-            }
-            Console.reportError("Unhandled exception: " + throwable.toString(),
-                    1, throwable.getStackTrace());
-            errorOnExit = true;
-        } finally {
-            // startCompetition never returns unless exception occurs....
-            Console.reportWarning("Robots should not quit, but yours did!");
-            if (errorOnExit) {
-                Console.reportError(
-                        "The startCompetition() method (or methods called by it) should have "
-                                + "handled the exception above.", 1);
-            } else {
-                Console.reportError("Unexpected return from startCompetition() method.", 1);
-            }
-        }
-        System.exit(1);
-    }
-
-    private static void init(){
-        Runtime.getRuntime().addShutdownHook(new ShutdownHook());
-
-        NetworkTableInstance inst = NetworkTableInstance.getDefault();
-        inst.setNetworkIdentity("Robot");
-        inst.startServer("/home/lvuser/networktables.ini");
-//        Settings.getInstance().load();
-
-        LiveWindow.setEnabled(false);
-        Shuffleboard.disableActuatorWidgets();
-//        MotorParser.getInstance().parse();
-//        SubsystemParser.getInstance().parse();
-        NetworkTable limelight = NetworkTableInstance.getDefault().getTable("limelight");
-        limelight.getEntry("ledMode").setNumber(1);
-        limelight.getEntry("camMode").setNumber(1);
-        TaskManager.getInstance().schedulePeriodicTask(new TestSystem(), 5);
-    }
-
-    private static void startCompetition(){
-        double checkpoint = 0;
         Console.reportWarning("Waiting for DriverStation connection");
         HAL.waitForDSData();
         Console.reportWarning("DriverStation connected");
-
-        manager.schedulePeriodicTask(ErrorHandler.getInstance());
-        manager.schedulePeriodicTask(ControllerManager.getInstance());
+//        manager.schedulePeriodicTask(ControllerManager.getInstance());
         manager.schedulePeriodicTask(SystemState.getInstance());
         manager.schedulePeriodicTask(Console.getInstance());
 
         HAL.observeUserProgramStarting();
-
-        while(!SystemState.getInstance().emergencyStopped() || !Thread.currentThread().isInterrupted()){
-            if(SystemClock.getSystemTime() > checkpoint + 20){
-                checkpoint = SystemClock.getSystemTime();
-            }
-        }
+        manager.schedulePeriodicTask(new Robot());
     }
 }

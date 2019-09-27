@@ -4,6 +4,7 @@ import frc.lib.control.Subsystem;
 import frc.lib.output.error.ErrorHandler;
 
 import java.io.File;
+import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -33,20 +34,18 @@ public class SubsystemData {
     }
 
     public void intialize() {
-        for(int i = 0; i < classes.size(); i++) {
-            if(classes.get(0).equals(type.toLowerCase())){
-                try {
-                    if(motors != null) {
-                        if(input != null) {
+        for (int i = 0; i < classes.size(); i++) {
+            if (classes.get(0).equals(type.toLowerCase())) {
+                if (motors != null) {
+                    if (input != null) {
+                        try {
                             classes.get(i).getConstructor(long.class, boolean.class, int[].class, int.class, int[].class).newInstance(loopTime, reversed, input, controller, motors);
-                        } else {
                             classes.get(i).getConstructor(long.class, boolean.class, int[].class).newInstance(loopTime, reversed, motors);
+                            classes.get(i).getConstructor(long.class).newInstance(loopTime);
+                        } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
+                            e.printStackTrace();
                         }
-                    } else {
-                        classes.get(i).getConstructor(long.class).newInstance(loopTime);
                     }
-                } catch(Exception e){
-                    ErrorHandler.report(e, "Make sure your subsystem has a constructor that has the same params as Subsystem. If you have no clue whats going on create an issue on the git repository.", "Subsystem");
                 }
             }
         }

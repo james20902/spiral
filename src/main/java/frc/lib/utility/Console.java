@@ -23,9 +23,7 @@ public class Console extends Task {
         concat = new StringBuilder();
     }
 
-    public static void print(Object m){
-        messages.push(m.toString());
-    }
+    public static void print(Object m){ messages.push(m.toString()); }
 
     public void standardExecution() {
         String message = "";

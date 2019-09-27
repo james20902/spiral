@@ -26,9 +26,9 @@ public class Heartbeat {
         }
         public void check(){
                 difference = SystemClock.getSystemTime() - checkpoint;
-                if(difference > benchmark){
-                        callback.run();
-                }
+//                if(difference > benchmark){
+//                        callback.run();
+//                }
                 checkpoint = SystemClock.getSystemTime();
         }
         public double getDifference(){

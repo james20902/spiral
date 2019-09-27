@@ -6,10 +6,11 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import frc.lib.control.Subsystem;
 import frc.lib.input.Controller;
 import frc.lib.input.ControllerManager;
+import frc.lib.utility.Console;
 
-public class TestSystem extends Subsystem {
+public class Robot extends Subsystem {
 
-    Controller stick = ControllerManager.getJoystick();
+    Controller stick;
 
     TalonSRX right1;
     TalonSRX left1;
@@ -18,6 +19,8 @@ public class TestSystem extends Subsystem {
 
     @Override
     public void init(){
+//        stick = ControllerManager.getJoystick();
+
         right1 = new TalonSRX(2);
         left1 = new TalonSRX(1);
         right2 = new TalonSRX(4);
@@ -33,13 +36,12 @@ public class TestSystem extends Subsystem {
         left2.setInverted(false);
         right1.setSelectedSensorPosition(0);
         left1.setSelectedSensorPosition(0);
+
+//        ErrorHandler.getInstance().crash("Test");
     }
 
     @Override
     public void teleopPeriodic() {
-        right1.set(ControlMode.PercentOutput, (-stick.getAxis(1) - stick.getAxis(4)) * 0.5);
-        left1.set(ControlMode.PercentOutput, (-stick.getAxis(1) + stick.getAxis(4)) * 0.5);
-//        Console.print(right1.getSelectedSensorPosition());
-//        Console.print(left1.getSelectedSensorPosition());
+//        Console.print(stick.getAxis(0));
     }
 }

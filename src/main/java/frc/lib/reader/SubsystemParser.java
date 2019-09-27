@@ -25,7 +25,7 @@ public class SubsystemParser {
         try {
             reader = new BufferedReader(new FileReader(Filesystem.getDeployDirectory().getAbsolutePath()+"/robot.subsystems"));
         } catch(Exception e) {
-            ErrorHandler.report(e, "Make sure robot.subsystems exists. Turn your robot off and on again. If those don't work, create an issue on the git repository", "Subsystem");
+            e.printStackTrace();
         }
         lines = new ArrayList<String[]>();
         String line;
@@ -35,7 +35,7 @@ public class SubsystemParser {
                     lines.add(line.split("//")[0].split(" "));
             }
         } catch(Exception e) {
-            ErrorHandler.report(e, "Make sure robot.subsystems is not empty. If you did, make an issue on the git repository.", "Subsystem");
+            e.printStackTrace();
         }
     }
     public void parse() {

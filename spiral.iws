@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2737c509-dbf5-4cc9-86bb-ab70412f3b43" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/deploy/robot.errors" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/spiral.iws" beforeDir="false" afterPath="$PROJECT_DIR$/spiral.iws" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/frc/lib/input/ControllerManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/lib/input/ControllerManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/frc/lib/utility/StartRobot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/lib/utility/StartRobot.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/frc/team5115/frc2020/TestSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/team5115/frc2020/Robot.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />

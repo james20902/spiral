@@ -1,12 +1,15 @@
 package frc.lib.output.error;
 
-import frc.lib.control.Task;
 
-import java.util.ArrayList;
-import java.util.List;
+import edu.wpi.first.wpilibj.Filesystem;
+import frc.lib.utility.Console;
 
-public class ErrorHandler extends Task {
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 
+public class ErrorHandler implements Thread.UncaughtExceptionHandler{
     private static ErrorHandler instance;
 
     public static ErrorHandler getInstance(){
@@ -16,47 +19,34 @@ public class ErrorHandler extends Task {
         return instance;
     }
 
-    private static List<Error> errors;
-
-    public ErrorHandler(){
-        super(100);
-    }
-
     @Override
-    public void init(){
-        errors = new ArrayList<Error>();
+    public void uncaughtException(Thread t, Throwable e) {
+        crash(t, e);
     }
 
-    public static void report(Error e) {
-        if(errors.isEmpty() || !e.equals(errors.get(errors.size()-1))) {
-            errors.add(e);
-        }
+    public void crash(String reason){
+        Console.reportError(errorQuip(), 1);
+        Console.reportError("Spiral has crashed :(" + reason, 1);
+        System.exit(1);
     }
 
-    public static void report(Exception e, String advice, String module) {
-        Error err = new Error(e, advice, module);
-        if(errors.isEmpty() || !err.equals(errors.get(errors.size()-1))) {
-            errors.add(err);
-        }
+    public void crash(Thread t, Throwable e){
+        Console.reportError(errorQuip(), 1);
+        Console.reportError("Spiral has crashed :(", 1, e.getStackTrace());
+        System.exit(1);
     }
 
-    public static void report(String advice, String module) {
-        Error e = new Error(null, advice, module);
-        if(errors.isEmpty() || !e.equals(errors.get(errors.size()-1))) {
-            errors.add(e);
-        }
-    }
-
-    public void standardExecution() {
-        if(errors.size() > 0){
-            String message = "";
-            message += "Error in Spiral. Details below. \n";
-            for(Error e : errors) {
-                message += e.print() + "\n";
+    public String errorQuip(){
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader(Filesystem.getDeployDirectory().getAbsolutePath()+"/robot.errors"));
+            int randomLine = (int)(Math.random() * 20);
+            for(int i = 0; i < randomLine; i++){
+                reader.readLine();
             }
-            errors.clear();
-            message += "End of errors. Good luck debugging! Remember that the top error could cause the others, so take care of that first!";
-            System.out.println(message);
+            return reader.readLine();
+        } catch (IOException e){
+            Console.reportWarning("Error file is missing or file length is wrong!");
         }
+        return null;
     }
 }

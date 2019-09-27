@@ -12,8 +12,5 @@ public class Gyro {
     public Gyro(SerialPort.Port port){
         this.port = port;
         navXInstance = new AHRS(this.port);
-        if(!navXInstance.isConnected()){
-            ErrorHandler.report("NavX not detected. Please check that it is plugged in and lights are blinking, and that you chose the correct port", "NavX");
-        }
     }
 }

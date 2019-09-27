@@ -20,8 +20,6 @@ public class Blinkin {
     public static void set(float color) {
         if(spark != null){
             spark.set(color);
-        } else {
-            ErrorHandler.report("Please check that you initialized the Blinkin in robot.motors correctly", "Blinkin");
         }
     }
     public static void initSpark(int pwm, boolean ind) {

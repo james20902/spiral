@@ -34,15 +34,15 @@ public class ControllerManager extends Task {
     @Override
     public void init(){
         deadzones = Settings.getInstance().deadzones;
-        findJoysticks();
+//        findJoysticks();
     }
 
     public void standardExecution(){
         //fixed array, lock, poll all 6 objects (like old driver station did)
-//        if(!controllerLock){
-//            findJoysticks();
-//            controllerLock = true;
-//        }
+        if(!controllerLock){
+            hotplugControllers();
+            controllerLock = true;
+        }
         pollAllJoysticks();
     }
 
@@ -72,10 +72,7 @@ public class ControllerManager extends Task {
     }
 
     public static Controller getJoystick(int port){
-        if(controllers != null)
         return controllers[port];
-        Console.reportWarning("Controller Manager not initialized. getJoystick will return null.");
-        return DummyController.getInstance();
     }
 
     private int pollButtons(byte port){
@@ -124,29 +121,13 @@ public class ControllerManager extends Task {
         }
     }
 
-    private void findJoysticks(){
-        Console.reportWarning("Waiting for controller");
-        List<Controller> storage = new ArrayList<>();
-        boolean joystickDetected = false;
-        while(!joystickDetected){
-            for(byte i = 0; i < MAX_JOYSTICKS; i++){
-                if(buttonCount(i) > 0){
-                    joystickDetected = true;
-                    break;
-                }
-            }
-        }
+    private void hotplugControllers(){
         for(byte i = 0; i < MAX_JOYSTICKS; i++){
-            if(buttonCount(i) > 0){
-                storage.add(new Controller(i));
-            }
+            controllers[i] = new Controller(i);
         }
-        Console.reportWarning("Controller(s) detected!");
-        controllers = storage.toArray(new Controller[storage.size()]);
-
         for(Controller stick : controllers){
-            byte port = stick.getPort();
-            stick.initialize(buttonCount(port), axesCount(port), POVCount(port));
+            stick.initialize((byte)12, (byte)12, (byte)12);
         }
+        Console.print("done");
     }
 }

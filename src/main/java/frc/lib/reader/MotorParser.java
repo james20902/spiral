@@ -1,6 +1,8 @@
 package frc.lib.reader;
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -22,18 +24,20 @@ public class MotorParser {
     private MotorParser() {
         try {
             reader = new BufferedReader(new FileReader(Filesystem.getDeployDirectory().getAbsolutePath()+"/robot.motors"));
-        } catch(Exception e) {
-            ErrorHandler.report(e, "Make sure robot.motors exists. Try turning your robot off and on again. If that doesn't work make an issue on the git repository.", "Motor");
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
         }
         lines = new ArrayList<String[]>();
         String line;
-        try {
-            while((line = reader.readLine()) != null) {
+        while(true) {
+            try {
+                if (!((line = reader.readLine()) != null)) break;
                 if(line.charAt(0) != '/' && line.charAt(1) != '/')
                     lines.add(line.split("//")[0].split(" "));
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-        } catch(Exception e) {
-            ErrorHandler.report(e, "Make sure robot.motors is not empty. Try turning your robot off and on again. If that doesn't work make an issue on the git repository.", "Motor");
+
         }
     }
 

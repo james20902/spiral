@@ -8,6 +8,7 @@ import frc.lib.control.ShutdownHook;
 import frc.lib.control.TaskManager;
 import frc.lib.input.ControllerManager;
 import frc.lib.output.error.ErrorHandler;
+import frc.lib.reader.MotorParser;
 import frc.team5115.frc2020.Robot;
 
 import java.io.File;
@@ -55,9 +56,10 @@ public class StartRobot {
         Console.reportWarning("Waiting for DriverStation connection");
         HAL.waitForDSData();
         Console.reportWarning("DriverStation connected");
-//        manager.schedulePeriodicTask(ControllerManager.getInstance());
+        manager.schedulePeriodicTask(ControllerManager.getInstance());
         manager.schedulePeriodicTask(SystemState.getInstance());
         manager.schedulePeriodicTask(Console.getInstance());
+        MotorParser.getInstance().parse();
 
         HAL.observeUserProgramStarting();
         manager.schedulePeriodicTask(new Robot());

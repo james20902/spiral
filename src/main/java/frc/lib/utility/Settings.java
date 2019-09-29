@@ -11,13 +11,11 @@ public class Settings {
     public float maxVelocity;
     public float ticksPerRevolutionWB;
     public float wheelDiameter;
-    public float[][] deadzones;
 
     private Settings(){
         maxVelocity = 1;
         ticksPerRevolutionWB = -1;
         wheelDiameter = -1;
-        deadzones = new float[6][12];
         instance = this;
     }
 
@@ -34,3 +32,4 @@ public class Settings {
         instance = (Settings) yaml.load(Filesystem.getDeployDirectory().getAbsolutePath()+"/robot.settings");
     }
 }
+

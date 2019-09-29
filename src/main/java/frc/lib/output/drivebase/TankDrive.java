@@ -1,24 +1,16 @@
 package frc.lib.output.drivebase;
 
 import frc.lib.input.Controller;
+import frc.lib.utility.Input;
 
-public class TankDrive extends DriveBase {
+public class TankDrive extends DriveSystem {
 
     public TankDrive(Controller instance) {
         super(instance);
     }
 
-    private DriveSignal tank(float left, float right){
-        return new DriveSignal(left, right);
-    }
-
-
-    public DriveSignal math() {
-        return null;
-    }
-
-    public void init() {
-
+    public DriveSignal math(){
+        return new DriveSignal(this.instance.getAxis(Input.getInstance().lAxis), this.instance.getAxis(Input.getInstance().rAxis));
     }
 
     public void logSlowdown() {

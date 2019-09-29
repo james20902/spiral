@@ -6,11 +6,11 @@ public class DriveSignal {
     double leftSpeed;
     boolean brakeMode;
 
-    public DriveSignal(double right, double left){
-       this(right, left, false);
+    public DriveSignal(double left, double right){
+       this(left, right, false);
     }
 
-    public DriveSignal(double right, double left, boolean brake){
+    public DriveSignal(double left, double right, boolean brake){
         rightSpeed = right;
         leftSpeed = left;
         brakeMode = brake;

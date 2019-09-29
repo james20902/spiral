@@ -1,0 +1,11 @@
+leftAxis: 0
+rightAxis: 2
+button1: 1
+deadzones:
+    0: #controller zero
+        - 0.2 #many individual axes
+        - 0.2
+        - 0.2
+        - 0.2
+        - 0.2
+        - 0.2

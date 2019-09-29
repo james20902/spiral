@@ -2,6 +2,7 @@ package frc.lib.output.drivebase;
 
 import frc.lib.input.Controller;
 import frc.lib.output.Motors;
+import frc.lib.utility.Input;
 
 /*
 * This is Cheesy Drive taken from team 254, the Cheesy Poofs
@@ -9,7 +10,7 @@ import frc.lib.output.Motors;
 * the only changes were spelling fixes and return statement, it fit right in
 * https://github.com/Team254/FRC-2018-Public/blob/master/src/main/java/com/team254/lib/util/CheesyDriveHelper.java
  */
-public class CheesyDrive extends DriveBase {//todo figure out joystick stuff so inputs can be done
+public class CheesyDrive extends DriveSystem {//todo figure out joystick stuff so inputs can be done
 
     private static final double kThrottleDeadband = 0.02;
     private static final double kWheelDeadband = 0.02;
@@ -39,30 +40,24 @@ public class CheesyDrive extends DriveBase {//todo figure out joystick stuff so 
         super(instance);
     }
 
-    public static void cheesyDrive(double throttle, double wheel, boolean isQuickTurn,
-                                   boolean isHighGear) {
+    public DriveSignal math() {
+        double throttle = this.instance.getAxis(Input.getInstance().lAxis);
+        double wheel = this.instance.getAxis(Input.getInstance().rAxis);
+        boolean isQuickTurn = this.instance.getButtonState(Input.getInstance().button1) == Controller.ButtonState.HELD;
 
-        wheel = handleDeadband(wheel, kWheelDeadband);
-        throttle = handleDeadband(throttle, kThrottleDeadband);
+        wheel = handleDeadzone(wheel, kWheelDeadband);
+        throttle = handleDeadzone(throttle, kThrottleDeadband);
 
         double negInertia = wheel - mOldWheel;
         mOldWheel = wheel;
 
         double wheelNonLinearity;
-        if (isHighGear) {
-            wheelNonLinearity = kHighWheelNonLinearity;
-            final double denominator = Math.sin(Math.PI / 2.0 * wheelNonLinearity);
-            // Apply a sin function that's scaled to make it feel better.
-            wheel = Math.sin(Math.PI / 2.0 * wheelNonLinearity * wheel) / denominator;
-            wheel = Math.sin(Math.PI / 2.0 * wheelNonLinearity * wheel) / denominator;
-        } else {
-            wheelNonLinearity = kLowWheelNonLinearity;
-            final double denominator = Math.sin(Math.PI / 2.0 * wheelNonLinearity);
-            // Apply a sine function that's scaled to make it feel better.
-            wheel = Math.sin(Math.PI / 2.0 * wheelNonLinearity * wheel) / denominator;
-            wheel = Math.sin(Math.PI / 2.0 * wheelNonLinearity * wheel) / denominator;
-            wheel = Math.sin(Math.PI / 2.0 * wheelNonLinearity * wheel) / denominator;
-        }
+        wheelNonLinearity = kLowWheelNonLinearity;
+        final double denominator = Math.sin(Math.PI / 2.0 * wheelNonLinearity);
+        // Apply a sine function that's scaled to make it feel better.
+        wheel = Math.sin(Math.PI / 2.0 * wheelNonLinearity * wheel) / denominator;
+        wheel = Math.sin(Math.PI / 2.0 * wheelNonLinearity * wheel) / denominator;
+        wheel = Math.sin(Math.PI / 2.0 * wheelNonLinearity * wheel) / denominator;
 
         double leftPwm, rightPwm, overPower;
         double sensitivity;
@@ -72,23 +67,18 @@ public class CheesyDrive extends DriveBase {//todo figure out joystick stuff so 
 
         // Negative inertia!
         double negInertiaScalar;
-        if (isHighGear) {
-            negInertiaScalar = kHighNegInertiaScalar;
-            sensitivity = kSensitivity;
+        if (wheel * negInertia > 0) {
+            // If we are moving away from 0.0, aka, trying to get more wheel.
+            negInertiaScalar = kLowNegInertiaTurnScalar;
         } else {
-            if (wheel * negInertia > 0) {
-                // If we are moving away from 0.0, aka, trying to get more wheel.
-                negInertiaScalar = kLowNegInertiaTurnScalar;
+            // Otherwise, we are attempting to go back to 0.0.
+            if (Math.abs(wheel) > kLowNegInertiaThreshold) {
+                negInertiaScalar = kLowNegInertiaFarScalar;
             } else {
-                // Otherwise, we are attempting to go back to 0.0.
-                if (Math.abs(wheel) > kLowNegInertiaThreshold) {
-                    negInertiaScalar = kLowNegInertiaFarScalar;
-                } else {
-                    negInertiaScalar = kLowNegInertiaCloseScalar;
-                }
+                negInertiaScalar = kLowNegInertiaCloseScalar;
             }
-            sensitivity = kSensitivity;
         }
+        sensitivity = kSensitivity;
         double negInertiaPower = negInertia * negInertiaScalar;
         mNegInertiaAccumulator += negInertiaPower;
 
@@ -141,15 +131,7 @@ public class CheesyDrive extends DriveBase {//todo figure out joystick stuff so 
             rightPwm = -1.0;
         }
 
-        Motors.setDrive(new DriveSignal(leftPwm, rightPwm));
-    }
-
-    public static double handleDeadband(double val, double deadband) {
-        return (Math.abs(val) > Math.abs(deadband)) ? val : 0.0;
-    }
-
-    public DriveSignal math() {
-        return null;
+        return new DriveSignal(leftPwm, rightPwm);
     }
 
     public void init() {

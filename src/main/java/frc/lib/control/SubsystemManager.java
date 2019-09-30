@@ -1,6 +1,7 @@
 package frc.lib.control;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
@@ -62,6 +63,12 @@ public class SubsystemManager {
     }
 
     public void shutdown(){
+        /*Iterator it = systems.entrySet().iterator();
+        while(it.hasNext()){
+            Subsystem system = (Subsystem)it.next();
+            //put shutdown in there
+            it.remove();
+        }*/
         systemExecutor.shutdownNow();
         //todo for each system in lists call shutdown
     }

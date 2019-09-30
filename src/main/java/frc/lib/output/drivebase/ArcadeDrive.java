@@ -12,7 +12,11 @@ public class ArcadeDrive extends DriveSystem {
     public DriveSignal math(){
         double x = this.instance.getAxis(Input.getInstance().lAxis);
         double y = this.instance.getAxis(Input.getInstance().rAxis);
-        return new DriveSignal(Math.min(x+y, 1), Math.min(y-x, 1));//todo should scale both down if it is greater than one
+        double l = x+y;
+        double r = y-x;
+        l /= Math.max(l,r);
+        r /= Math.max(l,r);
+        return new DriveSignal(l, r);
     }
 
     public void init() {

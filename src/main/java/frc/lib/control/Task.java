@@ -1,9 +1,8 @@
 package frc.lib.control;
 
-import frc.lib.output.error.ErrorHandler;
 import frc.lib.utility.Console;
 import frc.lib.utility.Heartbeat;
-import frc.lib.utility.SystemState;
+import frc.lib.utility.SuperMonkeyBall;
 
 public abstract class Task implements Runnable {
 
@@ -53,7 +52,7 @@ public abstract class Task implements Runnable {
 
     public void run(){
         heartbeat.check();
-        if(SystemState.getInstance().FMSPresent()){
+        if(SuperMonkeyBall.getInstance().FMSPresent()){
             competitionExecution();
         } else {
             standardExecution();

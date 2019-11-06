@@ -8,6 +8,8 @@
 .idea/**/usage.statistics.xml
 .idea/**/dictionaries
 .idea/**/shelf
+spiral.ipr
+spiral.iws
 
 # Generated files
 .idea/**/contentModel.xml

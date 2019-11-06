@@ -1,6 +1,6 @@
 package frc.lib.control;
 
-import frc.lib.utility.SystemState;
+import frc.lib.utility.SuperMonkeyBall;
 
 public abstract class Subsystem extends Task {
 
@@ -9,19 +9,19 @@ public abstract class Subsystem extends Task {
 
     public void standardExecution() {
         if(!overridden){
-            internalState = SystemState.getInstance().getState();
+            internalState = SuperMonkeyBall.getInstance().getState();
         }
         switch (internalState){
-            case SystemState.DISABLED:
+            case SuperMonkeyBall.DISABLED:
                 disabledPeriodic();
                 break;
-            case SystemState.AUTONOMOUS:
+            case SuperMonkeyBall.AUTONOMOUS:
                 autonomousPeriodic();
                 break;
-            case SystemState.OPERATOR:
+            case SuperMonkeyBall.OPERATOR:
                 teleopPeriodic();
                 break;
-            case SystemState.TEST:
+            case SuperMonkeyBall.TEST:
                 testPeriodic();
                 break;
             default:

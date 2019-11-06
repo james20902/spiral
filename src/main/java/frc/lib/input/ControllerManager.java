@@ -4,7 +4,7 @@ import edu.wpi.first.hal.HAL;
 import frc.lib.control.Task;
 import frc.lib.utility.Console;
 import frc.lib.utility.Settings;
-import frc.lib.utility.SystemState;
+import frc.lib.utility.SuperMonkeyBall;
 
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
@@ -49,7 +49,7 @@ public class ControllerManager extends Task {
     public void competitionExecution(){
         //this assumes a controller is plugged in
         //need a way to keep checking for controllers if its unplugged
-        if(SystemState.getInstance().isEnabled() && !controllerLock){
+        if(SuperMonkeyBall.getInstance().isEnabled() && !controllerLock){
             finalizeControllers();
             controllerLock = true;
         }

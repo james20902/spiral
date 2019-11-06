@@ -57,7 +57,7 @@ public class StartRobot {
         HAL.waitForDSData();
         Console.reportWarning("DriverStation connected");
         manager.schedulePeriodicTask(ControllerManager.getInstance());
-        manager.schedulePeriodicTask(SystemState.getInstance());
+        manager.schedulePeriodicTask(SuperMonkeyBall.getInstance());
         manager.schedulePeriodicTask(Console.getInstance());
         MotorParser.getInstance().parse();
 

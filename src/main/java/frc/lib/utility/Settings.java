@@ -11,12 +11,14 @@ public class Settings {
     public float maxVelocity;
     public float ticksPerRevolutionWB;
     public float wheelDiameter;
+    public float[][] deadzones;
 
     private Settings(){
         maxVelocity = 1;
         ticksPerRevolutionWB = -1;
         wheelDiameter = -1;
         instance = this;
+        deadzones = new float[1][1];
     }
 
     public static Settings getInstance(){

@@ -1,11 +1,10 @@
-package frc.lib.output;
+package frc.lib.output.motors;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import com.revrobotics.CANSparkMax;
 import edu.wpi.first.wpilibj.Encoder;
-import frc.lib.output.error.ErrorHandler;
 
 import java.lang.reflect.Method;
 

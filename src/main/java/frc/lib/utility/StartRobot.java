@@ -6,7 +6,6 @@ import edu.wpi.first.hal.HALUtil;
 import edu.wpi.first.wpilibj.util.WPILibVersion;
 import frc.lib.control.ShutdownHook;
 import frc.lib.control.TaskManager;
-import frc.lib.input.ControllerManager;
 import frc.lib.output.error.ErrorHandler;
 import frc.lib.reader.MotorParser;
 import frc.team5115.frc2020.Robot;
@@ -31,7 +30,6 @@ public class StartRobot {
         HAL.report(FRCNetComm.tResourceType.kResourceType_Language, FRCNetComm.tInstances.kLanguage_Java);
 
         System.out.println("********** Spiral starting **********");
-        Console.reportWarning("Gooooooooood morning... GAMERS!");
 
         if (HALUtil.getHALRuntimeType() == 0) {
             try {
@@ -49,16 +47,10 @@ public class StartRobot {
                 }
 
             } catch (IOException ex) {
-                Console.reportError("Could not write FRC_Lib_Version.ini: " + ex.toString(), 1,
-                        ex.getStackTrace());
+
             }
         }
-        Console.reportWarning("Waiting for DriverStation connection");
         HAL.waitForDSData();
-        Console.reportWarning("DriverStation connected");
-        manager.schedulePeriodicTask(ControllerManager.getInstance());
-        manager.schedulePeriodicTask(SuperMonkeyBall.getInstance());
-        manager.schedulePeriodicTask(Console.getInstance());
         MotorParser.getInstance().parse();
 
         HAL.observeUserProgramStarting();

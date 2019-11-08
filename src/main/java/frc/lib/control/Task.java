@@ -1,6 +1,5 @@
 package frc.lib.control;
 
-import frc.lib.utility.Console;
 import frc.lib.utility.Heartbeat;
 import frc.lib.utility.SuperMonkeyBall;
 

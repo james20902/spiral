@@ -1,7 +1,6 @@
 package frc.lib.output.drivebase;
 
 import frc.lib.input.Controller;
-import frc.lib.utility.Input;
 
 public class ArcadeDrive extends DriveSystem {
 

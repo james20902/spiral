@@ -1,8 +1,6 @@
 package frc.lib.output.drivebase;
 
 import frc.lib.input.Controller;
-import frc.lib.output.Motors;
-import frc.lib.utility.Input;
 
 /*
 * This is Cheesy Drive taken from team 254, the Cheesy Poofs

@@ -2,10 +2,8 @@ package frc.lib.output.error;
 
 
 import edu.wpi.first.wpilibj.Filesystem;
-import frc.lib.utility.Console;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 

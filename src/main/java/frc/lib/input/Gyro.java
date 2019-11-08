@@ -1,9 +1,7 @@
-package frc.lib.output;
+package frc.lib.input;
 
 import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.SerialPort;
-import frc.lib.output.error.ErrorHandler;
-import frc.lib.utility.Console;
 
 public class Gyro {
     private SerialPort.Port port;

@@ -2,7 +2,6 @@ package frc.lib.input;
 
 import edu.wpi.first.hal.HAL;
 import frc.lib.control.Task;
-import frc.lib.utility.Console;
 import frc.lib.utility.Settings;
 import frc.lib.utility.SuperMonkeyBall;
 

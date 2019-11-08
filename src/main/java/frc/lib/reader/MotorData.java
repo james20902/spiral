@@ -6,8 +6,7 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel;
 import edu.wpi.first.wpilibj.Spark;
 import frc.lib.output.Blinkin;
-import frc.lib.output.Motor;
-import frc.lib.output.Motors;
+import frc.lib.output.motors.Motor;
 
 import java.util.ArrayList;
 import java.util.List;

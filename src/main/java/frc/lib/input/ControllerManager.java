@@ -2,12 +2,9 @@ package frc.lib.input;
 
 import edu.wpi.first.hal.HAL;
 import frc.lib.control.Task;
-import frc.lib.utility.Settings;
-import frc.lib.utility.SuperMonkeyBall;
 
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
-import java.util.List;
 
 public class ControllerManager extends Task {
 
@@ -22,7 +19,6 @@ public class ControllerManager extends Task {
 
     private static final byte MAX_JOYSTICKS = 6;
 
-    private static Controller[] controllers;
 
     private float[][] deadzones = new float[1][1];
 
@@ -32,47 +28,20 @@ public class ControllerManager extends Task {
 
     @Override
     public void init(){
-        deadzones = Settings.getInstance().deadzones;
-//        findJoysticks();
     }
 
     public void standardExecution(){
-        //fixed array, lock, poll all 6 objects (like old driver station did)
-        if(!controllerLock){
-            hotplugControllers();
-            controllerLock = true;
-        }
-        pollAllJoysticks();
+
     }
 
     public void competitionExecution(){
-        //this assumes a controller is plugged in
-        //need a way to keep checking for controllers if its unplugged
-        if(SuperMonkeyBall.getInstance().isEnabled() && !controllerLock){
-            finalizeControllers();
-            controllerLock = true;
-        }
-        pollAllJoysticks();
+
     }
 
     private void pollAllJoysticks(){
-        for(Controller instance : controllers){
-            byte port = instance.getPort();
-            instance.updateData(
-                    pollButtons(port),
-                    pollAxes(port, instance.getAxesCount()),
-                    pollPOV(port, instance.getPOVcount())
-            );
-        }
+
     }
 
-    public static Controller getJoystick(){
-        return getJoystick(0);
-    }
-
-    public static Controller getJoystick(int port){
-        return controllers[port];
-    }
 
     private int pollButtons(byte port){
         return HAL.getJoystickButtons(port, countStorage);
@@ -104,29 +73,4 @@ public class ControllerManager extends Task {
         return (byte)HAL.getJoystickPOVs(port, new short[12]);
     }
 
-    public void finalizeControllers(){
-        List<Controller> storage = new ArrayList<>();
-        for(byte i = 0; i < MAX_JOYSTICKS; i++){
-            if(buttonCount(i) > 0){
-                storage.add(new Controller(i));
-            }
-        }
-        Console.reportWarning("Controller(s) detected!");
-        controllers = storage.toArray(new Controller[storage.size()]);
-
-        for(Controller stick : controllers){
-            byte port = stick.getPort();
-            stick.initialize(buttonCount(port), axesCount(port), POVCount(port));
-        }
-    }
-
-    private void hotplugControllers(){
-        for(byte i = 0; i < MAX_JOYSTICKS; i++){
-            controllers[i] = new Controller(i);
-        }
-        for(Controller stick : controllers){
-            stick.initialize((byte)12, (byte)12, (byte)12);
-        }
-        Console.print("done");
-    }
 }

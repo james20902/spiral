@@ -1,11 +1,7 @@
 package frc.lib.control;
 
-import frc.lib.utility.Heartbeat;
-import frc.lib.utility.SuperMonkeyBall;
-
 public abstract class Task implements Runnable {
 
-    public Heartbeat heartbeat;
     private int timing;
     private String name;
 
@@ -28,8 +24,6 @@ public abstract class Task implements Runnable {
         } else {
             this.name = name;
         }
-        heartbeat = new Heartbeat(this::logSlowdown, getTiming());
-        heartbeat.start();
         init();
     }
 
@@ -50,15 +44,8 @@ public abstract class Task implements Runnable {
     }
 
     public void run(){
-        heartbeat.check();
-        if(SuperMonkeyBall.getInstance().FMSPresent()){
-            competitionExecution();
-        } else {
-            standardExecution();
-        }
+
     }
 
-    public void logSlowdown(){
-        Console.reportWarning("System " + getName() + " slowed down past expected " + getTiming() + "ms cycle!");
-    }
+
 }

@@ -17,7 +17,6 @@ public class Motor {
     public Motor(Object motor, int ticksPerRev, boolean encReversed){
         this.encReverse = encReversed;
         this.motor = motor;
-        Motors.motors.add(this);
         try {
             set = motor.getClass().getMethod("set");
             if(motor instanceof TalonSRX) {

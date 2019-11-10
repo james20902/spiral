@@ -1,21 +1,10 @@
 package frc.lib.output.drivebase;
 
-import frc.lib.input.Controller;
-
 public class ArcadeDrive extends DriveSystem {
 
-    public ArcadeDrive(Controller instance) {
-        super(instance);
-    }
 
     public DriveSignal math(){
-        double x = this.instance.getAxis(Input.getInstance().lAxis);
-        double y = this.instance.getAxis(Input.getInstance().rAxis);
-        double l = x+y;
-        double r = y-x;
-        l /= Math.max(l,r);
-        r /= Math.max(l,r);
-        return new DriveSignal(l, r);
+        return null;
     }
 
     public void init() {

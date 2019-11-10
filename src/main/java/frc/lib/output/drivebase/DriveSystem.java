@@ -1,15 +1,13 @@
 package frc.lib.output.drivebase;
 
 import frc.lib.control.Subsystem;
-import frc.lib.input.Controller;
 
 public abstract class DriveSystem extends Subsystem {
 
     DriveSignal signal;
-    Controller instance;
 
-    public DriveSystem(Controller instance){
-        this.instance = instance;
+    public DriveSystem(){
+
     }
 
     public void setSignal(DriveSignal signal){

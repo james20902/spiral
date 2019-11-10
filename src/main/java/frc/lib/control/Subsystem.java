@@ -1,6 +1,5 @@
 package frc.lib.control;
 
-import frc.lib.utility.SuperMonkeyBall;
 
 public abstract class Subsystem extends Task {
 
@@ -8,25 +7,7 @@ public abstract class Subsystem extends Task {
     private int internalState;
 
     public void standardExecution() {
-        if(!overridden){
-            internalState = SuperMonkeyBall.getInstance().getState();
-        }
-        switch (internalState){
-            case SuperMonkeyBall.DISABLED:
-                disabledPeriodic();
-                break;
-            case SuperMonkeyBall.AUTONOMOUS:
-                autonomousPeriodic();
-                break;
-            case SuperMonkeyBall.OPERATOR:
-                teleopPeriodic();
-                break;
-            case SuperMonkeyBall.TEST:
-                testPeriodic();
-                break;
-            default:
-                throw new IllegalStateException("The requested override state doesn't exist!");
-        }
+
     }
 
     public void disabledPeriodic(){}

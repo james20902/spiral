@@ -1,0 +1,11 @@
+Input
+    Settings.yml
+Goals
+    Load drivetrain type
+    Load drive control scheme
+    Load deadzones possibly
+    Load wheel diameter
+    Load max speed
+    etc.
+Outputs
+    Getter methods for different aspects of the robot

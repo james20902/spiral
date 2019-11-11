@@ -4,7 +4,6 @@ import edu.wpi.first.hal.HAL;
 import frc.lib.control.Task;
 
 import java.nio.ByteBuffer;
-import java.util.ArrayList;
 
 public class ControllerManager extends Task {
 
@@ -17,10 +16,14 @@ public class ControllerManager extends Task {
         return instance;
     }
 
-    private static final byte MAX_JOYSTICKS = 6;
+    private static final byte MAX_JOYSTICKS = (byte)HAL.kMaxJoystickAxes;
+    private static final byte MAX_BUTTONS = 64;
+    private static final byte MAX_POVS = (byte)HAL.kMaxJoystickPOVs;
+    private static final byte MAX_CONTROLLERS = 16;
 
-
-    private float[][] deadzones = new float[1][1];
+    private float[][] joysticks;
+    private float[][] buttons;
+    private short[][] povs;
 
     private final ByteBuffer countStorage = ByteBuffer.allocateDirect(1);
 
@@ -28,18 +31,37 @@ public class ControllerManager extends Task {
 
     @Override
     public void init(){
+        joysticks = new float[MAX_CONTROLLERS][MAX_JOYSTICKS];
+        buttons = new float[MAX_CONTROLLERS][MAX_BUTTONS];
+        povs = new short[MAX_CONTROLLERS][MAX_POVS];
     }
 
     public void standardExecution(){
-
+        pollAllJoysticks();
     }
 
     public void competitionExecution(){
 
     }
 
-    private void pollAllJoysticks(){
+    public float getJoystickAxis(byte port, byte axis) {
+        return joysticks[port][axis];
+    }
 
+    public float getPOV(byte port, byte id) {//todo error reporting so i can report id < 1 or being out of range
+        return povs[port][id];
+    }
+
+    public float getButton(byte port, byte id) {
+        return buttons[port][id];
+    }
+
+    private void pollAllJoysticks(){ // ds4 controllers have 4ms polling rate(250hz)
+        for(byte i = 0; i < MAX_CONTROLLERS; i++) {
+            joysticks[i] = pollAxes(i, axesCount(i));
+            //buttons[i] = pollButtons(i); todo how buttons?
+            povs[i] = pollPOV(i, POVCount(i));
+        }
     }
 
 

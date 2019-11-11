@@ -1,0 +1,7 @@
+Input
+    Color to set
+Goals
+    Easier interface for the REV Blinkin for teams.
+Output
+    Thicc enum for all colors in an easier to understand format.
+    Drives the colors via Spark over pwm

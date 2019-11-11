@@ -1,0 +1,6 @@
+Input
+    Driver inputs
+Goals
+    Drive motors on a pid based on percent of max speed for more reliable control
+Outputs
+    Runs motors according to velocity of the robot + split arcade

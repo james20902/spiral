@@ -1,0 +1,6 @@
+Input
+    None
+Goals
+    Command based but james and i dislike much of wpilib
+Outputs
+    None

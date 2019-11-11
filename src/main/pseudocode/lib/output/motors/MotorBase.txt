@@ -1,0 +1,6 @@
+Input
+    N/A
+Goals
+    Interface for motor math and common methods for all motors.
+Outputs
+    N/A

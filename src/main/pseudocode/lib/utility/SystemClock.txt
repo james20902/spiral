@@ -1,0 +1,7 @@
+Input
+    N/A
+Goals
+    Simple conversions to get time
+Output
+    System time in units
+    Match time in units

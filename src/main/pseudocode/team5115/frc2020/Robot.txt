@@ -1,0 +1,8 @@
+input:
+    Nothin
+purpose:
+    not much just drivetrain control
+processing:
+    use output.drivebase methods to drive it
+output:
+    drive

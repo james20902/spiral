@@ -1,0 +1,6 @@
+Input
+    N/A
+Goals
+    Auto initializing AHRS for Spiral to use for its nefarious purposes
+Output
+    Yaw, Pitch, Roll in friendlier words for the less big-brained. Maybe EKF?

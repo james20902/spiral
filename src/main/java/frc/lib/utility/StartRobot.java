@@ -6,7 +6,6 @@ import edu.wpi.first.hal.HALUtil;
 import edu.wpi.first.wpilibj.util.WPILibVersion;
 import frc.lib.control.ShutdownHook;
 import frc.lib.control.TaskManager;
-import frc.lib.output.error.ErrorHandler;
 import frc.lib.reader.MotorParser;
 import frc.team5115.frc2020.Robot;
 
@@ -21,7 +20,6 @@ public class StartRobot {
 
     public static void start(){
         Runtime.getRuntime().addShutdownHook(new ShutdownHook());
-        Thread.setDefaultUncaughtExceptionHandler(ErrorHandler.getInstance());
 
         if (!HAL.initialize(500, 0)) {
             throw new IllegalStateException("Failed to initialize HAL. Terminating");

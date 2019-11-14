@@ -4,7 +4,6 @@ import frc.lib.control.Subsystem;
 
 public class Robot extends Subsystem {
 
-
     @Override
     public void init(){
     }

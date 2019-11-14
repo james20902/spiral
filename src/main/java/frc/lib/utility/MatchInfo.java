@@ -32,7 +32,6 @@ public class MatchInfo extends Task {
         fetchMatchInfo();
     }
 
-    @Override
     public void logSlowdown() {
 
     }

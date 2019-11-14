@@ -10,33 +10,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2737c509-dbf5-4cc9-86bb-ab70412f3b43" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/frc/lib/output/motors/MotorControllerBase.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/frc/lib/output/motors/PWMController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/spiral.iml" beforeDir="false" afterPath="$PROJECT_DIR$/spiral.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/spiral.ipr" beforeDir="false" afterPath="$PROJECT_DIR$/spiral.ipr" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/spiral.iws" beforeDir="false" afterPath="$PROJECT_DIR$/spiral.iws" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/spiral.main.iml" beforeDir="false" afterPath="$PROJECT_DIR$/spiral.main.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/spiral.test.iml" beforeDir="false" afterPath="$PROJECT_DIR$/spiral.test.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/lib/control/ShutdownHook.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/lib/control/ShutdownHook.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/lib/control/Subsystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/lib/control/Subsystem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/lib/control/Task.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/lib/control/Task.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/lib/input/Controller.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/lib/input/ControllerManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/lib/input/ControllerManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/lib/input/Gyro.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/lib/input/Gyro.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/lib/output/drivebase/ArcadeDrive.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/lib/output/drivebase/ArcadeDrive.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/lib/output/drivebase/CheesyDrive.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/lib/output/drivebase/CheesyDrive.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/lib/output/drivebase/DriveSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/lib/output/drivebase/DriveSystem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/lib/output/drivebase/TankDrive.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/lib/output/drivebase/TankDrive.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/lib/output/drivebase/VelocityDrive.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/lib/output/drivebase/VelocityDrive.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/lib/output/error/Error.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/lib/output/error/ErrorHandler.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/lib/output/motors/Motor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/lib/output/motors/Motor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/lib/reader/MotorData.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/lib/reader/MotorParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/lib/reader/MotorParser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/lib/reader/SubsystemData.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/lib/reader/SubsystemParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/lib/reader/SubsystemParser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/lib/utility/CANMonitor.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/lib/utility/Heartbeat.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/lib/utility/Settings.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/lib/utility/Units.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/frc/lib/output/motors/Motor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/frc/lib/output/motors/MotorBase.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/frc/lib/utility/MatchInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/lib/utility/MatchInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/frc/lib/utility/StartRobot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/lib/utility/StartRobot.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/frc/team5115/frc2020/Robot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/team5115/frc2020/Robot.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -205,18 +190,6 @@
     </option>
   </component>
   <component name="RunManager" selected="Gradle.spiral [simulateJava]">
-    <configuration default="true" type="JUnit" factoryName="JUnit">
-      <option name="TEST_OBJECT" value="class" />
-      <option name="VM_PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="moduleWithDependencies" />
-      </option>
-      <method v="2">
-        <option name="BuildArtifacts" enabled="false" />
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="&lt;template&gt;" type="WebApp" default="true" selected="false">
       <Host>localhost</Host>
       <Port>5050</Port>
@@ -310,6 +283,18 @@
       </ExternalSystemSettings>
       <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>
       <method v="2" />
+    </configuration>
+    <configuration default="true" type="JUnit" factoryName="JUnit">
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <method v="2">
+        <option name="BuildArtifacts" enabled="false" />
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
     <configuration default="true" type="Remote">
       <option name="USE_SOCKET_TRANSPORT" value="true" />

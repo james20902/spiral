@@ -1,7 +1,6 @@
 package frc.lib.output;
 
 import edu.wpi.first.wpilibj.Spark;
-import frc.lib.output.error.ErrorHandler;
 
 public class Blinkin {
     public enum Colors{

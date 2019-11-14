@@ -12,7 +12,7 @@ public class Settings {
     public float maxVelocity;
     public float ticksPerRevolutionWB;
     public float wheelDiameter;
-    public float[][] deadzones;
+    public byte[][] drive_sticks;
     public String drivetrain;
     private Class<DriveSystem> driveType;
 
@@ -21,7 +21,7 @@ public class Settings {
         ticksPerRevolutionWB = -1;
         wheelDiameter = -1;
         instance = this;
-        deadzones = new float[1][1];
+        drive_sticks = new byte[1][1];
         load();
     }
 
@@ -35,7 +35,7 @@ public class Settings {
         TypeDescription description = new TypeDescription(Settings.class);
         constructor.addTypeDescription(description);
         Yaml yaml = new Yaml(constructor);
-        instance = (Settings) yaml.load(Filesystem.getDeployDirectory().getAbsolutePath()+"/robot.settings");
+        instance = (Settings) yaml.load(Filesystem.getDeployDirectory().getAbsolutePath()+"/robot.yml");
         try {
             for (Class c : ClassFinder.getClasses("frc.lib.output.drivebase")) {
                 if(c.toString().toUpperCase().equals(drivetrain.toUpperCase())) {

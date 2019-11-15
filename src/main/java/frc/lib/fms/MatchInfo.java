@@ -26,7 +26,6 @@ public class MatchInfo implements FMSUpdateable {
     @Override
     public void init() {
         currentMatch = new MatchInfoData();
-        FMSTask.registerUpdater(instance);
     }
 
     @Override

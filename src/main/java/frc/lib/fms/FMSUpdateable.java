@@ -2,8 +2,8 @@ package frc.lib.fms;
 
 public interface FMSUpdateable {
 
-    public void init();
+    void init();
 
-    public void update();
+    void update();
 
 }

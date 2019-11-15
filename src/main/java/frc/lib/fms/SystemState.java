@@ -14,6 +14,7 @@ public class SystemState implements FMSUpdateable {
     public static SystemState getInstance(){
         if(instance == null) {
             instance = new SystemState();
+            FMSTask.registerUpdater(instance);
         }
         return instance;
     }
@@ -24,7 +25,6 @@ public class SystemState implements FMSUpdateable {
     public void init(){
         globalState = new ControlWord();
         currentState = State.DISABLED;
-        FMSTask.registerUpdater(instance);
     }
 
     public void update(){

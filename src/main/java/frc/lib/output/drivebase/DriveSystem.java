@@ -1,7 +1,5 @@
 package frc.lib.output.drivebase;
 
-import frc.lib.control.Subsystem;
-
 public abstract class DriveSystem extends Subsystem {
 
     DriveSignal signal;

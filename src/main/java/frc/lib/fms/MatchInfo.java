@@ -1,10 +1,9 @@
-package frc.lib.utility;
+package frc.lib.fms;
 
 import edu.wpi.first.hal.HAL;
 import edu.wpi.first.hal.MatchInfoData;
-import frc.lib.control.Task;
 
-public class MatchInfo extends Task {
+public class MatchInfo implements FMSUpdateable {
 
     public enum Alliance{ RED, BLUE }
 
@@ -19,6 +18,7 @@ public class MatchInfo extends Task {
     public static MatchInfo getInstance(){
         if(instance == null){
             instance = new MatchInfo();
+            FMSTask.registerUpdater(instance);
         }
         return instance;
     }
@@ -26,15 +26,11 @@ public class MatchInfo extends Task {
     @Override
     public void init() {
         currentMatch = new MatchInfoData();
+        FMSTask.registerUpdater(instance);
     }
 
-    public void standardExecution(){
-        fetchMatchInfo();
-    }
-
-    public void logSlowdown() {
-
-    }
+    @Override
+    public void update(){ HAL.getMatchInfo(currentMatch);}
 
     public String getEventName(){
         return currentMatch.eventName;
@@ -63,10 +59,6 @@ public class MatchInfo extends Task {
             default:
                 return MatchType.NONE;
         }
-    }
-
-    public void fetchMatchInfo(){
-        HAL.getMatchInfo(currentMatch);
     }
 
     public Position getDSPosition(){

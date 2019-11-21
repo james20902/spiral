@@ -1,11 +1,13 @@
 package frc.lib.output.drivebase;
 
-public abstract class DriveSystem extends Subsystem {
+import frc.lib.control.Task;
+
+public abstract class DriveSystem extends Task {
 
     DriveSignal signal;
 
     public DriveSystem(/*TODO should have joystick input methods in here*/){
-
+        super(8);
     }
 
     public void setSignal(DriveSignal signal){
@@ -15,6 +17,10 @@ public abstract class DriveSystem extends Subsystem {
     public DriveSignal getSignal(){return signal;}
 
     public abstract DriveSignal math();
+
+    public void update(){
+        //todo set motors
+    }
 
     public void disabledPeriodic(){
         setSignal(new DriveSignal(0, 0, true));

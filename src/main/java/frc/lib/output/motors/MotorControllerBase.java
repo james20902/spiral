@@ -1,6 +1,6 @@
 package frc.lib.output.motors;
 
-public class MotorControllerBase {
+public abstract class MotorControllerBase {
 
     private int ID;
     private boolean invert = false;
@@ -14,19 +14,22 @@ public class MotorControllerBase {
     public void setPower(double power){
         if(power == this.power)
             return;
+        this.power = power;
     }
 
     double getPower(){
         return power;
     }
 
-    public int getRawPosition(){return 0;}
-    public int getRawVelocity(){return 0;}
-    public int getRawAcceleration(){return 0;}
+    protected abstract void sendPower();
 
-    public double getPosition(){return 0;}
-    public double getVelocity(){return 0;}
-    public double getAcceleration(){return 0;}
+    public abstract int getRawPosition();
+    public abstract int getRawVelocity();
+    public abstract int getRawAcceleration();
+
+    public abstract double getPosition();
+    public abstract double getVelocity();
+    public abstract double getAcceleration();
 
     public void setInverted(boolean isInverted){
         invert = isInverted;

@@ -10,29 +10,29 @@ public class FMSTask extends Task {
         super(delay);
     }
 
-    private static ArrayList<FMSUpdateable> dynamicList;
+    private static ArrayList<FMSUpdateable> taskList;
 
     public void init(){
-        dynamicList = new ArrayList<>();
-        ControllerInput.getInstance();
+        taskList = new ArrayList<>();
+        InputManager.getInstance();
         SystemState.getInstance();
         MatchInfo.getInstance();
     }
 
     @Override
     public void update() {
-        for(FMSUpdateable fms : dynamicList){
-            fms.update();
+        for(FMSUpdateable task : taskList){
+            task.update();
         }
     }
 
     @Override
     public void interrupted(){
-        dynamicList.clear();
+        taskList.clear();
     }
 
     public static void registerUpdater(FMSUpdateable element){
-        dynamicList.add(element);
+        taskList.add(element);
         element.init();
     }
 }

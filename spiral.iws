@@ -10,14 +10,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2737c509-dbf5-4cc9-86bb-ab70412f3b43" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/frc/lib/fms/ControllerInput.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/spiral.iws" beforeDir="false" afterPath="$PROJECT_DIR$/spiral.iws" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/lib/control/Task.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/lib/control/Task.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/frc/lib/fms/ControllerInput.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/lib/fms/InputManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/frc/lib/fms/FMSTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/lib/fms/FMSTask.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/lib/fms/FMSUpdateable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/lib/fms/FMSUpdateable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/lib/fms/Input.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/lib/fms/MatchInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/lib/fms/MatchInfo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/lib/fms/SystemState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/lib/fms/SystemState.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/frc/lib/output/drivebase/ArcadeDrive.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/lib/output/drivebase/ArcadeDrive.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -162,7 +157,7 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.project.gradle" />

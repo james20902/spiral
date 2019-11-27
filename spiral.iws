@@ -11,9 +11,8 @@
   <component name="ChangeListManager">
     <list default="true" id="2737c509-dbf5-4cc9-86bb-ab70412f3b43" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/spiral.iws" beforeDir="false" afterPath="$PROJECT_DIR$/spiral.iws" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/lib/fms/ControllerInput.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/lib/fms/InputManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/lib/fms/FMSTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/lib/fms/FMSTask.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/lib/output/drivebase/ArcadeDrive.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/lib/output/drivebase/ArcadeDrive.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/frc/lib/fms/InputManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/lib/fms/InputManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/frc/lib/input/ControllerPacket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/lib/input/ControllerPacket.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -186,6 +185,18 @@
     </option>
   </component>
   <component name="RunManager" selected="Gradle.spiral [simulateJava]">
+    <configuration default="true" type="JUnit" factoryName="JUnit">
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <method v="2">
+        <option name="BuildArtifacts" enabled="false" />
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="&lt;template&gt;" type="WebApp" default="true" selected="false">
       <Host>localhost</Host>
       <Port>5050</Port>
@@ -279,18 +290,6 @@
       </ExternalSystemSettings>
       <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>
       <method v="2" />
-    </configuration>
-    <configuration default="true" type="JUnit" factoryName="JUnit">
-      <option name="TEST_OBJECT" value="class" />
-      <option name="VM_PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="moduleWithDependencies" />
-      </option>
-      <method v="2">
-        <option name="BuildArtifacts" enabled="false" />
-        <option name="Make" enabled="true" />
-      </method>
     </configuration>
     <configuration default="true" type="Remote">
       <option name="USE_SOCKET_TRANSPORT" value="true" />

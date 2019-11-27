@@ -8,6 +8,7 @@ import java.nio.ByteBuffer;
 public class InputManager implements FMSUpdateable {
 
     private static final byte MAX_JOYSTICKS = 6;
+    private static final int POV_COUNT = 9;
 
     private static InputManager instance;
 
@@ -34,10 +35,48 @@ public class InputManager implements FMSUpdateable {
 
 
     private boolean[] pollButtons(byte port){
-        int buttonBuffer = HAL.getJoystickButtons(port, ByteBuffer.allocateDirect(1));
-        boolean[] buttonOutput = new boolean[buttonCount(port)];
-        for(int i = 0; i < buttonOutput.length - 1; i++){
+        int buttonBuffer = HAL.getJoystickButtons(port, buttonCountStorage);
+        int buttonCount = buttonCount(port);
+        short[] POVBuffer = new short[1];
+        HAL.getJoystickPOVs(port, POVBuffer);
+        boolean[] buttonOutput = new boolean[buttonCount + POV_COUNT];
+
+        for(int i = 0; i < buttonCount - 1; i++){
             buttonOutput[i] = (buttonBuffer & 1 << i) != 0;
+        }
+
+        int compare = -1;
+        for(int i = 0; i < POV_COUNT; i++){
+            switch(i){
+                case 0:
+                    compare = -1;
+                    break;
+                case 1:
+                    compare = 0;
+                    break;
+                case 2:
+                    compare = 45;
+                    break;
+                case 3:
+                    compare = 90;
+                    break;
+                case 4:
+                    compare = 135;
+                    break;
+                case 5:
+                    compare = 180;
+                    break;
+                case 6:
+                    compare = 225;
+                    break;
+                case 7:
+                    compare = 270;
+                    break;
+                case 8:
+                    compare = 315;
+                    break;
+            }
+            buttonOutput[i + buttonCount] = (POVBuffer[0] == compare);
         }
         return buttonOutput;
     }
@@ -48,23 +87,13 @@ public class InputManager implements FMSUpdateable {
         return axesOutput;
     }
 
-    private short[] pollPOV(byte port){
-        short[] POVOutput = new short[POVCount(port)];
-        HAL.getJoystickPOVs(port, POVOutput);
-        return POVOutput;
+    private byte axesCount(byte port){
+        return (byte)HAL.getJoystickAxes(port, new float[HAL.kMaxJoystickAxes]);
     }
 
     private byte buttonCount(byte port){
         HAL.getJoystickButtons(port, buttonCountStorage);
         return buttonCountStorage.get(0);
-    }
-
-    private byte axesCount(byte port){
-        return (byte)HAL.getJoystickAxes(port, new float[12]);
-    }
-
-    private byte POVCount(byte port){
-        return (byte)HAL.getJoystickPOVs(port, new short[12]);
     }
 
 }

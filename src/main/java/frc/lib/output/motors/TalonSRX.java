@@ -6,6 +6,7 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRXPIDSetConfiguration;
 public class TalonSRX extends com.ctre.phoenix.motorcontrol.can.TalonSRX implements MotorControllerBase {
     double power;
     double pastVelocity;
+    double lastPower;
     long pastTime;
 
     public TalonSRX(int can){
@@ -29,7 +30,10 @@ public class TalonSRX extends com.ctre.phoenix.motorcontrol.can.TalonSRX impleme
 
     @Override
     public void sendPower() {
-        super.set(ControlMode.PercentOutput, this.getPower());
+        if(power != this.getPower()) {
+            super.set(ControlMode.PercentOutput, this.getPower());
+            lastPower = this.getPower();
+        }
         pastVelocity = getRawVelocity();
         pastTime = System.currentTimeMillis();
     }

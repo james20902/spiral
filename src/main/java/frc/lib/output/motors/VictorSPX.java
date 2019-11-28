@@ -4,6 +4,7 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 
 public class VictorSPX extends com.ctre.phoenix.motorcontrol.can.VictorSPX implements MotorControllerBase {
     double power;
+    double lastPower;
     public VictorSPX(int deviceNumber) {
         super(deviceNumber);
         MotorManager.getInstance().addMotor(this);
@@ -25,7 +26,10 @@ public class VictorSPX extends com.ctre.phoenix.motorcontrol.can.VictorSPX imple
 
     @Override
     public void sendPower() {
-        super.set(ControlMode.PercentOutput, this.getPower());
+        if(power != this.getPower()) {
+            super.set(ControlMode.PercentOutput, this.getPower());
+            lastPower = this.getPower();
+        }
     }
 
     @Override

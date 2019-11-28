@@ -6,6 +6,7 @@ import com.revrobotics.CANSparkMax;
 public class SparkMAX extends CANSparkMax implements MotorControllerBase {
     double power;
     double pastVelocity;
+    double lastPower;
     long pastTime;
 
     public SparkMAX(int deviceID) {
@@ -25,7 +26,10 @@ public class SparkMAX extends CANSparkMax implements MotorControllerBase {
 
     @Override
     public void sendPower() {
-        super.set(power);
+        if(power != this.getPower()) {
+            super.set(this.getPower());
+            lastPower = this.getPower();
+        }
         pastVelocity = getRawVelocity();
         pastTime = System.currentTimeMillis();
     }

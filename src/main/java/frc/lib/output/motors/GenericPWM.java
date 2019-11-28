@@ -1,9 +1,11 @@
 package frc.lib.output.motors;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
 import edu.wpi.first.wpilibj.PWMSpeedController;
 
 public class GenericPWM extends PWMSpeedController implements MotorControllerBase {
     double power;
+    double lastPower;
 
     protected GenericPWM(int channel) {
         super(channel);
@@ -22,7 +24,10 @@ public class GenericPWM extends PWMSpeedController implements MotorControllerBas
 
     @Override
     public void sendPower() {
-        super.set(power);
+        if(power != this.getPower()) {
+            super.set(this.getPower());
+            lastPower = this.getPower();
+        }
     }
 
     @Override

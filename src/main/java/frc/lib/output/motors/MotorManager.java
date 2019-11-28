@@ -4,26 +4,26 @@ import frc.lib.control.Task;
 
 import java.util.ArrayList;
 
-public class MotorManager extends Task {
-    static ArrayList<MotorControllerBase> motors;
+public class MotorManager {
+    ArrayList<MotorControllerBase> motors;
+    static MotorManager instance;
 
-    public MotorManager(int delay) {
-        super(delay);
+    public static MotorManager getInstance(){
+        if(instance != null) return instance;
+        return new MotorManager();
     }
 
-    @Override
-    public void init() {
+    public MotorManager() {
         motors = new ArrayList<MotorControllerBase>();
     }
 
-    @Override
     public void update() {
         for(MotorControllerBase m : motors) {
             m.sendPower();
         }
     }
 
-    public static void addMotor(MotorControllerBase m){
+    public void addMotor(MotorControllerBase m){
         motors.add(m);
     }
 }

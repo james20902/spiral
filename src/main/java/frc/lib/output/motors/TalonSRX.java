@@ -10,7 +10,7 @@ public class TalonSRX extends com.ctre.phoenix.motorcontrol.can.TalonSRX impleme
 
     public TalonSRX(int can){
         super(can);
-        MotorManager.addMotor(this);
+        MotorManager.getInstance().addMotor(this);
     }
 
     public void setInverted(boolean inverted){

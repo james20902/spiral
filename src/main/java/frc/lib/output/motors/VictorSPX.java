@@ -6,7 +6,7 @@ public class VictorSPX extends com.ctre.phoenix.motorcontrol.can.VictorSPX imple
     double power;
     public VictorSPX(int deviceNumber) {
         super(deviceNumber);
-        MotorManager.addMotor(this);
+        MotorManager.getInstance().addMotor(this);
     }
 
     public void setInverted(boolean inverted){

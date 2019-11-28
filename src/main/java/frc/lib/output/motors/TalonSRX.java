@@ -3,34 +3,44 @@ package frc.lib.output.motors;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRXPIDSetConfiguration;
 
-public class TalonSRX extends MotorControllerBase {
-    com.ctre.phoenix.motorcontrol.can.TalonSRX controller;
+public class TalonSRX extends com.ctre.phoenix.motorcontrol.can.TalonSRX implements MotorControllerBase {
+    double power;
     int pastVelocity;
     long pastTime;
-    public TalonSRX(){
-        controller = new com.ctre.phoenix.motorcontrol.can.TalonSRX(-1);
+
+    public TalonSRX(int can){
+        super(can);
     }
 
     public void setInverted(boolean inverted){
-        super.setInverted(inverted);
-        controller.setInverted(inverted);
+        this.setInverted(inverted);
     }
 
     @Override
-    protected void sendPower() {
-        controller.set(ControlMode.PercentOutput, this.getPower());
+    public void setPower(double power) {
+        this.power = power;
+    }
+
+    @Override
+    public double getPower() {
+        return power;
+    }
+
+    @Override
+    public void sendPower() {
+        this.set(ControlMode.PercentOutput, this.getPower());
         pastVelocity = getRawVelocity();
         pastTime = System.currentTimeMillis();
     }
 
     @Override
     public int getRawPosition() {
-        return controller.getSelectedSensorPosition(0);
+        return this.getSelectedSensorPosition(0);
     }
 
     @Override
     public int getRawVelocity() {
-        return controller.getSelectedSensorVelocity(0);
+        return this.getSelectedSensorVelocity(0);
     }
 
     @Override
@@ -51,5 +61,11 @@ public class TalonSRX extends MotorControllerBase {
     @Override
     public double getAcceleration() {
         return 0;
+    }
+
+    @Override
+    public void stopMotor() {
+        power = 0;
+        sendPower();
     }
 }

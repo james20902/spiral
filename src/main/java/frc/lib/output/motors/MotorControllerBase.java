@@ -1,46 +1,19 @@
 package frc.lib.output.motors;
 
-public abstract class MotorControllerBase {
+public interface MotorControllerBase {
+    public void setPower(double power);
 
-    private int ID;
-    private boolean invert = false;
-    private boolean lock = false;
-    private double power;
+    abstract double getPower();
 
-    public void setID(int id){
-        this.ID = id;
-    }
+    public void sendPower();
 
-    public void setPower(double power){
-        if(power == this.power)
-            return;
-        this.power = power;
-    }
+    public int getRawPosition();
+    public int getRawVelocity();
+    public int getRawAcceleration();
 
-    double getPower(){
-        return power;
-    }
+    public double getPosition();
+    public double getVelocity();
+    public double getAcceleration();
 
-    protected abstract void sendPower();
-
-    public abstract int getRawPosition();
-    public abstract int getRawVelocity();
-    public abstract int getRawAcceleration();
-
-    public abstract double getPosition();
-    public abstract double getVelocity();
-    public abstract double getAcceleration();
-
-    public void setInverted(boolean isInverted){
-        invert = isInverted;
-    }
-
-    public boolean getInverted(){
-        return invert;
-    }
-
-    public void stopMotor(){
-        setPower(0);
-    }
-
+    public void stopMotor();
 }

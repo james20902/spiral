@@ -5,7 +5,7 @@ import frc.lib.control.Task;
 import java.util.ArrayList;
 
 public class MotorManager extends Task {
-    ArrayList<MotorControllerBase> motors;
+    static ArrayList<MotorControllerBase> motors;
 
     public MotorManager(int delay) {
         super(delay);
@@ -23,7 +23,7 @@ public class MotorManager extends Task {
         }
     }
 
-    public void addMotor(MotorControllerBase m){
+    public static void addMotor(MotorControllerBase m){
         motors.add(m);
     }
 }

@@ -10,6 +10,7 @@ public class SparkMAX extends CANSparkMax implements MotorControllerBase {
 
     public SparkMAX(int deviceID) {
         super(deviceID, MotorType.kBrushless);
+        MotorManager.addMotor(this);
     }
 
     @Override

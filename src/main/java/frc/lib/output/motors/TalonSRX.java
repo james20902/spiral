@@ -5,11 +5,12 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRXPIDSetConfiguration;
 
 public class TalonSRX extends com.ctre.phoenix.motorcontrol.can.TalonSRX implements MotorControllerBase {
     double power;
-    int pastVelocity;
+    double pastVelocity;
     long pastTime;
 
     public TalonSRX(int can){
         super(can);
+        MotorManager.addMotor(this);
     }
 
     public void setInverted(boolean inverted){
@@ -34,17 +35,17 @@ public class TalonSRX extends com.ctre.phoenix.motorcontrol.can.TalonSRX impleme
     }
 
     @Override
-    public int getRawPosition() {
+    public double getRawPosition() {
         return super.getSelectedSensorPosition(0);
     }
 
     @Override
-    public int getRawVelocity() {
+    public double getRawVelocity() {
         return super.getSelectedSensorVelocity(0);
     }
 
     @Override
-    public int getRawAcceleration() {
+    public double getRawAcceleration() {
         return (int)((getRawVelocity()-pastVelocity)/(System.currentTimeMillis()-pastTime));
     }
 

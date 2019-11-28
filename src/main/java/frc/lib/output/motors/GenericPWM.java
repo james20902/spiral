@@ -7,6 +7,7 @@ public class GenericPWM extends PWMSpeedController implements MotorControllerBas
 
     protected GenericPWM(int channel) {
         super(channel);
+        MotorManager.addMotor(this);
     }
 
     @Override

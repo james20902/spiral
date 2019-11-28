@@ -6,6 +6,7 @@ public class VictorSPX extends com.ctre.phoenix.motorcontrol.can.VictorSPX imple
     double power;
     public VictorSPX(int deviceNumber) {
         super(deviceNumber);
+        MotorManager.addMotor(this);
     }
 
     public void setInverted(boolean inverted){
@@ -28,17 +29,17 @@ public class VictorSPX extends com.ctre.phoenix.motorcontrol.can.VictorSPX imple
     }
 
     @Override
-    public int getRawPosition() {
+    public double getRawPosition() {
         return super.getSelectedSensorPosition(0);
     }
 
     @Override
-    public int getRawVelocity() {
+    public double getRawVelocity() {
         return super.getSelectedSensorVelocity(0);
     }
 
     @Override
-    public int getRawAcceleration() {
+    public double getRawAcceleration() {
         return 0;
     }
 

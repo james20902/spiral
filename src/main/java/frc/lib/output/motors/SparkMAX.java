@@ -1,19 +1,15 @@
 package frc.lib.output.motors;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.can.TalonSRXPIDSetConfiguration;
+import com.revrobotics.CANSparkMax;
 
-public class TalonSRX extends com.ctre.phoenix.motorcontrol.can.TalonSRX implements MotorControllerBase {
+public class SparkMAX extends CANSparkMax implements MotorControllerBase {
     double power;
-    int pastVelocity;
+    double pastVelocity;
     long pastTime;
 
-    public TalonSRX(int can){
-        super(can);
-    }
-
-    public void setInverted(boolean inverted){
-        super.setInverted(inverted);
+    public SparkMAX(int deviceID) {
+        super(deviceID, MotorType.kBrushless);
     }
 
     @Override
@@ -28,23 +24,23 @@ public class TalonSRX extends com.ctre.phoenix.motorcontrol.can.TalonSRX impleme
 
     @Override
     public void sendPower() {
-        super.set(ControlMode.PercentOutput, this.getPower());
+        super.set(power);
         pastVelocity = getRawVelocity();
         pastTime = System.currentTimeMillis();
     }
 
     @Override
-    public int getRawPosition() {
-        return super.getSelectedSensorPosition(0);
+    public double getRawPosition() {
+        return super.getEncoder().getPosition();
     }
 
     @Override
-    public int getRawVelocity() {
-        return super.getSelectedSensorVelocity(0);
+    public double getRawVelocity() {
+        return super.getEncoder().getVelocity();
     }
 
     @Override
-    public int getRawAcceleration() {
+    public double getRawAcceleration() {
         return (int)((getRawVelocity()-pastVelocity)/(System.currentTimeMillis()-pastTime));
     }
 
@@ -61,12 +57,6 @@ public class TalonSRX extends com.ctre.phoenix.motorcontrol.can.TalonSRX impleme
     @Override
     public double getAcceleration() {
         return 0;
-    }
-
-    @Override
-    public void stopMotor() {
-        power = 0;
-        sendPower();
     }
 
     @Override

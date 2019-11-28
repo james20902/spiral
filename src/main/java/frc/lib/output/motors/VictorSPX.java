@@ -1,15 +1,11 @@
 package frc.lib.output.motors;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.can.TalonSRXPIDSetConfiguration;
 
-public class TalonSRX extends com.ctre.phoenix.motorcontrol.can.TalonSRX implements MotorControllerBase {
+public class VictorSPX extends com.ctre.phoenix.motorcontrol.can.VictorSPX implements MotorControllerBase {
     double power;
-    int pastVelocity;
-    long pastTime;
-
-    public TalonSRX(int can){
-        super(can);
+    public VictorSPX(int deviceNumber) {
+        super(deviceNumber);
     }
 
     public void setInverted(boolean inverted){
@@ -29,8 +25,6 @@ public class TalonSRX extends com.ctre.phoenix.motorcontrol.can.TalonSRX impleme
     @Override
     public void sendPower() {
         super.set(ControlMode.PercentOutput, this.getPower());
-        pastVelocity = getRawVelocity();
-        pastTime = System.currentTimeMillis();
     }
 
     @Override
@@ -45,7 +39,7 @@ public class TalonSRX extends com.ctre.phoenix.motorcontrol.can.TalonSRX impleme
 
     @Override
     public int getRawAcceleration() {
-        return (int)((getRawVelocity()-pastVelocity)/(System.currentTimeMillis()-pastTime));
+        return 0;
     }
 
     @Override

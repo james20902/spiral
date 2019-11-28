@@ -7,13 +7,15 @@ public interface MotorControllerBase {
 
     public void sendPower();
 
-    public int getRawPosition();
-    public int getRawVelocity();
-    public int getRawAcceleration();
+    public double getRawPosition();
+    public double getRawVelocity();
+    public double getRawAcceleration();
 
     public double getPosition();
     public double getVelocity();
     public double getAcceleration();
 
     public void stopMotor();
+
+    public double getCurrent();
 }

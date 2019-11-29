@@ -1,27 +1,31 @@
 package frc.lib.control;
 
 public abstract class Task implements Runnable {
+    protected TaskType type;
+    long delay, period;
+    long startTime;
+    boolean running;
 
-    int delay;
-
-    public Task(int delay){
+    public Task(long delay, long period, TaskType type){
         this.delay = delay;
+        this.period = period;
+        init();
+    }
+
+    public Task(long period, TaskType type){
+        this.delay = 0;
+        this.period = period;
+        init();
     }
 
     public abstract void init();
 
     @Override
     public void run(){
-        init();
-        while(!Thread.interrupted()){
-            try{
-                update();
-                Thread.sleep(delay);
-            } catch (InterruptedException e) {
-                //do nothing, thread is supposed to sleep
-            }
-        }
-        interrupted();
+        startTime = System.currentTimeMillis();
+        running = true;
+        update();
+        running = false;
     }
 
     public abstract void update();
@@ -30,4 +34,7 @@ public abstract class Task implements Runnable {
         //Some logger support logs task name interrupt
     }
 
+    public TaskType getType(){
+        return type;
+    }
 }

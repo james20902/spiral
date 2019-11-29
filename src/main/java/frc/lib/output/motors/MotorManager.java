@@ -9,8 +9,8 @@ public class MotorManager {
     static MotorManager instance;
 
     public static MotorManager getInstance(){
-        if(instance != null) return instance;
-        return new MotorManager();
+        if(instance == null) instance = new MotorManager();
+        return instance;
     }
 
     public MotorManager() {

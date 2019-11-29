@@ -4,15 +4,13 @@ import frc.lib.fms.InputManager;
 import frc.lib.utility.Settings;
 
 public class ArcadeDrive extends DriveSystem {
-    public DriveSignal math(){
-        float throttle = InputManager.getInstance().getJoystickAxis(Settings.getInstance().drive_sticks[1][0], Settings.getInstance().drive_sticks[1][1]) - InputManager.getInstance().getJoystickAxis(Settings.getInstance().drive_sticks[0][0], Settings.getInstance().drive_sticks[0][1]);
-        float turn = InputManager.getInstance().getJoystickAxis(Settings.getInstance().drive_sticks[2][0], Settings.getInstance().drive_sticks[2][1]);
-
-        return new DriveSignal(throttle - turn,throttle + turn);
-    }
-
+    @Override
     public void init() {
 
+    }
+
+    public DriveSignal math(){
+        return null;
     }
 
     public void logSlowdown() {

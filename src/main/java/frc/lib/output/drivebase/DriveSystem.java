@@ -1,13 +1,14 @@
 package frc.lib.output.drivebase;
 
 import frc.lib.control.Task;
+import frc.lib.control.TaskType;
 
 public abstract class DriveSystem extends Task {
 
     DriveSignal signal;
 
     public DriveSystem(/*TODO should have joystick input methods in here*/){
-        super(8);
+        super(5, TaskType.REPEATED);
     }
 
     public void setSignal(DriveSignal signal){

@@ -6,6 +6,7 @@ import edu.wpi.first.hal.HALUtil;
 import edu.wpi.first.wpilibj.util.WPILibVersion;
 import frc.lib.control.ShutdownHook;
 import frc.lib.control.TaskManager;
+import frc.lib.fms.FMSTask;
 import frc.lib.reader.MotorParser;
 import frc.team5115.frc2020.Robot;
 
@@ -48,10 +49,8 @@ public class StartRobot {
 
             }
         }
-        HAL.waitForDSData();
-        MotorParser.getInstance().parse();
-
+        manager.addTask(new FMSTask());
+//        HAL.waitForDSData();
         HAL.observeUserProgramStarting();
-        manager.schedulePeriodicTask(new Robot());
     }
 }

@@ -1,13 +1,14 @@
 package frc.lib.fms;
 
 import frc.lib.control.Task;
+import frc.lib.control.TaskType;
 
 import java.util.ArrayList;
 
 public class FMSTask extends Task {
 
-    public FMSTask(int delay) {
-        super(delay);
+    public FMSTask() {
+        super(20, TaskType.REPEATED);
     }
 
     private static ArrayList<FMSUpdateable> taskList;

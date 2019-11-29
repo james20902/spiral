@@ -1,12 +1,10 @@
 package frc.team5115.frc2020;
 
-public class Robot extends Subsystem {
+public class Robot {
 
-    @Override
     public void init(){
     }
 
-    @Override
     public void teleopPeriodic() {
 
     }

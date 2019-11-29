@@ -2,20 +2,19 @@ package frc.lib.control;
 
 public abstract class Task implements Runnable {
     protected TaskType type;
-    long delay, period;
-    long startTime;
-    boolean running;
+    protected long delay, period;
+    protected long startTime;
+    protected boolean running;
 
     public Task(long delay, long period, TaskType type){
         this.delay = delay;
         this.period = period;
+        this.type = type;
         init();
     }
 
     public Task(long period, TaskType type){
-        this.delay = 0;
-        this.period = period;
-        init();
+        this(0, period, type);
     }
 
     public abstract void init();

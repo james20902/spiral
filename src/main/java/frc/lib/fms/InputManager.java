@@ -40,43 +40,13 @@ public class InputManager implements FMSUpdateable {
         short[] POVBuffer = new short[1];
         HAL.getJoystickPOVs(port, POVBuffer);
         boolean[] buttonOutput = new boolean[buttonCount + POV_COUNT];
-
         for(int i = 0; i < buttonCount - 1; i++){
             buttonOutput[i] = (buttonBuffer & 1 << i) != 0;
         }
-
         int compare = -1;
-        for(int i = 0; i < POV_COUNT; i++){
-            switch(i){
-                case 0:
-                    compare = -1;
-                    break;
-                case 1:
-                    compare = 0;
-                    break;
-                case 2:
-                    compare = 45;
-                    break;
-                case 3:
-                    compare = 90;
-                    break;
-                case 4:
-                    compare = 135;
-                    break;
-                case 5:
-                    compare = 180;
-                    break;
-                case 6:
-                    compare = 225;
-                    break;
-                case 7:
-                    compare = 270;
-                    break;
-                case 8:
-                    compare = 315;
-                    break;
-            }
-            buttonOutput[i + buttonCount] = (POVBuffer[0] == compare);
+        for(int i = 0; i < 9; i++){
+            System.out.println(compare);
+            compare = i * 45;
         }
         return buttonOutput;
     }

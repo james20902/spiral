@@ -33,7 +33,6 @@ public class InputManager implements FMSUpdateable {
 
     }
 
-
     private boolean[] pollButtons(byte port){
         int buttonBuffer = HAL.getJoystickButtons(port, buttonCountStorage);
         int buttonCount = buttonCountStorage.get(0);
@@ -45,7 +44,7 @@ public class InputManager implements FMSUpdateable {
         }
         int compare = -1;
         for(int i = 0; i < 9; i++){
-            System.out.println(compare);
+            buttonOutput[i + buttonCount] = (POVBuffer[0] == compare);
             compare = i * 45;
         }
         return buttonOutput;

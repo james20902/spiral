@@ -3,7 +3,7 @@ plugins {
     id "edu.wpi.first.GradleRIO" version "2020.3.2"
 }
 
-def ROBOT_MAIN_CLASS = "frc.team0000.robot.Main"
+def ROBOT_MAIN_CLASS = "frc.team0000.Main"
 
 // Define my targets (RoboRIO) and artifacts (deployable files)
 // This is added by GradleRIO's backing project EmbeddedTools.
@@ -47,7 +47,7 @@ dependencies {
     nativeDesktopZip wpi.deps.vendor.jni(wpi.platforms.desktop)
 
     // In Java for now, the argument must be false
-    simulation wpi.deps.sim.gui(wpi.platforms.desktop, false)
+//    simulation wpi.deps.sim.gui(wpi.platforms.desktop, false)
 
     testImplementation 'junit:junit:4.12'
 }

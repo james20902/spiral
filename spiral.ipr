@@ -260,22 +260,22 @@
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
   </component>
   <component name="libraryTable">
-    <library name="Gradle: com.ctre.phoenix:api-java:5.12.0">
+    <library name="Gradle: com.ctre.phoenix:api-java:5.17.3">
       <CLASSES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.ctre.phoenix/api-java/5.12.0/67bee152c70e47d981b1ecb1b7d6b59465aa506e/api-java-5.12.0.jar!/" />
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.ctre.phoenix/api-java/5.17.3/53b38914d133657ea058c86a97547dfd2035401d/api-java-5.17.3.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.ctre.phoenix/api-java/5.12.0/aca8d84775394631caa2992da07e3b11f14bc513/api-java-5.12.0-sources.jar!/" />
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.ctre.phoenix/api-java/5.17.3/837f68cb326f2dcb91ce4bbf9e6f5297ff239783/api-java-5.17.3-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Gradle: com.ctre.phoenix:wpiapi-java:5.12.0">
+    <library name="Gradle: com.ctre.phoenix:wpiapi-java:5.17.3">
       <CLASSES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.ctre.phoenix/wpiapi-java/5.12.0/a355071240b46081f86795119258fa2ffa1401e5/wpiapi-java-5.12.0.jar!/" />
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.ctre.phoenix/wpiapi-java/5.17.3/278184706572c3ad2fad702cdeebb2cce6b132c7/wpiapi-java-5.17.3.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.ctre.phoenix/wpiapi-java/5.12.0/7ba7915eee25afd745d0c76be698132d71c8f519/wpiapi-java-5.12.0-sources.jar!/" />
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.ctre.phoenix/wpiapi-java/5.17.3/57bf6fda085e67c9346fa7e14644605f6e29dcaf/wpiapi-java-5.17.3-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Gradle: com.fasterxml.jackson.core:jackson-annotations:2.10.0">
@@ -314,22 +314,22 @@
         <root url="jar://$PROJECT_DIR$/../../../Public/wpilib/2020/maven/com/google/code/findbugs/jsr305/3.0.2/jsr305-3.0.2-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Gradle: com.kauailabs.navx.frc:navx-java:3.1.344">
+    <library name="Gradle: com.kauailabs.navx.frc:navx-java:3.1.400">
       <CLASSES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.kauailabs.navx.frc/navx-java/3.1.344/30981bb5cf08864cfdca75cfd21418470e16c167/navx-java-3.1.344.jar!/" />
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.kauailabs.navx.frc/navx-java/3.1.400/3e28451a07aff388f6e3e77429e2ec61502b0201/navx-java-3.1.400.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.kauailabs.navx.frc/navx-java/3.1.344/d4d52e9506c6d7a139b3a473ce62d4b2d2ed6019/navx-java-3.1.344-sources.jar!/" />
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.kauailabs.navx.frc/navx-java/3.1.400/b7d2131e34c349231add5d9f3d95f084dcc3a667/navx-java-3.1.400-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Gradle: com.revrobotics.frc:SparkMax-java:1.1.9">
+    <library name="Gradle: com.revrobotics.frc:SparkMax-java:1.5.1">
       <CLASSES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.revrobotics.frc/SparkMax-java/1.1.9/b43056fe8c9091a3fbc599ce4460bf8c4f4c51b4/SparkMax-java-1.1.9.jar!/" />
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.revrobotics.frc/SparkMax-java/1.5.1/e23174e5aba5326d8bc688de17673943ee49c041/SparkMax-java-1.5.1.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.revrobotics.frc/SparkMax-java/1.1.9/7476b1fe2651507a6a4c9533ea77994254af4025/SparkMax-java-1.1.9-sources.jar!/" />
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.revrobotics.frc/SparkMax-java/1.5.1/562a8580ca896bb257692e03ccdace958475ee8d/SparkMax-java-1.5.1-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Gradle: edu.wpi.first.cameraserver:cameraserver-java:2020.3.2">
@@ -368,15 +368,6 @@
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/edu.wpi.first.ntcore/ntcore-java/2020.3.2/fcf3b30d78bf72fffd830285495d5a9d00924dff/ntcore-java-2020.3.2-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Gradle: edu.wpi.first.thirdparty.frc2019.opencv:opencv-java:3.4.4-4">
-      <CLASSES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/edu.wpi.first.thirdparty.frc2019.opencv/opencv-java/3.4.4-4/5c546c223045ef680e643d97726623031831b1c5/opencv-java-3.4.4-4.jar!/" />
-      </CLASSES>
-      <JAVADOC />
-      <SOURCES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/edu.wpi.first.thirdparty.frc2019.opencv/opencv-java/3.4.4-4/d433924d21ac1a7c0375495d982f61eb047484cb/opencv-java-3.4.4-4-sources.jar!/" />
-      </SOURCES>
-    </library>
     <library name="Gradle: edu.wpi.first.thirdparty.frc2020.opencv:opencv-java:3.4.7-2">
       <CLASSES>
         <root url="jar://$PROJECT_DIR$/../../../Public/wpilib/2020/maven/edu/wpi/first/thirdparty/frc2020/opencv/opencv-java/3.4.7-2/opencv-java-3.4.7-2.jar!/" />
@@ -395,6 +386,15 @@
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/edu.wpi.first.wpilibj/wpilibj-java/2020.3.2/bfca35084d48a94471476d8f859907915f52cefb/wpilibj-java-2020.3.2-sources.jar!/" />
       </SOURCES>
     </library>
+    <library name="Gradle: edu.wpi.first.wpilibNewCommands:wpilibNewCommands-java:2020.3.2">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/edu.wpi.first.wpilibNewCommands/wpilibNewCommands-java/2020.3.2/5873f2f6694d271e65edaeaad92a016510fe96fe/wpilibNewCommands-java-2020.3.2.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/edu.wpi.first.wpilibNewCommands/wpilibNewCommands-java/2020.3.2/57280ddc1d8dd7f252ad274fa7520573660557a5/wpilibNewCommands-java-2020.3.2-sources.jar!/" />
+      </SOURCES>
+    </library>
     <library name="Gradle: edu.wpi.first.wpiutil:wpiutil-java:2020.3.2">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/edu.wpi.first.wpiutil/wpiutil-java/2020.3.2/f165d2000ed73699bec8c5515b892e7d92f75f6b/wpiutil-java-2020.3.2.jar!/" />
@@ -402,33 +402,6 @@
       <JAVADOC />
       <SOURCES>
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/edu.wpi.first.wpiutil/wpiutil-java/2020.3.2/5bc539cd38aec74fe19171a286ec166d3b6fe654/wpiutil-java-2020.3.2-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Gradle: jaci.jniloader:JNILoader:1.0.1">
-      <CLASSES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/jaci.jniloader/JNILoader/1.0.1/cda8f6f8880538cb168c9d6cf62e2d96c01ee7b5/JNILoader-1.0.1.jar!/" />
-      </CLASSES>
-      <JAVADOC />
-      <SOURCES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/jaci.jniloader/JNILoader/1.0.1/43472fb5bec68edf76f499d3ba49b7746465885a/JNILoader-1.0.1-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Gradle: jaci.pathfinder:Pathfinder-FRCSupport:2019.3.06-UNSTABLE">
-      <CLASSES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/jaci.pathfinder/Pathfinder-FRCSupport/2019.3.06-UNSTABLE/56f04b56fb9c36e6649342cbf2ebe497aabfe452/Pathfinder-FRCSupport-2019.3.06-UNSTABLE.jar!/" />
-      </CLASSES>
-      <JAVADOC />
-      <SOURCES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/jaci.pathfinder/Pathfinder-FRCSupport/2019.3.06-UNSTABLE/b1c142b0d0554f855eae887b1b0a25b55b90ec8/Pathfinder-FRCSupport-2019.3.06-UNSTABLE-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Gradle: jaci.pathfinder:Pathfinder-Java:2019.3.06-UNSTABLE">
-      <CLASSES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/jaci.pathfinder/Pathfinder-Java/2019.3.06-UNSTABLE/b932855ea9a4ff6bacdee08018108bca0a3acf1d/Pathfinder-Java-2019.3.06-UNSTABLE.jar!/" />
-      </CLASSES>
-      <JAVADOC />
-      <SOURCES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/jaci.pathfinder/Pathfinder-Java/2019.3.06-UNSTABLE/c24dd72a2a9c5a8b5f05560e136efc9316e1daac/Pathfinder-Java-2019.3.06-UNSTABLE-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Gradle: junit:junit:4.12">

@@ -10,79 +10,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2737c509-dbf5-4cc9-86bb-ab70412f3b43" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/frc/lib/control/Subsystem.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/frc/lib/control/SubsystemScheduler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/frc/lib/control/SystemWatchdog.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/frc/lib/utility/StartRobot.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendordeps/Phoenix-latest.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendordeps/WPILibNewCommands.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spiral.iml" beforeDir="false" afterPath="$PROJECT_DIR$/spiral.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/spiral.ipr" beforeDir="false" afterPath="$PROJECT_DIR$/spiral.ipr" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/spiral.iws" beforeDir="false" afterPath="$PROJECT_DIR$/spiral.iws" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/spiral.main.iml" beforeDir="false" afterPath="$PROJECT_DIR$/spiral.main.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/spiral.test.iml" beforeDir="false" afterPath="$PROJECT_DIR$/spiral.test.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/deploy/robot.errors" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/deploy/robot.input" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/deploy/robot.motors" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/deploy/robot.subsystems" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/deploy/robot.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/lib/control/ShutdownHook.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/lib/control/Subsystem.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/lib/control/Task.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/lib/control/TaskManager.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/lib/control/TaskType.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/lib/fms/FMSTask.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/lib/fms/FMSUpdateable.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/lib/fms/InputManager.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/lib/fms/MatchInfo.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/lib/fms/SystemState.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/lib/input/Controller.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/lib/input/ControllerPacket.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/lib/input/Gyro.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/lib/output/Blinkin.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/lib/output/drivebase/ArcadeDrive.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/lib/output/drivebase/CheesyDrive.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/lib/output/drivebase/DriveSignal.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/lib/output/drivebase/DriveSystem.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/lib/output/drivebase/TankDrive.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/lib/output/drivebase/VelocityDrive.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/lib/output/motion/Follower.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/lib/output/motion/TalonFollower.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/lib/output/motion/TrapezoidalFollower.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/lib/output/motors/GenericPWM.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/lib/output/motors/MotorControllerBase.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/lib/output/motors/MotorManager.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/lib/output/motors/SparkMAX.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/lib/output/motors/TalonSRX.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/lib/output/motors/VictorSPX.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/lib/reader/MotorParser.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/lib/reader/SubsystemParser.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/lib/utility/ClassFinder.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/lib/utility/Settings.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/lib/utility/StartRobot.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/team5115/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/team0000/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/team5115/frc2020/Robot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/team0000/frc2020/Robot.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/pseudocode/lib/control/ShutdownHook.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/pseudocode/lib/control/Subsytem.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/pseudocode/lib/control/Task.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/pseudocode/lib/control/TaskManager.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/pseudocode/lib/input/ControllerManager.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/pseudocode/lib/input/Gyro.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/pseudocode/lib/output/Blinkin.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/pseudocode/lib/output/drivebase/ArcadeDrive.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/pseudocode/lib/output/drivebase/CheesyDrive.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/pseudocode/lib/output/drivebase/DriveSignal.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/pseudocode/lib/output/drivebase/DriveSystem.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/pseudocode/lib/output/drivebase/TankDrive.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/pseudocode/lib/output/drivebase/VelocityDrive.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/pseudocode/lib/output/motion/Follower.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/pseudocode/lib/output/motion/TalonFollower.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/pseudocode/lib/output/motion/TrapezoidalFollower.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/pseudocode/lib/output/motors/Motor.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/pseudocode/lib/output/motors/MotorBase.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/pseudocode/lib/reader/MotorParser.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/pseudocode/lib/reader/SubsystemParser.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/pseudocode/lib/utility/MatchInfo.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/pseudocode/lib/utility/Settings.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/pseudocode/lib/utility/StartRobot.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/pseudocode/lib/utility/SystemClock.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/pseudocode/team5115/Main.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/pseudocode/team5115/frc2020/Robot.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendordeps/PathfinderOLD-latest.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendordeps/Phoenix.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendordeps/REVRobotics.json" beforeDir="false" afterPath="$PROJECT_DIR$/vendordeps/REVRobotics.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendordeps/navx_frc.json" beforeDir="false" afterPath="$PROJECT_DIR$/vendordeps/navx_frc.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -435,7 +377,7 @@
       <workItem from="1575691570531" duration="13000" />
       <workItem from="1576030164893" duration="36000" />
       <workItem from="1576030214378" duration="133000" />
-      <workItem from="1585580345791" duration="742000" />
+      <workItem from="1585580345791" duration="2736000" />
     </task>
     <task id="LOCAL-00001" summary="Merging broke some stuff so i unbroke it">
       <created>1567397678609</created>
@@ -483,6 +425,22 @@
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
     <state x="1010" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.2560.1040@0.0.2560.1040" timestamp="1585581030577" />
+    <state width="2517" height="280" key="GridCell.Tab.0.bottom" timestamp="1585581578432">
+      <screen x="0" y="0" width="2560" height="1040" />
+    </state>
+    <state width="2517" height="280" key="GridCell.Tab.0.bottom/0.0.2560.1040@0.0.2560.1040" timestamp="1585581578432" />
+    <state width="2517" height="280" key="GridCell.Tab.0.center" timestamp="1585581578432">
+      <screen x="0" y="0" width="2560" height="1040" />
+    </state>
+    <state width="2517" height="280" key="GridCell.Tab.0.center/0.0.2560.1040@0.0.2560.1040" timestamp="1585581578432" />
+    <state width="2517" height="280" key="GridCell.Tab.0.left" timestamp="1585581578432">
+      <screen x="0" y="0" width="2560" height="1040" />
+    </state>
+    <state width="2517" height="280" key="GridCell.Tab.0.left/0.0.2560.1040@0.0.2560.1040" timestamp="1585581578432" />
+    <state width="2517" height="280" key="GridCell.Tab.0.right" timestamp="1585581578432">
+      <screen x="0" y="0" width="2560" height="1040" />
+    </state>
+    <state width="2517" height="280" key="GridCell.Tab.0.right/0.0.2560.1040@0.0.2560.1040" timestamp="1585581578432" />
     <state x="760" y="94" key="SettingsEditor" timestamp="1585580566662">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
@@ -491,5 +449,9 @@
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
     <state x="805" y="455" key="com.intellij.ide.util.TipDialog/0.0.2560.1040@0.0.2560.1040" timestamp="1585580349836" />
+    <state x="943" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1585582517880">
+      <screen x="0" y="0" width="2560" height="1040" />
+    </state>
+    <state x="943" y="225" width="672" height="678" key="search.everywhere.popup/0.0.2560.1040@0.0.2560.1040" timestamp="1585582517880" />
   </component>
 </project>

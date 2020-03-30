@@ -1,7 +1,0 @@
-Inputs
-    None
-Goals
-    Manager for new implementation of controllers that initialize themselves and allow for hotswappable stuff so that we don't have a redo of one of 3793s DCMP matches
-    Should deadzones be done in the manager, controller, or in the end?
-Outputs
-    Returns individual controllers if you ask politely

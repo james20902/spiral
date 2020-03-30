@@ -1,6 +1,0 @@
-Input
-    None
-Goals
-    Default startup for wpilib + Spiral error initialization and should be some others
-Output
-    None

@@ -1,6 +1,0 @@
-Input
-    Driver inputs
-Goals
-    Base class for driving the robot
-Outputs
-    Runs motors according to the subclass that implements it

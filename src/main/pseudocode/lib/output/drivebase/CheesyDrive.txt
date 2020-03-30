@@ -1,6 +1,0 @@
-Input
-    Driver inputs
-Goals
-    Cheesy drive ripped straight from the source
-Outputs
-    Runs motors according to cheesy drive

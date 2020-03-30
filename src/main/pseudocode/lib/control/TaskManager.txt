@@ -1,6 +1,0 @@
-Inputs
-    Pass it tasks so it do
-Goals
-    Run some tasks for us based on timing or just once
-Output
-    Whatever the tasks do, nothing itself

@@ -1,6 +1,0 @@
-Inputs
-    TalonSRX left, TalonSRX right, TalonSRX followerL, TalonSRX followerR, AHRS navxInstance, int ticksPerRev, double wheelDiameter, double maxVelocity
-Goals
-    Follows paths with talons
-Outputs
-    Drives talons along a path

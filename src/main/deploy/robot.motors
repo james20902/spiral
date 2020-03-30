@@ -1,7 +1,0 @@
-// example: talon dl on pdp 4 can 24 encoder motor 4096 reversed
-// this means there is a talon SRX left drive motor on the PDP slot 4 with CAN id 24, and the encoder device is integrated with 4096 ticks/rev. you could do 2 3 after encoder for A at 2 and B at 3
-// make sure to declare left drive motors, then right, and begin each group with the motor with an encoder
-talon dl on pdp 1 can 1 encoder motor 4096
-talon dl on pdp 1 can 3
-talon dr on pdp 1 can 2 encoder motor 4096 reversed
-talon dr on pdp 1 can 4 reversed

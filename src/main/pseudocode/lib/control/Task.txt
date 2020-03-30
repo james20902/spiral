@@ -1,6 +1,0 @@
-Inputs
-    timing
-Goals
-    Run something every so often
-Outputs
-    None

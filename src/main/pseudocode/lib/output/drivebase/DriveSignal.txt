@@ -1,6 +1,0 @@
-Input
-    double left, double right
-Goals
-    Hold left and right motor drive values
-Outputs
-    Left, right values

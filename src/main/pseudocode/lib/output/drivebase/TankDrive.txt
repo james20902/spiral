@@ -1,6 +1,0 @@
-Input
-    Driver inputs
-Goals
-    Simple tank for the masochists that want to use it
-Outputs
-    Runs motors according to tank

@@ -1,6 +1,0 @@
-Input
-    Driver inputs
-Goals
-    simple split arcade drive
-Outputs
-    Runs motors according to split arcade drive

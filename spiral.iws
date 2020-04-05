@@ -10,21 +10,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2737c509-dbf5-4cc9-86bb-ab70412f3b43" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/frc/lib/control/Subsystem.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/frc/lib/control/SubsystemScheduler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/frc/lib/control/SystemWatchdog.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/frc/lib/utility/StartRobot.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendordeps/Phoenix-latest.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendordeps/WPILibNewCommands.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spiral.ipr" beforeDir="false" afterPath="$PROJECT_DIR$/spiral.ipr" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/frc/lib/NetworkTableManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/frc/lib/control/SubsystemManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/spiral.iws" beforeDir="false" afterPath="$PROJECT_DIR$/spiral.iws" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spiral.main.iml" beforeDir="false" afterPath="$PROJECT_DIR$/spiral.main.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spiral.test.iml" beforeDir="false" afterPath="$PROJECT_DIR$/spiral.test.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendordeps/PathfinderOLD-latest.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendordeps/Phoenix.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendordeps/REVRobotics.json" beforeDir="false" afterPath="$PROJECT_DIR$/vendordeps/REVRobotics.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendordeps/navx_frc.json" beforeDir="false" afterPath="$PROJECT_DIR$/vendordeps/navx_frc.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/frc/lib/control/Subsystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/lib/control/Subsystem.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -377,7 +366,9 @@
       <workItem from="1575691570531" duration="13000" />
       <workItem from="1576030164893" duration="36000" />
       <workItem from="1576030214378" duration="133000" />
-      <workItem from="1585580345791" duration="2736000" />
+      <workItem from="1585580345791" duration="6001000" />
+      <workItem from="1586045628211" duration="1330000" />
+      <workItem from="1586053096846" duration="6240000" />
     </task>
     <task id="LOCAL-00001" summary="Merging broke some stuff so i unbroke it">
       <created>1567397678609</created>
@@ -421,6 +412,10 @@
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="1085" y="229" key="#com.intellij.ide.util.MemberChooser" timestamp="1586058841898">
+      <screen x="0" y="0" width="2560" height="1040" />
+    </state>
+    <state x="1085" y="229" key="#com.intellij.ide.util.MemberChooser/0.0.2560.1040@0.0.2560.1040" timestamp="1586058841898" />
     <state x="1010" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1585581030577">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
@@ -445,10 +440,10 @@
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
     <state x="760" y="94" key="SettingsEditor/0.0.2560.1040@0.0.2560.1040" timestamp="1585580566662" />
-    <state x="805" y="455" key="com.intellij.ide.util.TipDialog" timestamp="1585580349836">
+    <state x="805" y="455" key="com.intellij.ide.util.TipDialog" timestamp="1586053103027">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
-    <state x="805" y="455" key="com.intellij.ide.util.TipDialog/0.0.2560.1040@0.0.2560.1040" timestamp="1585580349836" />
+    <state x="805" y="455" key="com.intellij.ide.util.TipDialog/0.0.2560.1040@0.0.2560.1040" timestamp="1586053103027" />
     <state x="943" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1585582517880">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>

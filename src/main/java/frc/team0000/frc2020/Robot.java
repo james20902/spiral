@@ -1,9 +1,8 @@
 package frc.team0000.frc2020;
 
-public class Robot {
+import edu.wpi.first.wpilibj.TimedRobot;
 
-    public void init(){
-    }
+public class Robot extends TimedRobot {
 
     public void teleopPeriodic() {
 

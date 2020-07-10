@@ -18,4 +18,6 @@ public interface Encoder {
 
     double getVelocity();
 
+    void setReversed(boolean invert);
+
 }

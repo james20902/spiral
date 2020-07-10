@@ -1,12 +1,12 @@
 package frc.lib.speedcontroller.encoder;
 
-public class WPIEncoderWrapper extends edu.wpi.first.wpilibj.Encoder implements Encoder {
+public class WPIQuadratureEncoder extends edu.wpi.first.wpilibj.Encoder implements Encoder {
 
-    public WPIEncoderWrapper(int channelA, int channelB){
+    public WPIQuadratureEncoder(int channelA, int channelB){
         super(channelA, channelB);
     }
 
-    public WPIEncoderWrapper(int channelA, int channelB, boolean reverseDirection, EncodingType encodingType) {
+    public WPIQuadratureEncoder(int channelA, int channelB, boolean reverseDirection, EncodingType encodingType) {
         super(channelA, channelB, reverseDirection, encodingType);
     }
 
@@ -39,5 +39,9 @@ public class WPIEncoderWrapper extends edu.wpi.first.wpilibj.Encoder implements 
     public double getVelocity() {
         return getRate();
     }
+
+    @Override
+    public void setReversed(boolean invert) { setReverseDirection(invert); }
+
 
 }

@@ -5,7 +5,7 @@ import com.revrobotics.CANSparkMax;
 
 public class SparkMaxEncoder implements Encoder {
 
-    private CANEncoder nativeInstance;
+    private final CANEncoder nativeInstance;
 
     public SparkMaxEncoder(CANSparkMax nativeController){
         nativeInstance = new CANEncoder(nativeController);
@@ -56,4 +56,7 @@ public class SparkMaxEncoder implements Encoder {
     public double getVelocity() {
         return nativeInstance.getVelocity();
     }
+
+    @Override
+    public void setReversed(boolean invert) { nativeInstance.setInverted(invert); }
 }

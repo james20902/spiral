@@ -1,8 +1,6 @@
 package frc.lib.speedcontroller.encoder;
 
-import edu.wpi.first.wpilibj.Encoder;
-
-public class WPIEncoderWrapper extends Encoder implements BasicQuadratureEncoder{
+public class WPIEncoderWrapper extends edu.wpi.first.wpilibj.Encoder implements Encoder {
 
     public WPIEncoderWrapper(int channelA, int channelB){
         super(channelA, channelB);
@@ -42,9 +40,4 @@ public class WPIEncoderWrapper extends Encoder implements BasicQuadratureEncoder
         return getRate();
     }
 
-    //this needs to be constantly updated
-    @Override
-    public double getAcceleration() {
-        return 0;
-    }
 }

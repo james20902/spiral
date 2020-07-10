@@ -1,6 +1,6 @@
 package frc.lib.speedcontroller.encoder;
 
-public interface BasicQuadratureEncoder {
+public interface Encoder {
 
     void reset();
 
@@ -17,7 +17,5 @@ public interface BasicQuadratureEncoder {
     double getDistance();
 
     double getVelocity();
-
-    double getAcceleration();
 
 }

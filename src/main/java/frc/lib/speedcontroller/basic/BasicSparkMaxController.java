@@ -9,9 +9,10 @@ public class BasicSparkMaxController extends CANSparkMax implements BasicSpeedCo
     }
 
     @Override
-    public void setSpeed(double speed) {
-        setSpeed(speed);
-    }
+    public void setSpeed(double speed) { super.set(speed * 12); }
+
+    @Override
+    public void setVoltage(double voltage) { super.setVoltage(voltage); }
 
     @Override
     public int getPort() {

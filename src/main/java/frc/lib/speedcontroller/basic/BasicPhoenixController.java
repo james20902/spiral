@@ -15,6 +15,11 @@ public class BasicPhoenixController extends BaseMotorController implements Basic
     }
 
     @Override
+    public void setVoltage(double voltage){
+        setSpeed(voltage / getBusVoltage());
+    }
+
+    @Override
     public int getPort() {
         return getDeviceID();
     }

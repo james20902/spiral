@@ -17,6 +17,11 @@ public class BasicPWMController extends PWMSpeedController implements BasicSpeed
     }
 
     @Override
+    public void setVoltage(double voltage){
+        super.setVoltage(voltage);
+    }
+
+    @Override
     public int getPort() {
         return port;
     }

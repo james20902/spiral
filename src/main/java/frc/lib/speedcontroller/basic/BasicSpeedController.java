@@ -4,6 +4,8 @@ public interface BasicSpeedController {
 
     void setSpeed(double speed);
 
+    void setVoltage(double voltage);
+
     int getPort();
 
 }

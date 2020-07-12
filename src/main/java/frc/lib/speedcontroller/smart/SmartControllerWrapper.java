@@ -35,12 +35,6 @@ public class SmartControllerWrapper {
         this(speedController, encoder, kS, kV, kA, 0 ,0 ,0);
     }
 
-
-    public SmartControllerWrapper(BasicSpeedController speedController,
-                                  Encoder encoder){
-        this(speedController, encoder, 0, 0, 0, 0, 0, 0);
-    }
-
     public void setSpeed(double speed){
         controllerInstance.setSpeed(speed);
     }

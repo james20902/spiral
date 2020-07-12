@@ -2,12 +2,12 @@ package frc.lib.speedcontroller.encoder;
 
 import com.ctre.phoenix.motorcontrol.can.BaseMotorController;
 
-public class TalonEncoder implements Encoder{
+public class PhoenixEncoder implements Encoder{
 
     private final BaseMotorController nativeInstance;
     private double unitMultiplier = 1;
 
-    public TalonEncoder(BaseMotorController motorControllerInstance){
+    public PhoenixEncoder(BaseMotorController motorControllerInstance){
         this.nativeInstance = motorControllerInstance;
     }
 
@@ -57,6 +57,6 @@ public class TalonEncoder implements Encoder{
 
     @Override
     public void setReversed(boolean invert) {
-        nativeInstance.setSensorPhase(true);
+        nativeInstance.setSensorPhase(invert);
     }
 }

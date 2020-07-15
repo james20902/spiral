@@ -8,5 +8,4 @@ public interface DriveMethod {
     void setOI(OperatorInterface OI);
 
     PerpetualCommand getDefaultCommand();
-
 }

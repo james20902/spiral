@@ -1,4 +1,4 @@
-package frc.lib;
+package frc.lib.processing;
 
 import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.SPI;

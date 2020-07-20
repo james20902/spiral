@@ -5,7 +5,7 @@ import edu.wpi.first.wpilibj.controller.SimpleMotorFeedforward;
 import frc.lib.speedcontroller.basic.BasicSpeedController;
 import frc.lib.speedcontroller.encoder.Encoder;
 
-public class SmartControllerWrapper {
+public class SmartControllerWrapper implements SmartController{
 
     private final BasicSpeedController controllerInstance;
     private final Encoder encoderInstance;
